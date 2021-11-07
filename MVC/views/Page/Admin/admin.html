@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Admin</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Happy Tea</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="container collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active dropdown">
+                <a
+                  class="nav-link btn btn-secondary dropdown-toggle"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  href="#"
+                  >Trang chủ<span class="sr-only">(current)</span></a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  href="#"
+                  >Home<span class="sr-only">(current)</span></a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+            <form class="form-inline">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Tìm kiếm..."
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                Tìm kiếm
+              </button>
+            </form>
+          </div>
+        </nav>
+      </header>
+      <main class="pt-3 container">
+        <section>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">
+                <h5>Trang chủ</h5>
+              </li>
+            </ol>
+          </nav>
+        </section>
+        <section>
+          <div class="row">
+            <div class="col col-3 pb-4">
+              <a href="" class="card border-0 rounded">
+                <div class="card-body text-center">
+                  <h6 class="card-title text-uppercase">Danh Mục</h6>
+                  <h1 class="card-text text-dark">10</h1>
+                  <p class="text-danger">
+                    <i class="fas fa-caret-down"></i> 5.05%
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col col-3 pb-4">
+              <a href="" class="card border-0 rounded">
+                <div class="card-body text-center">
+                  <h6 class="card-title text-uppercase">Sản phẩm</h6>
+                  <h1 class="card-text text-dark">10</h1>
+                  <p class="text-success">
+                    <i class="fas fa-caret-up"></i> 5.05%
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col col-3 pb-4">
+              <a href="" class="card border-0 rounded">
+                <div class="card-body text-center">
+                  <h6 class="card-title text-uppercase">Người dùng</h6>
+                  <h1 class="card-text text-dark">10</h1>
+                  <p class="text-danger">
+                    <i class="fas fa-caret-down"></i> 5.05%
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col col-3 pb-4">
+              <a href="" class="card border-0 rounded">
+                <div class="card-body text-center">
+                  <h6 class="card-title text-uppercase">Đơn hàng</h6>
+                  <h1 class="card-text text-dark">10</h1>
+                  <p class="text-success">
+                    <i class="fas fa-caret-up"></i> 5.05%
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col col-3 pb-4">
+              <a href="" class="card border-0 rounded">
+                <div class="card-body text-center">
+                  <h6 class="card-title text-uppercase">Bình luận</h6>
+                  <h1 class="card-text text-dark">10</h1>
+                  <p class="text-danger">
+                    <i class="fas fa-caret-down"></i> 5.05%
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="chart row pt-5">
+          <div class="chart-line col-12">
+            <h4>Biểu đồ thống kê</h4>
+            <canvas id="myChartLine"></canvas>
+          </div>
+          <!-- <div class="chart-line col-4">
+            <canvas id="myChartArea"></canvas>
+          </div> -->
+        </section>
+        <section class="pt-5">
+          <h4>Bảng thống kê</h4>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+    <script>
+      const ctx = document.getElementById("myChartLine").getContext("2d");
+      const myChartLine = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+
+  <style>
+    li.nav-item {
+      padding: 0 10px;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+      color: white;
+    }
+    a.card {
+      box-shadow: 2px 4px 20px 0px #d8d8d8;
+    }
+    a.card:hover {
+      text-decoration: none;
+      box-shadow: 2px 3px 25px 0px #dbdee0;
+    }
+    main {
+      background-color: #ecececa4;
+    }
+    p .fa-caret-down {
+      color: red;
+    }
+  </style>
+</html>

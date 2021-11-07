@@ -1,0 +1,246 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* RESSET CSS */
+a:hover{
+  text-decoration: none;
+}
+/* ===================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+a{
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+#wrapper {
+  width: 100%;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+aside {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  color: #3d5170;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 9%);
+}
+section.menu {
+  width: 100%;
+}
+section.menu h3 {
+  font-size: 25px;
+  padding: 20px 0;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 9%);
+}
+.list-menu {
+  margin: 0px;
+}
+.list-menu .list-menu-item {
+  display: block;
+  /* border-top: 1px solid #e1e5eb; */
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 9%);
+}
+.list-menu .list-menu-item a {
+  font-size: 18px;
+  text-align: center;
+  color: #3d5170;
+  padding: 20px 0;
+  display: block;
+  transition: all 0.4s;
+}
+.list-menu .list-menu-item a:hover {
+  color: #074094;
+  text-decoration: none;
+  background-color: #073f9428;
+}
+.list-menu .list-menu-item a span {
+  padding-left: 10px;
+}
+
+/* Main */
+main {
+  width: 100%;
+  margin: 0px;
+  background-color: #f7f7f7bd;
+}
+main section.pages {
+  margin: 2rem 2rem;
+}
+main section.pages h4 {
+  background-color: rgb(172 190 213 / 89%);
+  padding: 1.2rem;
+  border-radius: 5px;
+  color: black;
+  font-size: 25px;
+  font-weight: 500;
+}
+section.dashboard{
+  margin: 2rem;
+  
+}
+section.dashboard ul {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+section.dashboard ul li a{
+  width: 200px;
+  background-color: white;
+  height: 150px;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  border-radius: 5px;
+  box-shadow: 1px 2px 13px 0px rgb(224 224 224);
+}
+section.dashboard ul li a i{
+  font-size: 50px;
+  display: block;
+  margin-bottom: 5px;
+}
+section.dashboard ul li a span{
+  font-size: 20px;
+}
+/* chart */
+.chart{
+  width: 700px;
+  margin: 2rem 2rem;
+}
+canvas{
+  /* width: 200px;
+  height: 100px; */
+}
