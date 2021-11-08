@@ -120,12 +120,66 @@
           </nav>
         </section>
         <section class="row display-flex justify-content-between ml-0 mr-0">
-          <button class="btn btn-success mb-3">
+          <button
+            class="btn btn-success mb-3"
+            data-toggle="modal"
+            data-target="#tabCategory"
+          >
             <i class="fas fa-plus-circle"></i> Thêm danh mục
           </button>
-          <select class="form-control col-4">
+
+          <!-- Load Tab -->
+          <div
+            class="modal fade"
+            id="tabCategory"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4>Thêm/Sửa danh mục</h4>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="" method="">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Tên danh mục</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="formGroupExampleInput"
+                        placeholder="Tên danh mục..."
+                      />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-default"
+                      data-dismiss="modal"
+                    >
+                      Đóng
+                    </button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Load Tab-->
+
+          <select class="form-control col-4" id="mySelect">
             <option>Sắp xếp theo</option>
-            <option>Theo A-Z</option>
+            <option class="sortbyAz">Theo A-Z</option>
             <option>Theo Z-A</option>
           </select>
         </section>
@@ -175,9 +229,35 @@
         </section>
       </main>
     </div>
+
+    <ul class="sortby">
+      <li>0</li>
+      <li>41</li>
+      <li>3</li>
+      <li>20</li>
+      <li>1</li>
+    </ul>
   </body>
   <script>
+    function sortbyAZ(a, b) {
+      return $(a).text() > $(b).text() ? 1 : -1;
+    }
+    function sortbyZA(a, b) {
+      return $(a).text() < $(b).text() ? 1 : -1;
+    }
+
     $(document).ready(function () {
+      // Lọc theo A-Z Z-A
+      $("#mySelect").on("change", function () {
+        var value = $(this).val();
+        if (value == "Theo A-Z") {
+          $(".sortby li").sort(sortbyAZ).appendTo(".sortby");
+        } else if (value == "Theo Z-A") {
+          $(".sortby li").sort(sortbyZA).appendTo(".sortby");
+        }
+      });
+
+      // Tìm kiếm
       $("#searchCategory").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $("#tableCategory tr").filter(function () {
