@@ -1,3 +1,3 @@
 <?php
-    define('BASE_URL','http://localhost/DuAnMau/MVC_KP');
+    define('BASE_URL','http://localhost/DuAn1');
     
