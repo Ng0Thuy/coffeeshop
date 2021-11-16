@@ -7,7 +7,7 @@ class Product extends Controller
 
   function Default()
   {
-    $Models = $this->model("ProductModels");
+    $Models = $this->model("ProductModel");
     $this->view("master", [
       "Page" => "product",
     ]);
