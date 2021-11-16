@@ -4,7 +4,7 @@
         <div class="featured-products">
             <div class="featured-product__title">
                 <div class="text-1">
-                    ToCo ToCo Menu
+                    Meta Coffee Menu
                 </div>
                 <div class="text-2">
                     SẢN PHẨM NỔI BẬT

@@ -12,5 +12,4 @@ class Home extends Controller
       "Page" => "home",
     ]);
   }
-  
 }

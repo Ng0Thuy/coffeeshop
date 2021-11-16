@@ -21,7 +21,7 @@
     </div>
     <!-- ============================= Javascript ===================================== -->
     <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>
-    <!-- <script src="./assets/js/slider.js"></script> -->
+    <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>
 </body>
 
 </html>
