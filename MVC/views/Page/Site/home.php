@@ -6,7 +6,7 @@
                 <div class="text-1">
                     Meta Coffee Menu
                 </div>
-                <div class="text-2">
+                <div class="text-2 line-bottom">
                     SẢN PHẨM NỔI BẬT
                 </div>
                 <div class="icon-bottom-title">
@@ -157,6 +157,160 @@
             </div>
         </div>
 
+
+        <!-- Product bán chạy -->
+        <div class="featured-products pt-2">
+            <div class="featured-product__title">
+                <div class="text-2 line-bottom">
+                    SẢN PHẨM BÁN CHẠY
+                </div>
+                <div class="icon-bottom-title">
+                </div>
+            </div>
+
+            <div class="featured-product__content">
+                <div class="list-product">
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">New</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+                    <a href="" class="product-cart">
+                        <div class="product-cart__tags">
+                            <div class="tag-new">new</div>
+                            <div class="tag-discount">30%</div>
+                        </div>
+                        <div class="product-cart__img">
+                            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+                        </div>
+                        <div class="product-cart__info">
+                            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-price">
+                                <div class="info-origin-price">25,000 đ</div>
+                                <div class="info-sale-price">30,000 đ</div>
+                            </div>
+                            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="btn btn--primary btn-view-all">Xem tất cả</div>
+            </div>
+        </div>
         <!-- Slider -->
         <div class="slider">
             <div class="slider-list" id="sliders">
