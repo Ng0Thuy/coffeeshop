@@ -7,7 +7,7 @@ class Home extends Controller
 
   function Default()
   {
-    $Models = $this->model("Models");
+    $Models = $this->model("HomeModels");
     $this->view("master", [
       "Page" => "home",
     ]);
