@@ -17,6 +17,20 @@
                 <a href="" class="menu-item__link">
                   THỰC ĐƠN
                   <i class="ti-angle-down"></i>
+                  <div class="menu-children">
+                    <ul class="children-list">
+                    <li class="children-item">Trà sữa</li>
+                      <li class="children-item">Coffee</li>
+                      <li class="children-item">Đồ ăn</li>
+                      <li class="children-item">Đồ ăn</li>
+                      <li class="children-item">Đồ ăn</li>
+                      <!-- <li class="children-item"><a class="children-link" href="">Trà sữa</a></li>
+                      <li class="children-item"><a class="children-link" href="">Coffee</a></li>
+                      <li class="children-item"><a class="children-link" href="">Đồ ăn</a></li>
+                      <li class="children-item"><a class="children-link" href="">Đồ ăn</a></li>
+                      <li class="children-item"><a class="children-link" href="">Đồ ăn</a></li> -->
+                    </ul>
+                  </div>
                 </a>
               </li>
               <li class="menu-item">

@@ -153,7 +153,7 @@
                     </a>
 
                 </div>
-                <div class="btn btn--primary btn-view-all">Xem tất cả</div>
+                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="#">Xem tất cả</a></div>
             </div>
         </div>
 
@@ -308,7 +308,7 @@
                     </a>
 
                 </div>
-                <div class="btn btn--primary btn-view-all">Xem tất cả</div>
+                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="">Xem tất cả</a></div>
             </div>
         </div>
         <!-- Slider -->
