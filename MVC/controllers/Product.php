@@ -1,5 +1,5 @@
 <?php
-class Home extends Controller
+class Product extends Controller
 {
   public function __construct()
   {
@@ -9,7 +9,7 @@ class Home extends Controller
   {
     $Models = $this->model("Models");
     $this->view("master", [
-      "Page" => "home",
+      "Page" => "product",
     ]);
   }
   
