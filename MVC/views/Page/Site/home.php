@@ -15,7 +15,7 @@
 
             <div class="featured-product__content">
                 <div class="list-product">
-                    <div class="product-cart">
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -31,8 +31,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -48,8 +48,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -65,8 +65,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">New</div>
                             <div class="tag-discount">30%</div>
@@ -82,8 +82,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -99,8 +99,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -116,8 +116,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -133,8 +133,8 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
-                    <div class="product-cart">
+                    </a>
+                    <a href="" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -150,7 +150,7 @@
                             </div>
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
-                    </div>
+                    </a>
 
                 </div>
                 <div class="btn btn--primary btn-view-all">Xem tất cả</div>

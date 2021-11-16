@@ -15,7 +15,7 @@
 #menu-area {
   display: -webkit-flex;
   display: -moz-flex;
-  display: --ms-flex;
+  display: -ms-flex;
   display: -o-flex;
   display: flex;
   justify-content: center;
@@ -233,6 +233,8 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
 }
 .product-cart:hover .product-cart__info {
   top: 0;
@@ -325,7 +327,7 @@
   transform: scale(0.9, 0.9);
   text-decoration: line-through;
   margin-top: 24px;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 .btn-order-product {
   min-width: 124px;
