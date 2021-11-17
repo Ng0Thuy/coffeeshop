@@ -16,13 +16,19 @@
 
 <body>
     <div class="app">
-        <?php require_once "./mvc/views/blocks/header.php"; ?>
+        <a href="#" class="scroll-top" id="scroll-top">
+        <i class="scroll-top__icon fas fa-chevron-up"></i>
+        </a>
+        
+        
+        <?php require_once "./mvc/views/blocks/header_children.php"; ?>
         <?php require_once "./mvc/views/Page/Site/" . $data["Page"] . ".php" ?>
         <?php require_once "./mvc/views/blocks/footer.php"; ?>
     </div>
     <!-- ============================= Javascript ===================================== -->
     <script src="<?= BASE_URL ?>/MVC/public/js/click_btn.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>
+    <script src="<?= BASE_URL ?>/MVC/public/js/scroll_top.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/login.js"></script>
 </body>

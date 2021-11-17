@@ -6,15 +6,43 @@
 
 /* Thanh scrol; */
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 5px;
   background-color: light-grey;
   height: 100px;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: #282828;
   /* border-radius: 10px; */
-} 
+}
+/* Scroll Top */
+.scroll-top {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  bottom: -20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  color: var(--white-color);
+  background-color: var(--black-color);
+  border-radius: 50%;
+  z-index: 10000;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  visibility: hidden;
+  text-decoration: none;
+}
+.scroll-top__icon {
+  font-size: 2rem;
+}
+.show-scroll {
+  visibility: visible;
+  bottom: 15px;
+}
+/* Scroll Top */
 
 /* Begin: Header */
 .header {
@@ -123,12 +151,12 @@
 .children-list {
   display: none;
   width: 250px;
-  padding: 15px;
+  /* padding: 15px; */
   margin-top: 24px;
   background-color: #a3a2a2;
   position: absolute;
   list-style: none;
-  z-index: 10;
+  z-index: 9999;
 }
 .menu-item:hover .children-list {
   display: block;
@@ -136,11 +164,11 @@
 .children-item {
   width: 100%;
   height: 36px;
-  padding: 0 10px;
+  padding: 25px;
   color: var(--text-color);
   display: inline-flex;
   align-items: center;
-  border-radius: 4px;
+  /* border-radius: 4px; */
 }
 .children-item:hover {
   transition: all 0.2s linear;
@@ -151,6 +179,9 @@
   color: var(--text-color);
   font-size: 1.4rem;
   width: 100%;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
 }
 /* Begin: Login */
 .login {
@@ -173,9 +204,8 @@
   cursor: pointer;
 }
 .my-account {
- display: flex;
- align-items: center;
-
+  display: flex;
+  align-items: center;
 }
 .user-name {
   font-size: 1.6rem;
@@ -211,8 +241,8 @@
   /* color: var(--white-color); */
 }
 .login-item:hover {
-    transition: all 0.2s linear;
-    background-color: var(--primary-color);
+  transition: all 0.2s linear;
+  background-color: var(--primary-color);
 }
 .login-link {
   width: 100%;
@@ -228,7 +258,7 @@
 }
 
 .active {
-  display:block;
+  display: block;
 }
 
 /* End: Login */
@@ -260,7 +290,7 @@
   right: -8px;
 }
 
-/* Banner */
+/* Begin: Banner Parent */
 .banner {
   /* background: url(../images/background.jpg); */
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(78, 74, 74, 0.5)),
@@ -293,6 +323,84 @@
   margin-top: 40px;
   border-radius: 50px;
 }
+/* End: Banner Parent */
+/* Begin: Banner Children */
+.banner-children {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(80, 79, 79, 0.5)),
+    url(../images/bg-con.png) no-repeat center;
+  -webkit-background-size: cover;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+  z-index: 1;
+}
+.banner-children-main {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: BalooExtra !important;
+  font-size: 3.6rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+}
+.banner-children__text {
+}
+.banner-children__text-1 {
+  margin: 10px;
+  line-height: 4rem;
+  font-weight: bold;
+  color: var(--black-color);
+}
+.banner-children__text-2 {
+  margin: 10px;
+  line-height: 4rem;
+  font-weight: bold;
+  color: rgb(247, 45, 45);
+}
+.search {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  height: 40px;
+  justify-content: space-around;
+  background-color: var(--white-color);
+  border-radius: 50px;
+}
+.search-icon {
+  font-size: 2rem;
+  margin: 0 16px;
+}
+.search-input {
+  width: 80%;
+  border: none;
+  padding: 20px;
+  width: 100%;
+  height: 30px;
+  padding: 10px 15px;
+  padding-left: 20px;
+  font-size: 1.6rem;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 8%);
+  border-radius: 50px;
+  border: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.search-input:focus {
+  outline: none;
+  border: 2px solid var(--primary-color);
+}
+/* End: Banner Children */
 
 #menu-area.cus-nav {
   background: #262626;
