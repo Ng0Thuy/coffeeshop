@@ -4,7 +4,7 @@
                 <a href="#" class="logo__link">
                   <img
                     class="logo__img"
-                    src="<?= BASE_URL ?>/MVC/public/images/logo_tocotaco.png"
+                    src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png"
                     alt="Logo-ToCoToCo"
                   />
                 </a>
