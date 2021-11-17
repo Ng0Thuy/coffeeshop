@@ -4,6 +4,18 @@
     font-family: 'Source Sans Pro', sans-serif;
 } */
 
+/* Thanh scrol; */
+
+::-webkit-scrollbar{
+  width: 5px;
+  background-color: light-grey;
+  height: 100px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #282828;
+  /* border-radius: 10px; */
+} 
+
 /* Begin: Header */
 .header {
   /* margin-bottom: 20px;
@@ -91,7 +103,7 @@
 .menu-item__link:hover::after {
   max-width: 100%;
 }
-.menu-item__link:hover .menu-children{
+.menu-item__link:hover .menu-children {
   display: block;
 }
 .menu-children {
@@ -107,7 +119,7 @@
 .children-list {
   width: 100%;
   padding: 15px;
-    margin-top: 10px;
+  margin-top: 10px;
   background-color: #fff;
   /* position: relative; */
   list-style: none;
@@ -174,7 +186,9 @@
 
 /* Banner */
 .banner {
-  background: url(../images/background.jpg);
+  /* background: url(../images/background.jpg); */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(78, 74, 74, 0.5)),
+    url(../images/background.jpg) no-repeat center;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
