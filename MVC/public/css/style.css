@@ -19,6 +19,12 @@
 .text-white{
   color: white;
 }
+.text-black{
+  color: #282828;
+}
+.text-red{
+  color: red;
+}
 
 
 /* Begin: Header */
@@ -27,7 +33,9 @@
       width: 100%; */
   /* padding: 12px 0; */
 }
-
+#menu-area{
+  background-color: #282828;
+}
 /* Menu-Area */
 #menu-area {
   display: -webkit-flex;
@@ -143,11 +151,11 @@
 }
 .children-item{
   width: 100%;
-  height: 36px;
+  height: 40px;
   color: var(--text-color);
   display: inline-flex;
   align-items: center;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   position: relative;
   border-bottom: 1px dotted grey;
 }
@@ -165,7 +173,12 @@
 .children-item:hover a{
   transition: all 0.2s linear;
   /* background-color: var(--primary-color); */
-  color: var(--primary-color);
+  color: white;
+
+}
+.children-item:hover{
+  transition: all 0.2s linear;
+  background-color: var(--primary-color);
 }
 .children-link {
   position: relative;
@@ -195,29 +208,41 @@
   cursor: pointer;
 }
 .login-children__list{
-  margin-top: 1rem;
-  /* display: none; */
+  margin-top: 2.3rem;
+  display: none;
   position: absolute;
   top: 100%;
-  width: 100%;
+  width: 200px;
   left: 10%;
   list-style: none;
-  background-color: red;
+  background-color: #f5f5f5;
+  border-radius: 4px;
 }
 .login-item{
   border-bottom: 1px dotted grey;
 }
-li.login-item::last-child{
+li.login-item:last-child{
   border: none;
   outline: 0;
 }
 .login-children__list .login-link{
   margin-left: 10px;
-  padding: 10px 0;
+  padding: 14px 0;
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-weight: 500;
+  color: #282828;
+  text-decoration: none;
+}
+.login-children__list .login-link i{
+  margin-right: 10px;
+}
+.login-item:hover{
+  background-color: #282828;
+}
+.login-item:hover a {
   color: white;
+
 }
 .cart {
   text-decoration: none;
@@ -256,6 +281,60 @@ li.login-item::last-child{
   background-position: center center;
   height: 100vh;
 }
+.banners {
+  padding-top: 64px;
+  position: relative;
+}
+#search-bn{
+  background-color: white;
+  width: 40%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 8px;
+  height: 40px;
+  box-shadow: 0px 0px 3px 0px rgb(252, 235, 220);
+  margin-top: 1rem;
+}
+.banners .search-sp{
+  padding: 5px 20px;
+  border: 0;
+  outline: 0;
+  width: 90%;
+}
+.banners .search-sp:focus{
+  outline: 0;
+}
+.banners .search-bn{
+  font-size: 2rem;
+  margin-left: 10px;
+}
+.banners img{
+  width: 100%;
+  height: auto;
+}
+
+.banner-texts {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: BalooExtra !important;
+  font-size: 3.6rem;
+  width: 100%;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.banner-texts h1{
+  font-size: 4rem;
+}
+.banner-texts p{
+  font-size: 3rem;
+  font-weight: 700;
+}
+
 .banner-text {
   position: absolute;
   top: 50%;
@@ -292,8 +371,66 @@ li.login-item::last-child{
 #menu-area.cus-nav .logo__img {
   height: 65px;
 }
-/* End: Header */
+/* header trang con */
+#menu-areas.about-us__link:hover {
+  background: #282828;
+  z-index: 999;
+}
 
+#menu-areas.about-us__link:hover a {
+  color: var(--white-color);
+}
+
+#menu-areas.about-us__link:hover .logo__img {
+  height: 65px;
+}
+#menu-areas{
+  background-color: #282828;
+  z-index: 999;
+}
+#menu-areas {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  transition: background 0.5s;
+}
+/* header trang con */
+
+/* End: Header */
+.scroll-top {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  bottom: -20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  color: var(--white-color);
+  background-color: var(--black-color);
+  border-radius: 50%;
+  z-index: 10000;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  /* visibility: hidden; */
+  text-decoration: none;
+}
+.scroll-top__icon {
+  font-size: 2rem;
+}
+.show-scroll {
+  /* visibility: visible; */
+  bottom: 15px;
+}
 /* =================================================================================================== */
 /* Begin: Main */
 .article {

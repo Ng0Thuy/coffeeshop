@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/grid.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/base.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/style.css" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/themify-icons/themify-icons.css" />
 </head>
 
 <body>
     <div class="app">
+    <span class="scroll-top show-scroll" id="toTop">
+            <i class="scroll-top__icon fas fa-chevron-up"></i>
+        </span>
         <?php require_once "./mvc/views/blocks/header2.php"; ?>
         <?php require_once "./mvc/views/Page/Site/" . $data["Page"] . ".php" ?>
         <?php require_once "./mvc/views/blocks/footer.php"; ?>

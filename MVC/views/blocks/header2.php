@@ -1,5 +1,5 @@
 <header class="header">
-    <div id="menu-area">
+    <div id="menu-areas">
         <div class="logo">
             <a href="#" class="logo__link">
                 <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />
@@ -43,17 +43,17 @@
                     <ul class="login-children__list" onblur="loginOnblur()">
                         <li class="login-item">
                             <a class="login-link" href="">
-                                Tài khoản của tôi
+                            <i class="fas fa-user"></i>Tài khoản của tôi
                             </a>
                         </li>
                         <li class="login-item">
                             <a class="login-link" href="">
-                                Đổi mật khẩu
+                            <i class="fas fa-key"></i>Đổi mật khẩu
                             </a>
                         </li>
                         <li class="login-item">
                             <a class="login-link" href="">
-                                Đăng xuất
+                            <i class="fas fa-sign-out-alt"></i>Đăng xuất
                             </a>
                         </li>
                     </ul>
@@ -66,10 +66,15 @@
         </div>
     </div>
 
-    <div class="banner">
-        <div class="banner-text">
-            <h1>ToCoToCo nhấp nhô từng nhịp!!!</h1>
-            <a href="#">Learn more</a>
+    <div class="banners">
+        <img src="http://localhost/DuAn1/MVC/public/images/bg-con.png" alt="">
+        <div class="banner-texts">
+            <h1 class="text-black">Đặt món nào</h1>
+            <p class="text-red">Cùng free ship</p>
+            <form action=""id="search-bn">
+                <i class="fas fa-search search-bn"></i>
+                <input class="search-sp" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
+            </form>
         </div>
     </div>
 </header>

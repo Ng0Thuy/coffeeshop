@@ -23,3 +23,19 @@ function loginOnblur() {
         x.style.display = "block";
     }
 }
+
+  $(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 500) { 
+            $('#toTop').fadeIn(); 
+        } else { 
+            $('#toTop').fadeOut(); 
+        } 
+    }); 
+    $('#toTop').click(function(){ 
+        console.log("ok");
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
+ });
+
