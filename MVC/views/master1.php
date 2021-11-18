@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meta Coffee | Dự án 1 | Nhóm 2</title>
-    <link rel="shortcut icon" href="http://localhost/DuAn1/MVC/public/images/icon_logo.png" />
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/MVC/public/images/icon_logo.png" />
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/grid.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/base.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>/MVC/public/css/style.css" />
