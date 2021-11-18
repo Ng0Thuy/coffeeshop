@@ -15,6 +15,11 @@
   background-color: #282828;
   /* border-radius: 10px; */
 } 
+/* CSS CHUNG */
+.text-white{
+  color: white;
+}
+
 
 /* Begin: Header */
 .header {
@@ -181,6 +186,38 @@
   background-color: transparent;
   border: 1px solid #ff929b;
   transition: all 0.2s linear;
+}
+.login-children .my-account span{
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.my-account:hover{
+  cursor: pointer;
+}
+.login-children__list{
+  margin-top: 1rem;
+  /* display: none; */
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  left: 10%;
+  list-style: none;
+  background-color: red;
+}
+.login-item{
+  border-bottom: 1px dotted grey;
+}
+li.login-item::last-child{
+  border: none;
+  outline: 0;
+}
+.login-children__list .login-link{
+  margin-left: 10px;
+  padding: 10px 0;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
 }
 .cart {
   text-decoration: none;
