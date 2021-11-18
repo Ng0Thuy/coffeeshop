@@ -73,6 +73,7 @@
   justify-content: space-between;
 }
 .menu-item {
+  position: relative;
 }
 .menu-item__link {
   font-size: 1.4rem;
@@ -103,18 +104,29 @@
 .menu-item__link:hover::after {
   max-width: 100%;
 }
-.menu-item__link:hover .menu-children {
+.menu-item:hover .menu-children {
   display: block;
 }
 .menu-children {
   width: 250px;
   position: absolute;
   /* height: 120px; */
+  border-radius: 3px;
+  background-color: #282828;
   display: none;
-  top: 100%;
+  top: 170%;
   left: 0;
-  box-shadow: 1px 2px 3px #ccc;
+  /* box-shadow: 1px 2px 3p x #ccc; */
   z-index: 10;
+}
+.menu-children::before{
+  position: absolute;
+  z-index: 10;
+  content: "";
+  width: 100%;
+  background: transparent;
+  transform: translateY(-100%);
+  height: 20px;
 }
 .children-list {
   width: 100%;
@@ -124,19 +136,31 @@
   /* position: relative; */
   list-style: none;
 }
-.children-item {
+.children-item{
   width: 100%;
   height: 36px;
-  padding: 0 10px;
   color: var(--text-color);
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
   position: relative;
+  border-bottom: 1px dotted grey;
 }
-.children-item:hover {
+.children-item:last-child{
+  border: none;
+}
+.children-item a{
+  width: 100%;
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: dashed;
+  padding-left: 10px;
+  font-weight: 400;
+}
+.children-item:hover a{
   transition: all 0.2s linear;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
+  color: var(--primary-color);
 }
 .children-link {
   position: relative;
@@ -146,10 +170,11 @@
 }
 .login {
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 9px 19px;
   background-color: #ff929b;
   text-decoration: none;
   font-size: 1.4rem;
+  border: 1px solid #ff929b;
   color: var(--white-color);
 }
 .login:hover {
@@ -219,7 +244,7 @@
 }
 
 #menu-area.cus-nav {
-  background: #262626;
+  background: #282828;
   z-index: 999;
 }
 
@@ -421,7 +446,8 @@
   margin-top: 16px;
   align-self: center;
   font-size: 1.8rem;
-}
+  border: 1px solid var(--primary-color);
+  }
 .btn-view-all a {
   color: var(--white-color);
   text-decoration: none;
