@@ -12,5 +12,12 @@ class Product extends Controller
       "Page" => "product",
     ]);
   }
+  function abc()
+  {
+    $Models = $this->model("ProductModel");
+    $this->view("master2", [
+      "Page" => "product",
+    ]);
+  }
   
 }
