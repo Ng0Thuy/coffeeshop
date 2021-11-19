@@ -1,7 +1,7 @@
 <header class="header">
           <div id="menu-area">
             <div class="logo">
-                <a href="#" class="logo__link">
+                <a href="<?= BASE_URL ?>" class="logo__link">
                   <img
                     class="logo__img"
                     src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png"
@@ -11,7 +11,7 @@
             </div>
             <ul class="menu-list">
               <li class="menu-item active">
-                <a href="" class="menu-item__link">TRANG CHỦ</a>
+                <a href="<?= BASE_URL ?>" class="menu-item__link">TRANG CHỦ</a>
               </li>
               <li class="menu-item">
                 <a href="" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
@@ -32,7 +32,7 @@
                 <a href="" class="menu-item__link">LIÊN HỆ</a>
               </li>
               <li class="menu-item">
-                <a href="" class="cart"><i class="cart-icon ti-shopping-cart"></i>
+                <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
                 <span class="cart-notice">3</span></a>
               </li>
               <li class="menu-item">
