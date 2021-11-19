@@ -12,11 +12,11 @@ class Product extends Controller
       "Page" => "product",
     ]);
   }
-  function abc()
+  function list_product()
   {
     $Models = $this->model("ProductModel");
     $this->view("master2", [
-      "Page" => "product",
+      "Page" => "list_product",
     ]);
   }
   

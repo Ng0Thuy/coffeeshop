@@ -1,4 +1,4 @@
-<main id="nhan" class="container">
+<main id="nhan" class="grid wide container">
   <nav class="nav-top">
     <ul>
       <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
