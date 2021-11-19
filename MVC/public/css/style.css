@@ -28,6 +28,9 @@
 .font-bold {
   font-weight: bold;
 }
+.mt-1{
+  margin-top: 1rem;
+}
 /* Begin: Header */
 .header {
   /* margin-bottom: 20px;
@@ -938,6 +941,15 @@ section.product-carts .cart-list .table-cart tbody tr td input.numCart {
 }
 .cart-act .cart-act_checkout a.checkout-btn:hover {
   opacity: 0.9;
+}
+.size-cart{
+  font-weight: 800;
+  background-color: #ff929b;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  padding: 2px 4px;
+
+  
 }
 
 /* END CART  */
