@@ -2,7 +2,7 @@
     <nav class="nav-top">
         <ul>
             <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
-            <li><a href="">Thực đơn</a></li><span>/</span>
+            <li><a href="">Thực đơn</a></li>
         </ul>
     </nav>
     <div class="row sm-gutter app__content">

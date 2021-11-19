@@ -15,7 +15,7 @@
 
             <div class="featured-product__content">
                 <div class="list-product">
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -32,7 +32,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -49,7 +49,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -66,7 +66,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">New</div>
                             <div class="tag-discount">30%</div>
@@ -83,7 +83,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -100,7 +100,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -117,7 +117,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -134,7 +134,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -170,7 +170,7 @@
 
             <div class="featured-product__content">
                 <div class="list-product">
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -187,7 +187,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -204,7 +204,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -221,7 +221,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">New</div>
                             <div class="tag-discount">30%</div>
@@ -238,7 +238,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -255,7 +255,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -272,7 +272,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
@@ -289,7 +289,7 @@
                             <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                         </div>
                     </a>
-                    <a href="" class="product-cart">
+                    <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
