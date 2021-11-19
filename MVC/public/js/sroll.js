@@ -6,6 +6,7 @@ window.addEventListener("scroll", function () {
         headerMenu.classList.remove("cus-nav");
     }
 })
+
 function loginOnclick() {
     var x = document.querySelector('.login-children__list');
     if (x.style.display === "block") {
