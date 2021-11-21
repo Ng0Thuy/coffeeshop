@@ -27,8 +27,9 @@
         <?php require_once "./mvc/views/blocks/footer.php"; ?>
     </div>
     <!-- ============================= Javascript ===================================== -->
-    <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>
-    <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>
+    <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>l
+    <!-- <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script> -->
+    <script src="<?= BASE_URL ?>/MVC/public/js/filter_price.js"></script>
 </body>
 
 </html>
