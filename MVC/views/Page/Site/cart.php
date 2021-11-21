@@ -22,26 +22,8 @@
                 <tbody>
                     <tr>
                         <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
-                        <td><span class="size-cart">X</span></td>
+                        <td><span class="size-cart">Nhỏ</span></td>
                         <td><input class="numCart" type="number" value="3"></td>
-                        <td>100.000 VNĐ</td>
-                        <td>100.000 VNĐ</td>
-                        <td>
-                            <a href=""><i class="far fa-trash-alt tooltip"><span class="tooltiptext">Xóa</span></i></a>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Royal-Pearl-Milk-Coffee.png" alt=""><a href="">Royal Pearl Milk Coffee</a></td>
-                        <td><input class="numCart" type="number" value="1"></td>
-                        <td>100.000 VNĐ</td>
-                        <td>100.000 VNĐ</td>
-                        <td>
-                            <a href=""><i class="far fa-trash-alt tooltip"><span class="tooltiptext">Xóa</span></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/01/ezgif.com-gif-maker-21.jpg" alt=""><a href="">Trà Sữa Kim Cương Đen Okinawa</a></td>
-                        <td><input class="numCart" type="number" value="1"></td>
                         <td>100.000 VNĐ</td>
                         <td>100.000 VNĐ</td>
                         <td>
@@ -50,13 +32,24 @@
                     </tr>
                     <tr>
                         <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
+                        <td><span class="size-cart">Vừa</span></td>
                         <td><input class="numCart" type="number" value="3"></td>
                         <td>100.000 VNĐ</td>
                         <td>100.000 VNĐ</td>
                         <td>
                             <a href=""><i class="far fa-trash-alt tooltip"><span class="tooltiptext">Xóa</span></i></a>
                         </td>
-                    </tr> -->
+                    </tr>
+                    <tr>
+                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
+                        <td><span class="size-cart">Lớn</span></td>
+                        <td><input class="numCart" type="number" value="3"></td>
+                        <td>100.000 VNĐ</td>
+                        <td>100.000 VNĐ</td>
+                        <td>
+                            <a href=""><i class="far fa-trash-alt tooltip"><span class="tooltiptext">Xóa</span></i></a>
+                        </td>
+                    </tr>
                 </tbody>
 
             </table>

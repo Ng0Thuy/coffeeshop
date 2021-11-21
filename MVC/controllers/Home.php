@@ -13,11 +13,11 @@ class Home extends Controller
     ]);
   }
 
-  function lichsu()
+  function checkout()
   {
     $Models = $this->model("HomeModel");
     $this->view("master2", [
-      "Page" => "lichsu",
+      "Page" => "checkout",
     ]);
   }
 
