@@ -28,6 +28,9 @@
 .font-bold {
   font-weight: bold;
 }
+.mb-2{
+  margin-bottom: 2rem;
+}
 .mt-1 {
   margin-top: 1rem;
 }
@@ -1198,7 +1201,8 @@ main.container
 .form-group-login input:focus + label {
   position: absolute;
   padding: 0 5px;
-  top: 0%;
+  top: -7%;
+  background-color: white;
   left: 11%;
 }
 .form-group-login input:focus{
@@ -1213,7 +1217,6 @@ main.container
   transition: all 0.4s;
   font-size: 1.7rem;
   position: absolute;
-  background-color: white;
   padding: 0 5px;
   top: 34%;
   left: 11%;
@@ -1280,7 +1283,7 @@ form#form-login button:hover {
   text-align: center;
   margin: 0px;
 }
-#regsiter p {
+#regsiter> p {
   font-size: 2rem;
   text-align: center;
 }
@@ -1294,6 +1297,33 @@ form#form-login button:hover {
 .regsiter-show, .login-show{
   cursor: pointer;
   color: #6402d4;
+}
+.forgot-pass span{
+  background-color: white;
+  position: relative;
+  padding: 0 4px;
+}
+.forgot-pass span:hover{
+  opacity: 0.9;
+}
+.forgot-pass{
+  margin-top: 1rem;
+  color: #6402d4;
+  cursor: pointer;
+  font-size: 1.6rem;
+  text-align: center;
+  position: relative;
+}
+.forgot-pass::before{
+  content: "";
+  width: 80%;
+  position: absolute;
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 1px;
+  background-color: #999;
 }
 .regsiter-show, .login-show:hover{
   cursor: pointer;
@@ -1350,6 +1380,158 @@ form#form-regsiter button:hover {
   opacity: 0.9;
 }
 /* =======END REGSITE============== */
+
+
+/* =======FORRGOT============== */
+#forgot {
+  display: none;
+  background-color: white;
+  font-family: Muli, sans-serif;
+  z-index: 999999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 960px;
+  height: auto;
+  border-radius: 10px;
+  width: 100vh;
+  box-shadow: 1px 0px 60px 0 rgb(12 18 34 / 11%),
+    2px 2px 90px 0 rgb(23 33 54 / 11%);
+  padding: 2rem 2rem 10rem 2rem;
+  line-height: 1.5;
+}
+#forgot .close-forgot{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 23px;
+  color: #191146;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+#forgot .close-forgot:hover{
+  transform: rotate(360deg);
+}
+#forgot h3.forgot-title {
+  font-size: 4rem;
+  text-align: center;
+  margin: 0px;
+}
+#forgot p {
+  font-size: 2rem;
+  text-align: center;
+}.form-group-forgot {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+.regsiter-show{
+  cursor: pointer;
+}
+.form-group-forgot input {
+  border-radius: 8px;
+  border: 1px solid #d3b673;
+  width: 80%;
+  padding: 14px 10px;
+  font-size: 1.7rem;
+}
+.form-group-forgot input:not(:placeholder-shown) + label,
+.form-group-forgot input:focus + label {
+  position: absolute;
+  padding: 0 5px;
+  top: -7%;
+  background-color: white;
+  left: 11%;
+}
+.form-group-forgot input:focus{
+  border: o;
+  outline: 0;
+  box-shadow: 0 0 0 2px #d3b67367;
+}
+.form-group-forgot label {
+  user-select: none;
+  pointer-events: none;
+  color: #282828;
+  transition: all 0.4s;
+  font-size: 1.7rem;
+  position: absolute;
+  padding: 0 5px;
+  top: 34%;
+  left: 11%;
+}
+form#form-forgot .savepass-forgot {
+  /* margin-left: 2.7rem; */
+  margin: 0.5rem 0 1rem 5.5rem;
+  font-size: 1.7rem;
+
+}
+form#form-forgot .btn-forgot {
+  display: flex;
+  justify-content: center;
+}
+form#form-forgot button {
+  border: 0;
+  width: 80%;
+  background-color: #d3b673;
+  border-radius: 8px;
+  padding: 12px 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.8rem;
+  font-family: Muli, sans-serif;
+}
+form#form-forgot button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+/* =======END FORGOT============== */
+/* =======HISTORY============== */
+.success{
+  color: green;
+  font-weight: 600;
+}
+.warning{
+  color: rgb(13, 129, 123);
+  font-weight: 600;
+}
+.delete{
+  color: red;
+  font-weight: 600;
+}
+.letgo{
+  color: rgb(74, 102, 226);
+  font-weight: 600;
+}
+.pagination{
+font-size: 1.4rem;
+border-radius: 4px;
+}
+.pagination li.active{
+  color: white;
+  background-color: #0d6efd;
+  pointer-events: none;
+}
+.pagination li:hover{
+  cursor: pointer;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.pagination li{
+  color: #0d6efd;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  padding: 7px 14px;
+}
+.pagination li a, .pagination li span{
+  text-decoration: none;
+  font-weight: 500;
+  font-family: Muli, sans-serif;
+
+}
+/* =======END HISTORY============== */
 
 /* Slide Bar */
 .app__content {

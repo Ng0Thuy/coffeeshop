@@ -26,6 +26,7 @@
     </div>
     <?php require_once "./mvc/views/Page/site/login.php"; ?>
     <?php require_once "./mvc/views/Page/site/regsiter.php"; ?>
+    <?php require_once "./mvc/views/Page/site/forgot.php"; ?>
     <!-- ============================= Javascript ===================================== -->
     <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>

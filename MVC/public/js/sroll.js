@@ -55,14 +55,21 @@ function loginOnblur() {
     $('#login-tab').click(function(){ 
         $("#login").css("display", "block");   
         $(".app").css("opacity", "0.8");        
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
     }); 
     $('.close-login').click(function(){ 
         $("#login").css("display", "none");  
         $(".app").css("opacity", "1");        
-
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });
     }); 
-
-    // Xem mật khẩu
+    
+    // Đăng ký
     $('.regsiter-show').click(function(){ 
         $("#login").css("display", "none");  
         $("#regsiter").css("display", "block");  
@@ -73,6 +80,32 @@ function loginOnblur() {
     });
     $('.close-regsiter').click(function(){ 
         $("#regsiter").css("display", "none");  
-        $(".app").css("opacity", "1");        
+        $(".app").css("opacity", "1");     
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });   
     }); 
+
+    // Quên mật khẩu
+    $('.forgot-show').click(function(){ 
+        $("#login").css("display", "none");  
+        $("#regsiter").css("display", "none");  
+        $("#forgot").css("display", "block");  
+    });
+    $('.login-show').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $("#forgot").css("display", "none");  
+        $("#login").css("display", "block");  
+    });
+    $('.close-forgot').click(function(){ 
+        $("#forgot").css("display", "none");  
+        $(".app").css("opacity", "1");     
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });   
+    });
+    
+
 });

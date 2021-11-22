@@ -21,6 +21,7 @@
           <i class="far fa-eye-slash eye eye-none"></i> -->
           <label for="">Mật khẩu</label>
         </div>
+        <div class="forgot-pass"><span class="forgot-show">Quên mật khẩu?</span></div>
         <div class="btn-regsiter pt-2">
           <button>Đăng ký</button>
         </div>

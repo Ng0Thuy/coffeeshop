@@ -20,5 +20,12 @@ class Home extends Controller
       "Page" => "checkout",
     ]);
   }
+  function history()
+  {
+    $Models = $this->model("HomeModel");
+    $this->view("master2", [
+      "Page" => "history",
+    ]);
+  }
 
 }

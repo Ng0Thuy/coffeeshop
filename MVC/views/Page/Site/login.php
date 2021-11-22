@@ -15,6 +15,7 @@
           <input type="checkbox" id="savepass" />
           <label for="savepass">Lưu mật khẩu</label>
         </div>
+        <div class="forgot-pass mb-2"><span class="forgot-show">Quên mật khẩu?</span></div>
         <div class="btn-login">
           <button>Đăng nhập</button>
         </div>
