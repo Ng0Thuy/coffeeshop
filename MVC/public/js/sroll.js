@@ -26,6 +26,7 @@ function loginOnblur() {
 }
 
   $(document).ready(function(){ 
+    //   On TOP
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 500) { 
             $('#toTop').fadeIn(); 
@@ -38,11 +39,8 @@ function loginOnblur() {
         $("html, body").animate({ scrollTop: 0 }, 600); 
         return false; 
     }); 
- });
-
 
 //  Thanh toán
- $(document).ready(function () {
     $('input[type=radio][name=banking]').change(function() {
         if (this.value == 'payLater') {
             $(".content-banking").addClass( "content-banking-none" );
@@ -51,4 +49,30 @@ function loginOnblur() {
             $(".content-banking").removeClass( "content-banking-none" );
         }
     });
+
+    // Đăng nhập
+
+    $('#login-tab').click(function(){ 
+        $("#login").css("display", "block");   
+        $(".app").css("opacity", "0.8");        
+    }); 
+    $('.close-login').click(function(){ 
+        $("#login").css("display", "none");  
+        $(".app").css("opacity", "1");        
+
+    }); 
+
+    // Xem mật khẩu
+    $('.regsiter-show').click(function(){ 
+        $("#login").css("display", "none");  
+        $("#regsiter").css("display", "block");  
+    });
+    $('.login-show').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $("#login").css("display", "block");  
+    });
+    $('.close-regsiter').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $(".app").css("opacity", "1");        
+    }); 
 });
