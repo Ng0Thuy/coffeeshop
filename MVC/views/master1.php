@@ -17,13 +17,16 @@
 
 <body>
     <div class="app">
-         <span class="scroll-top show-scroll" id="toTop">
+        <span class="scroll-top show-scroll" id="toTop">
             <i class="scroll-top__icon fas fa-chevron-up"></i>
         </span>
         <?php require_once "./mvc/views/blocks/header.php"; ?>
         <?php require_once "./mvc/views/Page/Site/" . $data["Page"] . ".php" ?>
         <?php require_once "./mvc/views/blocks/footer.php"; ?>
     </div>
+    <?php require_once "./mvc/views/Page/site/login.php"; ?>
+    <?php require_once "./mvc/views/Page/site/regsiter.php"; ?>
+    <?php require_once "./mvc/views/Page/site/forgot.php"; ?>
     <!-- ============================= Javascript ===================================== -->
     <script src="<?= BASE_URL ?>/MVC/public/js/sroll.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>

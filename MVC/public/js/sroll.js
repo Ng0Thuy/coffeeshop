@@ -26,6 +26,7 @@ function loginOnblur() {
 }
 
   $(document).ready(function(){ 
+    //   On TOP
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 500) { 
             $('#toTop').fadeIn(); 
@@ -38,5 +39,73 @@ function loginOnblur() {
         $("html, body").animate({ scrollTop: 0 }, 600); 
         return false; 
     }); 
- });
 
+//  Thanh toán
+    $('input[type=radio][name=banking]').change(function() {
+        if (this.value == 'payLater') {
+            $(".content-banking").addClass( "content-banking-none" );
+        }
+        else if (this.value == 'banking') {
+            $(".content-banking").removeClass( "content-banking-none" );
+        }
+    });
+
+    // Đăng nhập
+
+    $('#login-tab').click(function(){ 
+        $("#login").css("display", "block");   
+        $(".app").css("opacity", "0.8");        
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+        });
+    }); 
+    $('.close-login').click(function(){ 
+        $("#login").css("display", "none");  
+        $(".app").css("opacity", "1");        
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });
+    }); 
+    
+    // Đăng ký
+    $('.regsiter-show').click(function(){ 
+        $("#login").css("display", "none");  
+        $("#regsiter").css("display", "block");  
+    });
+    $('.login-show').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $("#login").css("display", "block");  
+    });
+    $('.close-regsiter').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $(".app").css("opacity", "1");     
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });   
+    }); 
+
+    // Quên mật khẩu
+    $('.forgot-show').click(function(){ 
+        $("#login").css("display", "none");  
+        $("#regsiter").css("display", "none");  
+        $("#forgot").css("display", "block");  
+    });
+    $('.login-show').click(function(){ 
+        $("#regsiter").css("display", "none");  
+        $("#forgot").css("display", "none");  
+        $("#login").css("display", "block");  
+    });
+    $('.close-forgot').click(function(){ 
+        $("#forgot").css("display", "none");  
+        $(".app").css("opacity", "1");     
+        $('html, body').css({
+            overflow: 'auto',
+            height: 'auto'
+        });   
+    });
+    
+
+});
