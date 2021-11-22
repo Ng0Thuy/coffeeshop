@@ -68,7 +68,7 @@
                     <p>Tổng đơn hàng</p>
                     <p class="text-red font-bold">1000.000 VNĐ</p>
                 </div>
-                <a class="checkout-btn" href="">Tiến hành thanh toán</a>
+                <a class="checkout-btn" href="<?=BASE_URL?>/home/checkout">Tiến hành thanh toán</a>
             </div>
         </section>
     </section>

@@ -46,8 +46,12 @@
 
         <div class="banner">
           <div class="banner-text">
-            <h1>ToCoToCo nhấp nhô từng nhịp!!!</h1>
-            <a href="#">Learn more</a>
+            <h1>Đậm vị thiên nhiên<br>hạnh phúc trọn đời!</h1>
+            <p>Với sứ mệnh mang tới niềm vui và hạnh phúc, TocoToco hy vọng sẽ tạo nên <br> một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi</p>
+            <form action=""id="search-bn-home">
+                <i class="fas fa-search search-bn"></i>
+                <input class="search-bn-home" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
+            </form>
           </div>
         </div>
       </header>

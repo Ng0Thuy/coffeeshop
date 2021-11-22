@@ -40,3 +40,15 @@ function loginOnblur() {
     }); 
  });
 
+
+//  Thanh toán
+ $(document).ready(function () {
+    $('input[type=radio][name=banking]').change(function() {
+        if (this.value == 'payLater') {
+            $(".content-banking").addClass( "content-banking-none" );
+        }
+        else if (this.value == 'banking') {
+            $(".content-banking").removeClass( "content-banking-none" );
+        }
+    });
+});
