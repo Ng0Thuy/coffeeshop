@@ -28,7 +28,7 @@
 .font-bold {
   font-weight: bold;
 }
-.mb-2{
+.mb-2 {
   margin-bottom: 2rem;
 }
 .mt-1 {
@@ -614,7 +614,7 @@ li.login-item:last-child {
 .info-title {
   width: 100%;
   font-family: Muli;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
   margin-top: 18px;
@@ -622,6 +622,23 @@ li.login-item:last-child {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 8px;
+}
+.info-rating {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  margin-top: 10px;
+}
+.rating-list {
+  display: flex;
+}
+.rating-list .rating-icon {
+  font-size: 1.4rem;
+}
+.rating-text {
+  font-size: 1.2rem;
+  font-style: italic;
 }
 .info-price {
   display: flex;
@@ -1159,7 +1176,7 @@ main.container
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
-#login .close-login{
+#login .close-login {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -1168,7 +1185,7 @@ main.container
   cursor: pointer;
   transition: all 0.1s;
 }
-#login .close-login:hover{
+#login .close-login:hover {
   transform: rotate(360deg);
 }
 #login h3.login-title {
@@ -1187,7 +1204,7 @@ main.container
   justify-content: center;
   padding: 10px 0;
 }
-.regsiter-show{
+.regsiter-show {
   cursor: pointer;
 }
 .form-group-login input {
@@ -1205,7 +1222,7 @@ main.container
   background-color: white;
   left: 11%;
 }
-.form-group-login input:focus{
+.form-group-login input:focus {
   border: o;
   outline: 0;
   box-shadow: 0 0 0 2px #d3b67367;
@@ -1225,7 +1242,6 @@ form#form-login .savepass-login {
   /* margin-left: 2.7rem; */
   margin: 0.5rem 0 1rem 5.5rem;
   font-size: 1.7rem;
-
 }
 form#form-login .btn-login {
   display: flex;
@@ -1248,7 +1264,7 @@ form#form-login button:hover {
 }
 /* =======END LOGIN============== */
 /* =======REGSITER============== */
-#regsiter{
+#regsiter {
   display: none;
   background-color: white;
   font-family: Muli, sans-serif;
@@ -1266,7 +1282,7 @@ form#form-login button:hover {
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
-#regsiter .close-regsiter{
+#regsiter .close-regsiter {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -1275,7 +1291,7 @@ form#form-login button:hover {
   cursor: pointer;
   transition: all 0.1s;
 }
-#regsiter .close-regsiter:hover{
+#regsiter .close-regsiter:hover {
   transform: rotate(360deg);
 }
 #regsiter h3.regsiter-title {
@@ -1283,7 +1299,7 @@ form#form-login button:hover {
   text-align: center;
   margin: 0px;
 }
-#regsiter> p {
+#regsiter > p {
   font-size: 2rem;
   text-align: center;
 }
@@ -1294,19 +1310,20 @@ form#form-login button:hover {
   justify-content: center;
   padding: 10px 0;
 }
-.regsiter-show, .login-show{
+.regsiter-show,
+.login-show {
   cursor: pointer;
   color: #6402d4;
 }
-.forgot-pass span{
+.forgot-pass span {
   background-color: white;
   position: relative;
   padding: 0 4px;
 }
-.forgot-pass span:hover{
+.forgot-pass span:hover {
   opacity: 0.9;
 }
-.forgot-pass{
+.forgot-pass {
   margin-top: 1rem;
   color: #6402d4;
   cursor: pointer;
@@ -1314,7 +1331,7 @@ form#form-login button:hover {
   text-align: center;
   position: relative;
 }
-.forgot-pass::before{
+.forgot-pass::before {
   content: "";
   width: 80%;
   position: absolute;
@@ -1325,9 +1342,9 @@ form#form-login button:hover {
   height: 1px;
   background-color: #999;
 }
-.regsiter-show, .login-show:hover{
+.regsiter-show,
+.login-show:hover {
   cursor: pointer;
-
 }
 .form-group-regsiter input {
   border-radius: 8px;
@@ -1343,7 +1360,7 @@ form#form-login button:hover {
   top: 0%;
   left: 11%;
 }
-.form-group-regsiter input:focus{
+.form-group-regsiter input:focus {
   border: o;
   outline: 0;
   box-shadow: 0 0 0 2px #d3b67367;
@@ -1381,7 +1398,6 @@ form#form-regsiter button:hover {
 }
 /* =======END REGSITE============== */
 
-
 /* =======FORRGOT============== */
 #forgot {
   display: none;
@@ -1401,7 +1417,7 @@ form#form-regsiter button:hover {
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
-#forgot .close-forgot{
+#forgot .close-forgot {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -1410,7 +1426,7 @@ form#form-regsiter button:hover {
   cursor: pointer;
   transition: all 0.1s;
 }
-#forgot .close-forgot:hover{
+#forgot .close-forgot:hover {
   transform: rotate(360deg);
 }
 #forgot h3.forgot-title {
@@ -1421,14 +1437,15 @@ form#form-regsiter button:hover {
 #forgot p {
   font-size: 2rem;
   text-align: center;
-}.form-group-forgot {
+}
+.form-group-forgot {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 10px 0;
 }
-.regsiter-show{
+.regsiter-show {
   cursor: pointer;
 }
 .form-group-forgot input {
@@ -1446,7 +1463,7 @@ form#form-regsiter button:hover {
   background-color: white;
   left: 11%;
 }
-.form-group-forgot input:focus{
+.form-group-forgot input:focus {
   border: o;
   outline: 0;
   box-shadow: 0 0 0 2px #d3b67367;
@@ -1466,7 +1483,6 @@ form#form-forgot .savepass-forgot {
   /* margin-left: 2.7rem; */
   margin: 0.5rem 0 1rem 5.5rem;
   font-size: 1.7rem;
-
 }
 form#form-forgot .btn-forgot {
   display: flex;
@@ -1489,57 +1505,60 @@ form#form-forgot button:hover {
 }
 /* =======END FORGOT============== */
 /* =======HISTORY============== */
-.success{
+.success {
   color: green;
   font-weight: 600;
 }
-.warning{
+.warning {
   color: rgb(13, 129, 123);
   font-weight: 600;
 }
-.delete{
+.delete {
   color: red;
   font-weight: 600;
 }
-.letgo{
+.letgo {
   color: rgb(74, 102, 226);
   font-weight: 600;
 }
-.pagination{
-font-size: 1.4rem;
-border-radius: 4px;
+.pagination {
+  font-size: 1.4rem;
+  border-radius: 4px;
 }
-.pagination li.active{
+.pagination li.active {
   color: white;
   background-color: #0d6efd;
   pointer-events: none;
 }
-.pagination li:hover{
+.pagination li:hover {
   cursor: pointer;
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
-.pagination li{
+.pagination li {
   color: #0d6efd;
   background-color: white;
   border: 1px solid #dee2e6;
   padding: 7px 14px;
 }
-.pagination li a, .pagination li span{
+.pagination li a,
+.pagination li span {
   text-decoration: none;
   font-weight: 500;
   font-family: Muli, sans-serif;
-
 }
 /* =======END HISTORY============== */
 
 /* Slide Bar */
 .app__content {
   padding-top: 36px;
+  margin-bottom: 20px;
 }
 .slidebar {
   border-radius: 2px;
   background-color: var(--white-color);
+  box-shadow: 1px 0px 60px 0 rgb(12 18 34 / 11%),
+    2px 2px 90px 0 rgb(23 33 54 / 11%);
 }
 .slidebar-menu {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -1625,62 +1644,68 @@ border-radius: 4px;
 }
 /* Filter Price */
 .slidebar-filter__price {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-  padding: 0;
+.slidebar-filter__price-heading {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-top: 0;
+  padding: 12px 16px;
+}
 .price-slider {
-  width: 300px;
-  margin: auto;
+  width: 200px;
+  margin: 0 auto 20px;
   text-align: center;
   position: relative;
-  height: 6em;
+  height: 60px;
 }
 .price-slider svg,
-.price-slider input[type=range] {
+.price-slider input[type="range"] {
   position: absolute;
   left: 0;
   bottom: 0;
 }
-input[type=number] {
-  border: 1px solid #ddd;
+input[type="number"] {
+  /* border: 1px solid #ddd; */
   text-align: center;
   font-size: 1.6em;
   -moz-appearance: textfield;
 }
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-input[type=number]:invalid,
-input[type=number]:out-of-range {
+input[type="number"]:invalid,
+input[type="number"]:out-of-range {
   border: 2px solid #e60023;
 }
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #1da1f2;
 }
-input[type=range]:focus::-ms-fill-lower {
+input[type="range"]:focus::-ms-fill-lower {
   background: #1da1f2;
 }
-input[type=range]:focus::-ms-fill-upper {
+input[type="range"]:focus::-ms-fill-upper {
   background: #1da1f2;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
+  animation: 0.2s;
   background: #1da1f2;
   border-radius: 1px;
   box-shadow: none;
   border: 0;
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
@@ -1693,17 +1718,17 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -7px;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
+  animation: 0.2s;
   background: #1da1f2;
   border-radius: 1px;
   box-shadow: none;
   border: 0;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
@@ -1714,23 +1739,23 @@ input[type=range]::-moz-range-thumb {
   background: #a1d0ff;
   cursor: pointer;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
+  animation: 0.2s;
   background: transparent;
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-ms-fill-lower,
-input[type=range]::-ms-fill-upper {
+input[type="range"]::-ms-fill-lower,
+input[type="range"]::-ms-fill-upper {
   background: #1da1f2;
   border-radius: 1px;
   box-shadow: none;
   border: 0;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
@@ -1741,6 +1766,179 @@ input[type=range]::-ms-thumb {
   background: #a1d0ff;
   cursor: pointer;
 }
-/* Favourite Product */
-.slidebar-favorite__product {
+
+/* Product Size */
+.slidebar-product-size {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+.product-size__heading {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-top: 0;
+  padding: 12px 16px;
+}
+.product-size__list {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 0 20px;
+}
+.product-size__item {
+  width: 52px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 2px 12px;
+  background-color: #e3e1e1;
+  cursor: pointer;
+}
+.product-size__item:hover {
+  opacity: 0.5;
+}
+.product-size__item.active {
+  background-color: #ff929b;
+}
+.product-size__text {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+/* Favorite Product */
+.slidebar-favorite__product {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.favorite-product__title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.favorite-product__heading {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-top: 0;
+  padding: 12px 2px;
+}
+.favorite-product__toggle {
+  display: flex;
+}
+.toggle-icon {
+  padding: 7px 9px;
+  font-size: 1.4rem;
+  color: var(--white-color);
+  background-color: var(--black-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+}
+.toggle-icon:hover {
+  background-color: var(--primary-color);
+  transition: all linear 0.1s;
+}
+.favorite-product__list {
+  padding-bottom: 20px;
+}
+.favorite-product__item {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+}
+.favorite-product__item:hover {
+}
+.favorite-product__img {
+  width: 100px;
+  height: 80px;
+  border-radius: 4px;
+}
+.favorite-product__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 6px;
+}
+.favorite-product__name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+}
+.favorite-product__rating {
+  font-size: 1.4rem;
+  margin: 5px 0;
+}
+.rating-icon {
+  color: var(--star-gold-color);
+}
+.favorite-product__price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Product All List */
+.product-all__title {
+  display: flex;
+  flex-direction: column;
+}
+.product-all_heading {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.product-all__filter {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+.product-all__filter p {
+  font-size: 1.6rem;
+}
+.product-all__filter p span {
+  font-weight: bold;
+}
+.product-all-list {
+  display: flex;
+  flex-direction: column;
+}
+.product-all-list .list-product {
+  margin: 0 !important;
+}
+.product-all-list .list-product .product-cart {
+  width: calc(33.3% - 30px) !important;
+}
+/* End: Product All List */
+
+/* Begin: User */
+.user {
+  position: relative;
+  margin-top: 90px;
+}
+.info-user {
+margin-top: 10px;
+}
+.info-user__heading {
+
+}
+.form-info-user {
+
+}
+/* Change Password */
+.change-password {
+
+}
+.change-password__heading {
+
+}
+.change-password__main {
+
+}
+.change-password__item {
+
+}
+.change-password__text {
+
+}
+/* End: User */
