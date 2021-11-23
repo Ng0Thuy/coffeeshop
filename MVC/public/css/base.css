@@ -12,6 +12,10 @@
   --header-sort-bar-height: 46px;
 }
 
+.clear {
+  clear: both;
+}
+
 /* Font */
 @font-face {
   font-family: "Muli";

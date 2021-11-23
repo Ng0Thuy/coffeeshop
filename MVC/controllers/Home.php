@@ -28,4 +28,11 @@ class Home extends Controller
     ]);
   }
 
+  function user()
+  {
+    $Models = $this->model("HomeModel");
+    $this->view("master3", [
+      "Page" => "user",
+    ]);
+  }
 }
