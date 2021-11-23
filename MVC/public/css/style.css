@@ -1913,32 +1913,102 @@ input[type="range"]::-ms-thumb {
 
 /* Begin: User */
 .user {
-  position: relative;
+  /* position: relative; */
   margin-top: 90px;
 }
 .info-user {
 margin-top: 10px;
 }
 .info-user__heading {
-
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .form-info-user {
-
+  display: flex;
+  /* justify-content: space-around;
+  align-items: center; */
 }
 /* Change Password */
 .change-password {
-
+  background-color: #d5d5d5;
+  padding: 15px 30px;
+  border-radius: 4px;
 }
 .change-password__heading {
-
+  font-size: 1.8rem;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .change-password__main {
 
 }
 .change-password__item {
-
+  margin-top: 10px;
 }
 .change-password__text {
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+.change-password__input {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.change-password__input:focus {
+  outline: none;
+}
+.change-password__btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  padding: 12px 0;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+.change-password__btn:hover {
 
+}
+
+.info-user__main {
+  padding: 0 30px;
+}
+.info-user__main-item {
+  margin: 10px 0;
+}
+.info-user__text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 10px 10px;
+}
+.info-user__input {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 10px 20px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.contact-info__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contact-info__item {
+  width: 45%;
+}
+.info-user__main--btn {
+  /* width: 100%; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px 0;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 /* End: User */
