@@ -25,6 +25,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -42,6 +52,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -59,6 +79,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -76,6 +106,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -93,6 +133,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -110,6 +160,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -127,6 +187,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -144,6 +214,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -180,6 +260,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -197,6 +287,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -214,6 +314,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -231,6 +341,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -248,6 +368,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -265,6 +395,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -282,6 +422,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
@@ -299,6 +449,16 @@
                         </div>
                         <div class="product-cart__info">
                             <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+                            <div class="info-rating">
+                                <div class="rating-list">
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                    <i class="rating-icon fas fa-star"></i>
+                                </div>
+                                <p class="rating-text">(10 đánh giá)</p>
+                            </div>
                             <div class="info-price">
                                 <div class="info-origin-price">25,000 đ</div>
                                 <div class="info-sale-price">30,000 đ</div>
