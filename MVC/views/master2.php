@@ -18,7 +18,7 @@
 
 <body>
     <div class="app">
-    <span class="scroll-top show-scroll" id="toTop">
+        <span class="scroll-top show-scroll" id="toTop">
             <i class="scroll-top__icon fas fa-chevron-up"></i>
         </span>
         <?php require_once "./mvc/views/blocks/header2.php"; ?>
