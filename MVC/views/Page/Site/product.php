@@ -18,17 +18,20 @@
     </div>
     <!-- card right -->
     <div class="product-content">
-      <h5 class="product-title">Tên sản phẩm</h5>
+      <h3 class="product-title">Tên sản phẩm</h3>
 
       <div class="product-price">
-        <p class="new-price" style="font-size: 18px;">55.000 đ</p>
+        <p class="new-price" style="font-size: 4rem;">55.000 đ</p>
         <p class="new-price" style="font-size: 12px;">Rẻ hơn hoàn tiền...</p>
       </div>
 
       <div class="product-detail">
-        <ul>
-          <li>Danh mục: <span>Trà sữa</span></li>
-          <li>Tình trạng: <span>Còn hàng</span></li>
+        <ul class="product-detail__list">
+          <li class="product-detail__item">Danh mục: <a class="product-detail__link" href="">Trà sữa</a></li>
+          <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
+          <li class="product-detail__item">Topping: <span>Full Topping</span></li>
+          <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
+          <li class="product-detail__item">Đã bán: <span>3</span></li>
         </ul>
       </div>
 

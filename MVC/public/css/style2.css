@@ -57,12 +57,17 @@ img{
     width: 100%;
     display: block;
 }
+.product-imgs {
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
 .img-display{
     overflow: hidden;
+    padding: 20px;
 }
 .img-showcase{
     display: flex;
-    width: 100%;
+    justify-content: center;
+    width: 70%;
     transition: all 0.5s ease;
 }
 .img-showcase img{
@@ -86,7 +91,8 @@ img{
     padding: 2rem 1rem;
 }
 .product-title{
-    font-size: 20px;
+    font-size: 20rem;
+    font-weight: 500;
     text-transform: capitalize;
     font-weight: 700;
     position: relative;
@@ -150,12 +156,22 @@ img{
     background: url(shoes_images/checked.png) left center no-repeat;
     background-size: 18px;
     padding-left: 1.7rem;
-    margin: 0.4rem 0;
-    font-weight: 600;
+    margin: 20px 0;
+    font-weight: 400;
     opacity: 0.9;
+    font-size: 2rem;
 }
 .product-detail ul li span{
-    font-weight: 400;
+    font-weight: 300;
+    font-size: 1.6rem;
+}
+.product-detail__link {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+    background-color: #fca7ae;
+    padding: 4px;
+    border-radius: 6px;
 }
 .purchase-info{
     margin: 1.5rem 0;
