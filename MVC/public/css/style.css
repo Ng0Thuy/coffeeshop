@@ -1213,7 +1213,7 @@ main.container
 .form-group-login label {
   user-select: none;
   pointer-events: none;
-  color: #282828;
+  color: #877777;
   transition: all 0.4s;
   font-size: 1.7rem;
   position: absolute;
@@ -1351,7 +1351,7 @@ form#form-login button:hover {
 .form-group-regsiter label {
   user-select: none;
   pointer-events: none;
-  color: #282828;
+  color: #877777;
   transition: all 0.4s;
   font-size: 1.7rem;
   position: absolute;
@@ -1454,7 +1454,7 @@ form#form-regsiter button:hover {
 .form-group-forgot label {
   user-select: none;
   pointer-events: none;
-  color: #282828;
+  color: #877777;
   transition: all 0.4s;
   font-size: 1.7rem;
   position: absolute;
