@@ -3,6 +3,7 @@
   --white-color: #fff;
   --black-color: #000;
   --text-color: #333;
+  --success-color: #49ad37;
   --border-color: #d3b673;
   --star-gold-color: #fffe3e;
 
@@ -10,6 +11,10 @@
   --navbar-height: 34px;
   --header-with-search-height: calc(var(--header-height) - var(--nav-height));
   --header-sort-bar-height: 46px;
+}
+
+.clear {
+  clear: both;
 }
 
 /* Font */
@@ -191,6 +196,11 @@ html {
 .btn.btn--primary {
   color: var(--white-color);
   background-color: var(--primary-color);
+}
+
+.btn.btn--success {
+  color: var(--white-color);
+  background-color: var(--success-color);
 }
 
 .btn .btn--disable {
