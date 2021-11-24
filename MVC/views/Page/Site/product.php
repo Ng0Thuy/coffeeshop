@@ -2,7 +2,8 @@
   <nav class="nav-top">
     <ul>
       <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
-      <li><a href="">Chi tiết sản phẩm</a></li><span>/</span><li><a href="">Trà sữa</a></li>
+      <li><a href="">Chi tiết sản phẩm</a></li><span>/</span>
+      <li><a href="">Trà sữa</a></li>
     </ul>
   </nav>
   <div class="card mt-1">
@@ -27,7 +28,7 @@
 
       <div class="product-detail">
         <ul class="product-detail__list">
-          <li class="product-detail__item">Danh mục: <a class="product-detail__link" href="">Trà sữa</a></li>
+          <li class="product-detail__item">Danh mục: <span>Trà sữa</span></li>
           <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
           <li class="product-detail__item">Topping: <span>Full Topping</span></li>
           <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
@@ -56,15 +57,63 @@
       <li>Đánh giá</li>
     </ul>
     <div class="tab_container_area">
-      <div class="tab_container tab_container_hide">
+      <div class="tab_container">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat doloribus dolor deleniti facilis temporibus aperiam sint. Omnis eum fuga distinctio vitae rerum, sed laudantium ipsa totam, magnam sapiente consequatur!</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore fuga rem ipsum atque nam velit deserunt, earum officiis est aliquam recusandae similique fugiat voluptatum cupiditate eius magnam quibusdam unde iste.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ab distinctio culpa quia quas hic, cumque eum est eligendi quam cupiditate repudiandae, reprehenderit soluta inventore labore dignissimos veniam ipsum non?</p>
       </div>
+    </div>
+    <div class="tab_container_area">
       <div class="tab_container">
-        <h3>Bình luận</h3>
+        <h3 class="comment-heading">Bình luận</h3>
+        <div class="comment-list">
+          <div class="comment">
+            <div class="comment-avatar">
+              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
+            </div>
+            <div class="comment-user">
+              <div class="comment-user__name">Nguyễn Đăng Thành</div>
+              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
+            </div>
+            <!-- <div class="comment-feedback">
+            Reply
+          </div> -->
+          </div>
+          <div class="comment">
+            <div class="comment-avatar">
+              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
+            </div>
+            <div class="comment-user">
+              <div class="comment-user__name">Nguyễn Đăng Thành</div>
+              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
+            </div>
+            <!-- <div class="comment-feedback">
+            Reply
+          </div> -->
+          </div>
+          <div class="comment">
+            <div class="comment-avatar">
+              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
+            </div>
+            <div class="comment-user">
+              <div class="comment-user__name">Nguyễn Đăng Thành</div>
+              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
+            </div>
+            <!-- <div class="comment-feedback">
+            Reply
+          </div> -->
+          </div>
+          <div class="view-more-comments">
+            <div class="view-more-comment__text">
+              <span>View More Comments</span>
+            </div>
+            <div class="view-more-comment__quantity">
+              <span>3 of 60</span>
+            </div>
+          </div>
+        </div>
         <form action="" method="post">
-          <textarea cols="131" rows="10" placeholder="Viết bình luận..."></textarea>
+          <textarea cols="131" rows="2" placeholder="Viết bình luận..."></textarea>
           <button type="submit">Gửi bình luận</button>
         </form>
       </div>
