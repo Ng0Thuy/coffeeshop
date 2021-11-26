@@ -66,9 +66,11 @@ class Admin extends Controller
 
   function product()
   {
+    $Category = $this->model("CategoryModel");
     $Models = $this->model("AdminModel");
     $this->view("masterAdmin", [
       "Page" => "product",
+      "ShowCategory" => $Category->ListAll()
     ]);
   }
 }

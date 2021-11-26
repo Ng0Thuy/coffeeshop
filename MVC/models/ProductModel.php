@@ -12,4 +12,5 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product where product_id = $id";
         return mysqli_query($this->con, $sql);
     }
+    
 }

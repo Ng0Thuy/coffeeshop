@@ -21,51 +21,54 @@
                   <h4>Thêm sản phẩm</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="">
+                <form action="" method="POST">
                   <div class="modal-body">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Danh mục</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                      <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                        <?php
+                        if (isset($data['ShowCategory'])) {
+                          while ($row = mysqli_fetch_array($data['ShowCategory'])) {
+                        ?>
+                            <option value="<?=$row['category_id']?>"><?= $row['category_name'] ?></option>
+                        <?php
+                          }
+                        }
+                        ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Tên sản phẩm</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
+                      <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlFile1">Ảnh</label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      <input type="file" name="thumbnail" class="form-control-file" id="exampleFormControlFile1">
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Mô tả</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                      <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục..."> -->
+                      <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Kích thước</label>
-                      <div class="form-check">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                          <label class="form-check-label" for="inlineCheckbox1">Nhỏ</label>
+                      <div class="form-group row">
+                        <div class="input-group input-group-sm mb-3 col-4 pt-2">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Nhỏ</span>
+                          <input type="text" name="sileM" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                          <label class="form-check-label" for="inlineCheckbox2">Vừa</label>
+                        <div class="input-group input-group-sm mb-3 col-4 pt-2">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Vừa</span>
+                          <input type="text" name="sizeML" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                          <label class="form-check-label" for="inlineCheckbox3">Lớn</label>
+                        <div class="input-group input-group-sm mb-3 col-4 pt-2">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Lớn</span>
+                          <input type="text" name="sizeL" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                       </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                      <button type="button" class="btn btn-primary">Lưu</button>
+                      <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                   </div>
                 </form>
@@ -92,7 +95,6 @@
                 <th scope="col">Sale</th>
                 <th scope="col">Lượt xem</th>
                 <th scope="col">Bình luận</th>
-                <!-- <th style="width: 200px" scope="col" class="">Nội dung</th> -->
                 <th scope="col">Ngày nhập</th>
                 <th style="width: 5px" scope="col"></th>
                 <th style="width: 5px" scope="col"></th>
@@ -114,36 +116,6 @@
                 <td><button class="btn btn-warning">Sửa</button></td>
                 <td><button class="btn btn-danger">Xóa</button></td>
               </tr>
-              <!-- <tr>
-                <th scope="row">2</th>
-                <td>
-                  <img
-                    style="width: 70px"
-                    src="http://gongcha.com.vn/wp-content/uploads/2018/10/Hinh-Web-OKINAWA-TR%C3%80-S%E1%BB%AEA.png"
-                    alt=""
-                  />
-                </td>
-                <td>Cafe sữa Sài Gòn</td>
-                <td>20.000 VNĐ</td>
-                <td>Cafe sữa Sài Gòn</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Xóa</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>
-                  <img
-                    style="width: 70px"
-                    src="http://gongcha.com.vn/wp-content/uploads/2018/10/Hinh-Web-OKINAWA-TR%C3%80-S%E1%BB%AEA.png"
-                    alt=""
-                  />
-                </td>
-                <td>Bánh tráng trộn</td>
-                <td>20.000 VNĐ</td>
-                <td>tráng trộn</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Xóa</button></td>
-              </tr> -->
             </tbody>
           </table>
         </section>
