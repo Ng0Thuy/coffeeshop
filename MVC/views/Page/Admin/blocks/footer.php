@@ -5,6 +5,3 @@
           </a>
         </nav>
       </footer>
-    </div>
-  </body>
-</html>

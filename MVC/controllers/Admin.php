@@ -15,14 +15,58 @@ class Admin extends Controller
 
   function category()
   {
-    $Models = $this->model("HomeModel");
+    $Category = $this->model("CategoryModel");
     $this->view("masterAdmin", [
       "Page" => "category",
+      "ShowCategory" => $Category->ListAll()
     ]);
   }
+
+  function editCategory($id)
+  {
+    $Category = $this->model("CategoryModel");
+    $Category->checkid($id);
+    $this->view("masterAdmin", [
+      "Page" => "editcategory",
+      "ShowEdit" => $Category->ListItem($id)
+    ]);
+    if (isset($_POST['name'])) {
+      $name = $_POST['name'];
+      $Category->editcategory($id, $name);
+    }
+  }
+
+  function addCategory()
+  {
+    $Category = $this->model("CategoryModel");
+    if (isset($_POST['name'])) {
+      $name = $_POST['name'];
+    }
+    $Category->addCategory($name);
+  }
+
+  function deleteCategory()
+  {
+    $Category = $this->model("CategoryModel");
+    if (!empty($_POST)) {
+      if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+        switch ($action) {
+          case 'delete':
+            if (isset($_POST['id'])) {
+              $id = $_POST['id'];
+              $Category->deleteCategory($id);
+            }
+            break;
+        }
+      }
+    }
+  }
+
+
   function product()
   {
-    $Models = $this->model("HomeModel");
+    $Models = $this->model("AdminModel");
     $this->view("masterAdmin", [
       "Page" => "product",
     ]);

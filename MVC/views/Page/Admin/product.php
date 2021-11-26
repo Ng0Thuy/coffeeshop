@@ -1,4 +1,4 @@
-      <main class="pt-3 container">
+      <main class="pt-3 container-fluid">
         <section class="name-pages">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -59,7 +59,6 @@
             </div>
           </div>
           <!-- Load Tab-->
-
           <select class="form-control col-4">
             <option>Sắp xếp theo</option>
             <option>Theo ngày mới nhất</option>
@@ -77,9 +76,10 @@
                 <th scope="col">Tên</th>
                 <th scope="col">Giá</th>
                 <th scope="col">Sale</th>
-                <th scope="col">Nội dung</th>
-                <th style="width: 10px" scope="col"></th>
-                <th style="width: 10px" scope="col"></th>
+                <th style="width: 200px" scope="col" class="">Nội dung</th>
+                <th scope="col">Ngày nhập</th>
+                <th style="width: 5px" scope="col"></th>
+                <th style="width: 5px" scope="col"></th>
               </tr>
             </thead>
             <tbody id="tableProduct">
@@ -95,7 +95,8 @@
                 <td>Trà sữa trân châu đường đen</td>
                 <td>20.000 VNĐ</td>
                 <td>20%</td>
-                <td>Trà sữa trân châu đường đen</td>
+                <td class="descriptonSp">Trà sữa trân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đen</td>
+                <td>20/10/2022</td>
                 <td><button class="btn btn-warning">Sửa</button></td>
                 <td><button class="btn btn-danger">Xóa</button></td>
               </tr>

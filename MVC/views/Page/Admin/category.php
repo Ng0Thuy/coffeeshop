@@ -9,56 +9,33 @@
           </nav>
         </section>
         <section class="row display-flex justify-content-between ml-0 mr-0">
-          <button
-            class="btn btn-success mb-3"
-            data-toggle="modal"
-            data-target="#tabCategory"
-          >
+          <button class="btn btn-success mb-3" data-toggle="modal" data-target="#tabCategory">
             <i class="fas fa-plus-circle"></i> Thêm danh mục
           </button>
 
-          <!-- Load Tab -->
-          <div
-            class="modal fade"
-            id="tabCategory"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="myModalLabel"
-          >
+          <!-- Load Tab-->
+          <div class="modal fade" id="tabCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4>Thêm/Sửa danh mục</h4>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
+                  <h4>Thêm danh mục</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form action="" method="">
+                <form action="<?= BASE_URL ?>/Admin/addCategory" method="POST">
                   <div class="modal-body">
                     <div class="form-group">
                       <label for="formGroupExampleInput">Tên danh mục</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="formGroupExampleInput"
-                        placeholder="Tên danh mục..."
-                      />
+                      <input type="text" class="form-control" name="name" id="formGroupExampleInput" required placeholder="Tên danh mục..." />
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal"
-                    >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
                       Đóng
                     </button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
+                    <!-- <input type="submit" class="btn btn-primary"></input> -->
+                    <input type="submit" class="btn btn-primary" value="Lưu">
                   </div>
                 </form>
               </div>
@@ -83,36 +60,20 @@
               </tr>
             </thead>
             <tbody id="tableCategory">
-              <tr>
-                <th scope="row">1</th>
-                <td>Trà sữa</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Sửa</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Trà sữa</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Sửa</button></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Cà phê</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Sửa</button></td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Thức ăn nhanh</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Sửa</button></td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Bánh mì</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Sửa</button></td>
-              </tr>
+              <?php
+              $stt=0;
+              while ($row = mysqli_fetch_array($data['ShowCategory'])) {
+                $stt++;
+              ?>
+                <tr>
+                  <th scope="row"><?=$stt?></th>
+                  <td><?= $row['category_name'] ?></td>
+                  <td><a href="<?=BASE_URL?>/Admin/editCategory/<?=$row['category_id']?>" class="btn btn-warning">Sửa</a></td>
+                  <td><button class="btn btn-danger" onclick="deleteCategory(<?=$row['category_id']?>)">Xóa</button></td>
+                </tr>
+              <?php
+              }
+              ?>
             </tbody>
           </table>
         </section>

@@ -42,7 +42,7 @@
                     </div>
                     <ul class="login-children__list" onblur="loginOnblur()">
                         <li class="login-item">
-                            <a class="login-link" href="">
+                            <a class="login-link" href="<?=BASE_URL?>/home/user">
                             <i class="fas fa-user"></i>Tài khoản của tôi
                             </a>
                         </li>

@@ -1,3 +1,35 @@
+// $("a.nav-link").click(function(){
+//   $(this).addClass("btn btn-secondary");
+// });
+function deleteCategory(id) {
+  var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+  if(!option) {
+    return;
+  }
+  console.log(id)
+  $.post('./deleteCategory', {
+    'id': id,
+    'action': 'delete'
+  }, function(data) {
+    location.reload()
+  })
+}
+
+$.ajax({
+  type: "POST",
+  url: './Home/RegisterAction',
+  data: $(form).serializeArray(),
+  success: function(response) {
+      response = JSON.parse(response);
+      if (response.status == 0) { 
+          swal("Thất bại!", response.message, "error");
+      } else {
+          swal("Thành công!", response.message, "success");
+          setTimeout("location.href = './login';", 2000);
+      }
+  }
+});
+
 const ctx = document.getElementById("myChartLine").getContext("2d");
       const myChartLine = new Chart(ctx, {
         type: "bar",
@@ -6,7 +38,7 @@ const ctx = document.getElementById("myChartLine").getContext("2d");
           datasets: [
             {
               label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
+              data: [1, 19, 3, 5, 12, 9],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
@@ -45,7 +77,7 @@ const ctx = document.getElementById("myChartLine").getContext("2d");
           datasets: [
             {
               label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
+              data: [8, 19, 3, 5, 2, 3],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",

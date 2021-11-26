@@ -1,7 +1,12 @@
-<div id="login">
-      <i class="far fa-times-circle close-login"></i>
+<main class="grid wide container user" style="margin: 85px auto 20px;">
+<nav class="nav-top">
+        <ul>
+            <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
+            <li><a href="">Đăng nhập</a></li>
+        </ul>
+    </nav>
+<div id="login-dev">
       <h3 class="login-title">Đăng nhập hệ thống</h3>
-      <p>Bạn chưa có tài khoản? <span class="regsiter-show">Đăng ký</span></p>
       <form action="" method="POST" id="form_login">
         <div class="form-group-login">
           <label for="">Email</label>
@@ -20,4 +25,7 @@
           <button>Đăng nhập</button>
         </div>
       </form>
+      <p>Bạn chưa có tài khoản? <span class="regsiter-show">Đăng ký</span></p>
+
     </div>
+</main>

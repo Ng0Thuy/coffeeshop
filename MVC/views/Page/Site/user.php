@@ -1,4 +1,10 @@
-<main class="grid wide user" style="margin: 100px auto 20px;">
+<main class="grid wide container user" style="margin: 100px auto 20px;">
+<nav class="nav-top">
+        <ul>
+            <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
+            <li><a href="">Thực đơn</a></li>
+        </ul>
+    </nav>
     <div class="info-user">
         <h2 class="info-user__heading">Thông tin khách hàng</h2>
         <div class="form-info-user row">
@@ -18,7 +24,7 @@
                         <span class="error"></span>
                     </div>
                 </div>
-                <button class="btn btn--success change-password__btn">Thay đổi</button>
+                <button class="btn btn--primary change-password__btn">Thay đổi</button>
             </form>
             <form action="" method="" class="col l-9 info-user__main">
                 <div class="info-user__main-item">
@@ -41,7 +47,7 @@
                         <input type="text" name="" id="" class="info-user__input" value="thanhboi312@gmail.com" disabled>
                     </div>
                 </div>
-                <button class="btn btn--success info-user__main--btn">Cập nhật</button>
+                <button class="btn btn--primary info-user__main--btn">Cập nhật</button>
             </form>
         </div>
     </div>

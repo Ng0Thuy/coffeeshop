@@ -8,6 +8,8 @@
   --border-color: #d3b673;
   --star-gold-color: #fffe3e;
 
+  --shadow-primary: 1px 0px 60px 0 rgb(12 18 34 / 11%), 2px 2px 90px 0 rgb(23 33 54 / 11%);
+
   --header-height: 120px;
   --navbar-height: 34px;
   --header-with-search-height: calc(var(--header-height) - var(--nav-height));
