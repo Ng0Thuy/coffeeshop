@@ -18,19 +18,11 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4>Thêm/Sửa sản phẩm</h4>
+                  <h4>Thêm sản phẩm</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="" method="">
                   <div class="modal-body">
-                    <div class="form-group">
-                      <label for="formGroupExampleInput">Tên sản phẩm</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlFile1">Ảnh</label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Danh mục</label>
                       <select class="form-control" id="exampleFormControlSelect1">
@@ -42,17 +34,39 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="formGroupExampleInput">Giá</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục...">
+                      <label for="formGroupExampleInput">Tên sản phẩm</label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
                     </div>
                     <div class="form-group">
-                      <label for="formGroupExampleInput">Sizw</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục...">
+                      <label for="exampleFormControlFile1">Ảnh</label>
+                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Mô tả</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục..."> -->
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Kích thước</label>
+                      <div class="form-check">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                          <label class="form-check-label" for="inlineCheckbox1">Nhỏ</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                          <label class="form-check-label" for="inlineCheckbox2">Vừa</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                          <label class="form-check-label" for="inlineCheckbox3">Lớn</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                      <button type="button" class="btn btn-primary">Lưu</button>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -76,7 +90,9 @@
                 <th scope="col">Tên</th>
                 <th scope="col">Giá</th>
                 <th scope="col">Sale</th>
-                <th style="width: 200px" scope="col" class="">Nội dung</th>
+                <th scope="col">Lượt xem</th>
+                <th scope="col">Bình luận</th>
+                <!-- <th style="width: 200px" scope="col" class="">Nội dung</th> -->
                 <th scope="col">Ngày nhập</th>
                 <th style="width: 5px" scope="col"></th>
                 <th style="width: 5px" scope="col"></th>
@@ -86,16 +102,14 @@
               <tr>
                 <th scope="row">1</th>
                 <td>
-                  <img
-                    style="width: 70px"
-                    src="http://gongcha.com.vn/wp-content/uploads/2018/10/Hinh-Web-OKINAWA-TR%C3%80-S%E1%BB%AEA.png"
-                    alt=""
-                  />
+                  <img style="width: 70px" src="http://gongcha.com.vn/wp-content/uploads/2018/10/Hinh-Web-OKINAWA-TR%C3%80-S%E1%BB%AEA.png" alt="" />
                 </td>
                 <td>Trà sữa trân châu đường đen</td>
                 <td>20.000 VNĐ</td>
                 <td>20%</td>
-                <td class="descriptonSp">Trà sữa trân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đen</td>
+                <td>202</td>
+                <td>20</td>
+                <!-- <td class="descriptonSp">Trà sữa trân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đen</td> -->
                 <td>20/10/2022</td>
                 <td><button class="btn btn-warning">Sửa</button></td>
                 <td><button class="btn btn-danger">Xóa</button></td>

@@ -1,4 +1,4 @@
-      <main class="pt-3 container">
+      <main class="pt-3 container-fluid">
         <section class="name-pages">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

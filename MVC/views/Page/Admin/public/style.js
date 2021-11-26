@@ -1,6 +1,3 @@
-// $("a.nav-link").click(function(){
-//   $(this).addClass("btn btn-secondary");
-// });
 function deleteCategory(id) {
   var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
   if(!option) {

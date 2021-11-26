@@ -1,4 +1,4 @@
-<main class="pt-3 container">
+<main class="pt-3 container-fluid">
   <section class="name-pages">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -8,7 +8,7 @@
       </ol>
     </nav>
   </section>
-  <section class="category">
+  <section class="category container pb-5">
     <form method="POST" action="">
       <?php
       $row = mysqli_fetch_assoc($data['ShowEdit']);
@@ -24,7 +24,7 @@
       ?>
       <div class="form-group">
         <label for="formGroupExampleInput">Tên danh mục</label>
-        <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục..." value="<?= $row['category_name'] ?>">
+        <input type="text" name="name" required class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục..." value="<?= $row['category_name'] ?>">
       </div>
       <button class="btn btn-success">Lưu</button>
     </form>
