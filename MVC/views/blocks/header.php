@@ -5,7 +5,7 @@
         <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />
       </a>
     </div>
-    <ul class="menu-list">
+    <ul class="menu-list hide-on-tablet-mobile">
       <li class="menu-item active">
         <a href="<?= BASE_URL ?>" class="menu-item__link">TRANG CHỦ</a>
       </li>
@@ -27,7 +27,10 @@
       <li class="menu-item">
         <a href="" class="menu-item__link">LIÊN HỆ</a>
       </li>
-      <li class="menu-item">
+    </ul>
+
+    <ul class="menu-list2">
+    <li class="menu-item">
         <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
           <span class="cart-notice">3</span></a>
       </li>

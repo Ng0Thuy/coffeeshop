@@ -98,7 +98,15 @@
   display: -o-flex;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+.menu-list2 {
+  width: 230px;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .menu-item {
   position: relative;
@@ -247,7 +255,7 @@ li.login-item:last-child {
   margin-left: 10px;
   padding: 14px 0;
   display: block;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #282828;
   text-decoration: none;
@@ -269,6 +277,7 @@ li.login-item:last-child {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   color: var(--white-color);
+  margin-right: 20px;
 }
 .cart-icon {
   margin-left: 30px;
@@ -1697,7 +1706,7 @@ form#form_forgot button:hover {
 input[type="number"] {
   /* border: 1px solid #ddd; */
   text-align: center;
-  font-size: 1.6em;
+  font-size: 1.6rem;
   -moz-appearance: textfield;
 }
 input[type="number"]::-webkit-outer-spin-button,
