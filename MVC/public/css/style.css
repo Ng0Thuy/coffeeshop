@@ -71,6 +71,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.nav-tablet-mobile {
+  display: none;
+}
 .navbar-menu {
 }
 
@@ -107,6 +110,21 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.menu-item2 {
+  position: relative;
+  width: 150px;
+}
+.menu-item2 .login {
+  display: block;
+  width: 150px;
+  border-radius: 50px;
+  padding: 10px 30px;
+  background-color: #ff929b;
+  text-decoration: none;
+  font-size: 1.4rem;
+  border: 1px solid #ff929b;
+  color: var(--white-color);
 }
 .menu-item {
   position: relative;
@@ -517,6 +535,7 @@ li.login-item:last-child {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 }
 .text-1 {
   color: var(--primary-color);
@@ -549,13 +568,16 @@ li.login-item:last-child {
 }
 .list-product {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 50px;
+  /* flex-wrap: wrap; */
+  justify-content: center;
 }
 .product-cart {
-  width: calc(25% - 30px);
-  margin: 0 15px;
-  margin-bottom: 32px;
+  /* width: calc(25% - 30px); */
+  display: block;
+  padding: 0;
+  margin-top: 10px;
+  /* margin: 0 15px;
+  margin-bottom: 32px; */
   box-shadow: 0px 2px 1.5px 0px #ccc;
   border-top: 1px solid #f1f1f1;
   position: relative;
@@ -664,14 +686,14 @@ li.login-item:last-child {
   font-weight: 700;
   color: #8a733f;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 .info-sale-price {
   margin-left: 8px;
   color: #bebebe !important;
   transform: scale(0.9, 0.9);
   text-decoration: line-through;
-  margin-top: 24px;
+  margin-top: 10px;
   font-size: 1.5rem;
 }
 .btn-order-product {
@@ -760,23 +782,23 @@ li.login-item:last-child {
 
 /* ================================================================================================== */
 .footer {
-  height: 400px;
+  height: auto;
   background-color: var(--text-color);
-  padding: 20px 0 0;
+  padding: 20px 0;
 }
 
 .footer-main {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   color: var(--white-color);
 }
 
-.footer-main h4 {
+.footer__heading {
   font-size: 1.6rem;
   line-height: 1.6rem;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .care-item,
@@ -807,7 +829,7 @@ li.login-item:last-child {
 
 .pay-method {
   position: absolute;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }

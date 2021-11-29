@@ -140,12 +140,12 @@
 }
 
 /* Tablet */
-/* @media screen and (min-width: 740px) and (max-width: 1023px) {
+@media screen and (min-width: 740px) and (max-width: 1023) {
     .wide{
         width: 644px;
     }
     
-} */
+}
 
 /* >= Tablet */
 @media screen and (min-width:740px) {
@@ -279,18 +279,31 @@
     }
 }
 
-/* PC */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1114px) {
     .row{
         margin-left: -12px;
         margin-right: -12px;
     }
+    .row.sm-gutter{
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .col{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .row.sm-gutter .col{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
     .l-0{
         display: none;
     }
     .l-1,
     .l-2,
     .l-2-4,
+    .l-2-5,
     .l-3,
     .l-4,
     .l-5,
@@ -318,6 +331,11 @@
         max-width: 20%;
     }
     
+    .l-2-5{
+        flex: 0 0 22.5%;
+        max-width: 22.5%;
+    }
+
     .l-3{
         flex: 0 0 25%;
         max-width: 25%;
@@ -414,7 +432,7 @@
 }
 
 /* >= PC low */
-@media screen and (min-width: 1024px) and (max-width: 1239px) {
+@media screen and (min-width: 1024) and (max-width: 1239) {
     .wide{
         width: 984px;
     }
@@ -422,9 +440,17 @@
         margin-left: -12px;
         margin-right: -12px;
     }
+    .wide .row.sm-gutter{
+        margin-left: -5px;
+        margin-right: -5px;
+    }
     .wide .col{
         padding-left: 12px;
         padding-right: 12px;
+    }
+    .wide .row.sm-gutter .col{
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .wide .l-0{
         display: none;
@@ -432,6 +458,7 @@
     .wide .l-1,
     .wide .l-2,
     .wide .l-2-4,
+    .wide .l-2-5,
     .wide .l-3,
     .wide .l-4,
     .wide .l-5,
@@ -452,11 +479,6 @@
     .wide .l-2{
         flex: 0 0 16.66667%;
         max-width: 16.66667%;
-    }
-
-    .wide .l-2-4{
-        flex: 0 0 20%;
-        max-width: 20%;
     }
     
     .wide .l-3{
@@ -532,7 +554,7 @@
     .wide .l-o-6 {
         margin-left: 50%;
     }
-        
+    
     .wide .l-o-7 {
         margin-left: 58.33333%;
     }

@@ -208,3 +208,9 @@ $("#form_login").validate({
         });
     }
 });
+
+/* Animated Navigation */
+const toggle = document.querySelector('#toggle');
+const nav = document.querySelector('#nav-tablet-mobile');
+
+toggle.addEventListener('click', () => nav.classList.toggle('active'))

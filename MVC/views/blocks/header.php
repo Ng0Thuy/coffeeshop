@@ -1,18 +1,20 @@
 <header class="header">
 
   <div id="menu-area">
-    <nav class="nav-tablet-mobile active" id="nav-tablet-mobile">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-
-      <button class="nav-tablet-mobile__icon" id="toggle">
+    <nav class="nav-tablet-mobile" id="nav-tablet-mobile">
+    <button class="nav-tablet-mobile__icon" id="toggle">
         <div class="line line1"></div>
         <div class="line line2"></div>
       </button>
+
+      <ul>
+        <li><a href="#">TRANG CHỦ</a></li>
+        <li><a href="#">THỰC ĐƠN</a></li>
+        <li><a href="#">TIN TỨC</a></li>
+        <li><a href="#">GIỚI THIỆU</a></li>
+        <li><a href="#">LIÊN HỆ</a></li>
+      </ul>
+      
     </nav>
     
     <div class="logo">
@@ -45,11 +47,11 @@
     </ul>
 
     <ul class="menu-list2">
-      <li class="menu-item">
+      <li class="menu-item2">
         <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
           <span class="cart-notice">3</span></a>
       </li>
-      <li class="menu-item">
+      <li class="menu-item2">
         <span class="login" id="login-tab">ĐĂNG NHẬP</span>
       </li>
     </ul>
