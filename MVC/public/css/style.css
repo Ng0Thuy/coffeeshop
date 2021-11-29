@@ -376,7 +376,7 @@ li.login-item:last-child {
   font-family: Muli, sans-serif;
   font-size: 6rem;
   text-transform: capitalize;
-  color: white;
+  color: var(--primary-color);
 }
 .banner-text p {
   color: white;

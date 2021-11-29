@@ -1,5 +1,20 @@
 <header class="header">
+
   <div id="menu-area">
+    <nav class="nav-tablet-mobile active" id="nav-tablet-mobile">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <button class="nav-tablet-mobile__icon" id="toggle">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+      </button>
+    </nav>
+    
     <div class="logo">
       <a href="<?= BASE_URL ?>" class="logo__link">
         <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />
@@ -30,7 +45,7 @@
     </ul>
 
     <ul class="menu-list2">
-    <li class="menu-item">
+      <li class="menu-item">
         <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
           <span class="cart-notice">3</span></a>
       </li>

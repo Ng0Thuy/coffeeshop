@@ -1,7 +1,7 @@
 <article class="article">
     <div class="grid wide">
         <!-- Featured Products -->
-        <div class="featured-products">
+        <div class="featured-products row">
             <div class="featured-product__title">
                 <div class="text-1">
                     Meta Coffee Menu
@@ -13,8 +13,8 @@
                 </div>
             </div>
 
-            <div class="featured-product__content">
-                <div class="list-product">
+            <div class="featured-product__content row">
+                <div class="list-product col l-12 m-3">
                     <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
                             <div class="tag-new">new</div>
@@ -98,7 +98,7 @@
                     </a>
                     <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
-                            <div class="tag-new">New</div>
+                            <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
                         </div>
                         <div class="product-cart__img">
@@ -333,7 +333,7 @@
                     </a>
                     <a href="<?= BASE_URL ?>/product" class="product-cart">
                         <div class="product-cart__tags">
-                            <div class="tag-new">New</div>
+                            <div class="tag-new">new</div>
                             <div class="tag-discount">30%</div>
                         </div>
                         <div class="product-cart__img">
