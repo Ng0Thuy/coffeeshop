@@ -25,3 +25,19 @@
         </div>
       </form>
     </div>
+    <script>
+      $.ajax({
+  type: "POST",
+  url: './Home/RegisterAction',
+  data: $(form).serializeArray(),
+  success: function(response) {
+      response = JSON.parse(response);
+      if (response.status == 0) { 
+          swal("Thất bại!", response.message, "error");
+      } else {
+          swal("Thành công!", response.message, "success");
+          setTimeout("location.href = './login';", 2000);
+      }
+  }
+});
+    </script>

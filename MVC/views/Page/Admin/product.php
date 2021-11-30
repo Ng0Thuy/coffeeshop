@@ -10,7 +10,7 @@
         </section>
         <section class="row display-flex justify-content-between ml-0 mr-0">
           <button class="btn btn-success mb-3" data-toggle="modal" data-target="#tabProduct">
-            <i class="fas fa-plus-circle"></i>Thêm sản phẩm
+            <i class="fas fa-plus-circle"></i> Thêm sản phẩm
           </button>
 
           <!-- Load Tab -->
@@ -21,7 +21,7 @@
                   <h4>Thêm sản phẩm</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="POST">
+                <form action="<?=BASE_URL?>/Admin/addProduct" method="POST" enctype="multipart/form-data">
                   <div class="modal-body">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Danh mục</label>
@@ -30,7 +30,7 @@
                         if (isset($data['ShowCategory'])) {
                           while ($row = mysqli_fetch_array($data['ShowCategory'])) {
                         ?>
-                            <option value="<?=$row['category_id']?>"><?= $row['category_name'] ?></option>
+                            <option value="<?= $row['category_id'] ?>"><?= $row['category_name'] ?></option>
                         <?php
                           }
                         }
@@ -39,22 +39,14 @@
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput">Tên sản phẩm</label>
-                      <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
+                      <input type="text" name="name" required class="form-control" id="formGroupExampleInput" placeholder="Tên sản phẩm...">
                     </div>
                     <div class="form-group">
-                      <label for="exampleFormControlFile1">Ảnh</label>
-                      <input type="file" name="thumbnail" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                    <div class="form-group">
-                      <label for="formGroupExampleInput">Mô tả</label>
-                      <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="formGroupExampleInput">Kích thước</label>
+                      <label for="formGroupExampleInput">Giá cho từng kích thước</label>
                       <div class="form-group row">
                         <div class="input-group input-group-sm mb-3 col-4 pt-2">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Nhỏ</span>
-                          <input type="text" name="sileM" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          <input type="text" name="sizeM" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                         <div class="input-group input-group-sm mb-3 col-4 pt-2">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Vừa</span>
@@ -65,6 +57,18 @@
                           <input type="text" name="sizeL" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Giảm giá (%)</label>
+                      <input type="text" name="priceSale" class="form-control" id="formGroupExampleInput" placeholder="Giảm giá (%)">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Ảnh</label>
+                      <input type="file" required name="thumbnail" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Mô tả</label>
+                      <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
