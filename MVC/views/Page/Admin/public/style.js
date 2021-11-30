@@ -1,9 +1,14 @@
+// PRODUCTS
+ 
+
+
+
+// CATEGORY
 function deleteCategory(id) {
   var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
   if(!option) {
     return;
   }
-  console.log(id)
   $.post('./deleteCategory', {
     'id': id,
     'action': 'delete'
@@ -11,21 +16,6 @@ function deleteCategory(id) {
     location.reload()
   })
 }
-
-$.ajax({
-  type: "POST",
-  url: './Home/RegisterAction',
-  data: $(form).serializeArray(),
-  success: function(response) {
-      response = JSON.parse(response);
-      if (response.status == 0) { 
-          swal("Thất bại!", response.message, "error");
-      } else {
-          swal("Thành công!", response.message, "success");
-          setTimeout("location.href = './login';", 2000);
-      }
-  }
-});
 
 const ctx = document.getElementById("myChartLine").getContext("2d");
       const myChartLine = new Chart(ctx, {

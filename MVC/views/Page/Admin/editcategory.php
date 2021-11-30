@@ -27,6 +27,13 @@
         <input type="text" name="name" required class="form-control" id="formGroupExampleInput" placeholder="Tên danh mục..." value="<?= $row['category_name'] ?>">
       </div>
       <button class="btn btn-success">Lưu</button>
+      <?php
+      $previous = "javascript:history.go(-1)";
+      if (isset($_SERVER['HTTP_REFERER'])) {
+        $previous = $_SERVER['HTTP_REFERER'];
+      }
+      ?>
+      <a href="<?= $previous ?>" class="btn btn-warning">Back</a>
     </form>
   </section>
 </main>

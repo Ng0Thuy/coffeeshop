@@ -73,4 +73,13 @@ class Admin extends Controller
       "ShowCategory" => $Category->ListAll()
     ]);
   }
+
+  // Thêm sản phẩm
+  function addProduct(){
+    $Product = $this->model("ProductModel");
+    $Add = $Product->add();
+  }
+
+
+
 }

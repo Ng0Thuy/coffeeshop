@@ -2,7 +2,7 @@
 class DB
 {
     public $con;
-    protected $servername = "localhost:3325";
+    protected $servername = "localhost";
     protected $username = "root";
     protected $password = "";
     protected $dbname = "metacoffee";
