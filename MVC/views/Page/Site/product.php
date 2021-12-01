@@ -1,12 +1,12 @@
 <main id="nhan" class="grid wide container">
-  <?php 
-    $row = mysqli_fetch_assoc($data['showProductItem']);
+  <?php
+  $row = mysqli_fetch_assoc($data['showProductItem']);
   ?>
   <nav class="nav-top">
     <ul>
       <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
       <li><a href="">Chi tiết sản phẩm</a></li><span>/</span>
-      <li><a href=""><?=$row['product_name']?></a></li>
+      <li><a href=""><?= $row['product_name'] ?></a></li>
     </ul>
   </nav>
   <div class="card mt-1">
@@ -14,7 +14,7 @@
     <div class="product-imgs">
       <div class="img-display">
         <div class="img-showcase">
-          <img src="<?= BASE_URL ?>/<?=$row['thumbnail']?>" alt="">
+          <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
 
         </div>
       </div>
@@ -22,7 +22,7 @@
     </div>
     <!-- card right -->
     <div class="product-content">
-      <h3 class="product-title"><?=$row['product_name']?></h3>
+      <h3 class="product-title"><?= $row['product_name'] ?></h3>
 
       <div class="product-price">
         <p class="new-price" style="font-size: 4rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
@@ -31,7 +31,7 @@
 
       <div class="product-detail">
         <ul class="product-detail__list">
-          <li class="product-detail__item">Danh mục: <span><?=$row['category_name']?></span></li>
+          <li class="product-detail__item">Danh mục: <span><?= $row['category_name'] ?></span></li>
           <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
           <li class="product-detail__item">Topping: <span>Full Topping</span></li>
           <li class="product-detail__item">Vận chuyển: <span>Có</span></li>

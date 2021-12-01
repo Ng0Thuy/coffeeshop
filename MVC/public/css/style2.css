@@ -91,14 +91,14 @@ img {
 .product-content {
   padding: 2rem 1rem;
 }
-.product-title{
-    font-size: 2rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    font-weight: 700;
-    position: relative;
-    color: #12263a;
-    margin: 1rem 0;
+.product-title {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-weight: 700;
+  position: relative;
+  color: #12263a;
+  margin: 1rem 0;
 }
 .product-title {
   font-size: 2rem;
