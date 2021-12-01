@@ -104,4 +104,44 @@ class UserModel extends DB
             exit;
         }
     }
+
+    // Đăng nhập
+    public function Login()
+    {
+        $error = false;
+        if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']) && !empty($_POST['password'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $result = mysqli_query($this->con, "SELECT * FROM user WHERE email = '$email' AND password = '$password'");
+            $data = mysqli_fetch_assoc($result);
+            if (!$result) {
+                $error = mysqli_error($this->con);
+            } else {
+                $user = mysqli_fetch_assoc($result);
+                $_SESSION['current_user'] = $user;
+            }
+            mysqli_close($this->con);
+            if ($error !== false || $result->num_rows == 0) {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Thông tin đăng nhập không đúng'
+                ));
+                exit;
+            } else {
+                $userlogin = [$email, $password, $data['name'], $data['user_id'], $data['phone']];
+                $_SESSION['userlogin'] = $userlogin;
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'Đăng nhập thành công'
+                ));
+                exit;
+            }
+        } else {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Thông tin đăng nhập không đúng'
+            ));
+            exit;
+        }
+    }
 }

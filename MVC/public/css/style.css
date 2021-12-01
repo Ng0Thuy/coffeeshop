@@ -579,6 +579,9 @@ li.login-item:last-child {
   /* flex-wrap: wrap; */
   justify-content: center;
 }
+.list-product .col.l-2-5.m-4.c-6{
+  padding: 10px;
+}
 .product-cart {
   /* width: calc(25% - 30px); */
   display: block;
@@ -594,6 +597,7 @@ li.login-item:last-child {
   text-decoration: none;
   color: var(--text-color);
 }
+
 .product-cart:hover .product-cart__info {
   top: 0;
 }
@@ -1974,6 +1978,7 @@ input[type="range"]::-ms-thumb {
 .product-all-list .list-product {
   margin: 0 !important;
 }
+
 .product-all-list .list-product .product-cart {
   width: calc(33.3% - 30px) !important;
 }

@@ -30,6 +30,10 @@ class Home extends Controller
       "Page" => "login1",
     ]);
   }
+  function loginAction(){
+    $Login = $this->model("UserModel");
+    $kq = $Login->Login();
+  }
 
   function thucdon()
   {

@@ -1,12 +1,12 @@
 <main id="nhan" class="grid wide container">
-  <?php 
-    $row = mysqli_fetch_assoc($data['showProductItem']);
+  <?php
+  $row = mysqli_fetch_assoc($data['showProductItem']);
   ?>
   <nav class="nav-top">
     <ul>
       <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
       <li><a href="">Chi tiết sản phẩm</a></li><span>/</span>
-      <li><a href=""><?=$row['product_name']?></a></li>
+      <li><a href=""><?= $row['product_name'] ?></a></li>
     </ul>
   </nav>
   <div class="card mt-1">
@@ -14,59 +14,60 @@
     <div class="product-imgs">
       <div class="img-display">
         <div class="img-showcase">
-          <img src="<?= BASE_URL ?>/<?=$row['thumbnail']?>" alt="">
-
+          <a href="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>">
+            <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+          </a>
         </div>
       </div>
 
     </div>
     <!-- card right -->
     <div class="product-content">
-      <h3 class="product-title"><?=$row['product_name']?></h3>
+      <h3 class="product-title"><?= $row['product_name'] ?></h3>
 
       <div class="product-price">
-        <p class="new-price" style="font-size: 4rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
-        <p class="new-price" style="font-size: 12px;">Rẻ hơn hoàn tiền...</p>
+        <p class="new-price price-bg" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
+        <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Meta Coffee hoàn tiền</p>
       </div>
 
       <div class="product-detail">
         <ul class="product-detail__list">
-          <li class="product-detail__item">Danh mục: <span><?=$row['category_name']?></span></li>
+          <li class="product-detail__item">Danh mục: <span><?= $row['category_name'] ?></span></li>
           <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
-          <li class="product-detail__item">Topping: <span>Full Topping</span></li>
           <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
-          <li class="product-detail__item">Đã bán: <span>3</span></li>
         </ul>
       </div>
 
       <div class="purchase-info">
-        <button class="btn" id="minus">-</button>
-        <input type="number" readonly min="1" value="1" id="input">
-        <button class="btn" id="plus" style="margin-right: 50px;">+</button>
         <button class="size">S</button>
         <button class="size">M</button>
         <button class="size">L</button>
       </div>
-
+      <div class="purchase-info">
+        <button class="btn" id="minus">-</button>
+        <input type="number" readonly min="1" value="1" id="input">
+        <button class="btn" id="plus" style="margin-right: 50px;">+</button>
+      </div>
       <div class="click">
-        <a href="#"><button type="button" id="btn1"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button></a>
-        <a href="#"><button type="button" id="btn2">Đặt hàng ngay</button></a>
+        <button type="button" id="btn1"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+        <!-- <button type="button" id="btn2">Đặt hàng ngay</button> -->
       </div>
     </div>
   </div>
   <div class="nhan_container">
     <ul class="tab_navigation">
-      <li>Mô tả</li>
-      <li>Đánh giá</li>
+      <li class="mota active">Mô tả</li>
+      <li class="danhgia">Đánh giá</li>
     </ul>
-    <div class="tab_container_area">
+    <div class="tab_container_area" id="mota">
       <div class="tab_container">
+        <h3 class="comment-heading">Mô tả sản phẩm</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat doloribus dolor deleniti facilis temporibus aperiam sint. Omnis eum fuga distinctio vitae rerum, sed laudantium ipsa totam, magnam sapiente consequatur!</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore fuga rem ipsum atque nam velit deserunt, earum officiis est aliquam recusandae similique fugiat voluptatum cupiditate eius magnam quibusdam unde iste.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ab distinctio culpa quia quas hic, cumque eum est eligendi quam cupiditate repudiandae, reprehenderit soluta inventore labore dignissimos veniam ipsum non?</p>
       </div>
     </div>
-    <div class="tab_container_area">
+    <div class="tab_container_area" id="danhgia">
       <div class="tab_container">
         <h3 class="comment-heading">Bình luận</h3>
         <div class="comment-list">
@@ -76,35 +77,8 @@
             </div>
             <div class="comment-user">
               <div class="comment-user__name">Nguyễn Đăng Thành</div>
-              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
+              <div class="comment-user__content">Tôi rất thích sản phẩm này</div>
             </div>
-            <!-- <div class="comment-feedback">
-            Reply
-          </div> -->
-          </div>
-          <div class="comment">
-            <div class="comment-avatar">
-              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
-            </div>
-            <div class="comment-user">
-              <div class="comment-user__name">Nguyễn Đăng Thành</div>
-              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
-            </div>
-            <!-- <div class="comment-feedback">
-            Reply
-          </div> -->
-          </div>
-          <div class="comment">
-            <div class="comment-avatar">
-              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
-            </div>
-            <div class="comment-user">
-              <div class="comment-user__name">Nguyễn Đăng Thành</div>
-              <div class="comment-user__content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur quisquam accusamus, enim perferendis voluptatum praesentium animi dolor ex quibusdam earum molestias aperiam, iusto amet voluptatibus sit ab ratione dolore perspiciatis?</div>
-            </div>
-            <!-- <div class="comment-feedback">
-            Reply
-          </div> -->
           </div>
           <div class="view-more-comments">
             <div class="view-more-comment__text">
@@ -115,9 +89,10 @@
             </div>
           </div>
         </div>
-        <form action="" method="post">
-          <textarea cols="131" rows="2" placeholder="Viết bình luận..."></textarea>
-          <button type="submit">Gửi bình luận</button>
+        <form action="" method="post" id="formComment">
+          <textarea cols="131" rows="4" placeholder="Viết bình luận..."></textarea>
+          <input type="text" hidden name="id" value="<?= $row['product_id'] ?>">
+          <button type="submitComment">Gửi bình luận</button>
         </form>
       </div>
     </div>

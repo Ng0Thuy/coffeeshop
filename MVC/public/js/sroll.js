@@ -102,6 +102,26 @@ function loginOnblur() {
     
 
 });
+
+
+
+// BÌNH LUẬN > MÔ TẢ
+$('.mota').click(function(){ 
+    $("#mota").css("display", "block");  
+    $("#danhgia").css("display", "none");   
+    $(".mota").addClass( "active" );
+    $(".danhgia").removeClass( "active" ); 
+    return false;     
+}); 
+$('.danhgia').click(function(){ 
+    $("#mota").css("display", "none");  
+    $("#danhgia").css("display", "block");
+    $(".mota").removeClass( "active" ); 
+    $(".danhgia").addClass( "active" ); 
+    return false;     
+}); 
+
+
 // REGSITER VALIDATE
 $("#form_regsiter").validate({
     rules: {
@@ -158,11 +178,12 @@ $("#form_regsiter").validate({
                     swal("Thất bại!", response.message, "error");
                     $("#regsiter").css("display", "none");  
                     $("#forgot").css("display", "none");  
+                    $(".app").css("opacity", "1");     
                 } else {
                     swal("Thành công!", response.message, "success");
                     $("#regsiter").css("display", "none");  
                     $("#forgot").css("display", "none");  
-                    setTimeout("location.href = './login';", 2000);
+                    $(".app").css("opacity", "1");     
                 }
             }
         });
@@ -194,15 +215,18 @@ $("#form_login").validate({
     submitHandler: function(form) {
         $.ajax({
             type: "POST",
-            url: './loginAction',
+            url: './Home/loginAction',
             data: $(form).serializeArray(),
             success: function(response) {
                 response = JSON.parse(response);
                 if (response.status == 0) { //Đăng nhập lỗi
                     swal("Thất bại!", response.message, "error");
+                    $("#login").css("display", "none");
+                    $(".app").css("opacity", "1");     
                 } else { //Đăng nhập thành công
                     swal("Thành công!", response.message, "success");
-                    setTimeout("location.href = './';", 1500);
+                    $("#login").css("display", "none");  
+                    $(".app").css("opacity", "1");     
                 }
             }
         });
