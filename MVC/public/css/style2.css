@@ -90,7 +90,20 @@ img {
   opacity: 0.8;
 }
 .product-content {
+<<<<<<< HEAD
   padding: 2rem 2rem;
+=======
+  padding: 2rem 1rem;
+}
+.product-title {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-weight: 700;
+  position: relative;
+  color: #12263a;
+  margin: 1rem 0;
+>>>>>>> b3266fe3b9461323fa391da29220a550e3300a2c
 }
 .product-title {
   font-size: 3rem;

@@ -2,7 +2,7 @@
 
   <div id="menu-area">
     <nav class="nav-tablet-mobile" id="nav-tablet-mobile">
-    <button class="nav-tablet-mobile__icon" id="toggle">
+      <button class="nav-tablet-mobile__icon" id="toggle">
         <div class="line line1"></div>
         <div class="line line2"></div>
       </button>
@@ -14,9 +14,9 @@
         <li><a href="#">GIỚI THIỆU</a></li>
         <li><a href="#">LIÊN HỆ</a></li>
       </ul>
-      
+
     </nav>
-    
+
     <div class="logo">
       <a href="<?= BASE_URL ?>" class="logo__link">
         <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />

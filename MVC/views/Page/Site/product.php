@@ -14,9 +14,14 @@
     <div class="product-imgs">
       <div class="img-display">
         <div class="img-showcase">
+<<<<<<< HEAD
           <a href="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>">
             <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
           </a>
+=======
+          <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+
+>>>>>>> b3266fe3b9461323fa391da29220a550e3300a2c
         </div>
       </div>
 
