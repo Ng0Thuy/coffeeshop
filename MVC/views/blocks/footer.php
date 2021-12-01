@@ -1,8 +1,8 @@
 <footer class="footer">
         <div class="grid wide">
-          <div class="footer-main">
-            <div class="care">
-              <h4 >CHĂM SÓC KHÁCH HÀNG</h4>
+          <div class="footer-main row">
+            <div class="care col l-2-5 m-4 c-6">
+              <h4 class="footer__heading" >CHĂM SÓC KHÁCH HÀNG</h4>
               <p class="care-item"> <a class="care-link" href="">Trung tâm trợ giúp</a></p>
               <p class="care-item"> <a class="care-link" href="">Hướng dẫn mua hàng</a></p>
               <p class="care-item"> <a class="care-link" href="">Thanh toán</a></p>
@@ -11,8 +11,8 @@
               <p class="care-item"> <a class="care-link" href="">Chăm sóc khách hàng</a></p>
               <p class="care-item"> <a class="care-link" href="">Chính sách bảo hành</a></p>
             </div>
-            <div class="about-us">
-              <h4>VỀ CHÚNG TÔI</h4>
+            <div class="about-us col l-2-5 m-4 c-6">
+              <h4 class="footer__heading">VỀ CHÚNG TÔI</h4>
               <p class="about-us__item"><a href="" class="about-us__link">Giới thiệu về Meta Coffee</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Điều khoản Meta Coffee</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Chính sách bảo mật</a></p>
@@ -20,8 +20,8 @@
               <p class="about-us__item"><a href="" class="about-us__link">Flash sales</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Liên hệ truyền thông</a></p>
             </div>
-            <div class="pay">
-              <h4>THANH TOÁN</h4>
+            <div class="pay col l-2-5 m-4 c-6">
+              <h4 class="footer__heading">THANH TOÁN</h4>
               <div class="pay-method">
                 <div class="pay-method__item">
                   <img src="<?= BASE_URL ?>/MVC/public/images/Visa_logo.png" alt="" class="visa-logo">
@@ -34,8 +34,8 @@
                 </div>
               </div>
             </div>
-            <div class="follow">
-              <h4>THEO DÕI CHÚNG TÔI</h4>
+            <div class="follow col l-2-5 m-4 c-6">
+              <h4 class="footer__heading">THEO DÕI CHÚNG TÔI</h4>
               <p class="follow-item">
                 <i class="ti-facebook"></i>
                 <a href="" class="follow-link">Facebook</a>

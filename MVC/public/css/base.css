@@ -1,5 +1,6 @@
 :root {
   --primary-color: #d3b673;
+  --secondary-color: #ff929b;
   --white-color: #fff;
   --black-color: #262626;
   --nav-children-color: #b3b3b3;
@@ -8,6 +9,8 @@
   --border-color: #d3b673;
   --star-gold-color: #fffe3e;
   
+
+  --shadow-primary: 1px 0px 60px 0 rgb(12 18 34 / 11%), 2px 2px 90px 0 rgb(23 33 54 / 11%);
 
   --header-height: 120px;
   --navbar-height: 34px;
@@ -22,8 +25,8 @@
 /* Font */
 @font-face {
   font-family: "Muli";
-  src: url("Muli-LightItalic.woff2") format("woff2"),
-    url("Muli-LightItalic.woff") format("woff");
+  src: url("../fonts/Muli-LightItalic.woff2") format("woff2"),
+    url("../fonts/Muli-LightItalic.woff") format("woff");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -31,8 +34,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-SemiBold.woff2") format("woff2"),
-    url("Muli-SemiBold.woff") format("woff");
+  src: url("../fonts/Muli-SemiBold.woff2") format("woff2"),
+    url("../fonts/Muli-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -40,8 +43,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-ExtraLight.woff2") format("woff2"),
-    url("Muli-ExtraLight.woff") format("woff");
+  src: url("../fonts/Muli-ExtraLight.woff2") format("woff2"),
+    url("../fonts/Muli-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -49,8 +52,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-BoldItalic.woff2") format("woff2"),
-    url("Muli-BoldItalic.woff") format("woff");
+  src: url("../fonts/Muli-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Muli-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -58,7 +61,7 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli.woff2") format("woff2"), url("Muli.woff") format("woff");
+  src: url("../fonts/Muli.woff2") format("woff2"), url("../fonts/Muli.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -66,8 +69,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-Bold.woff2") format("woff2"),
-    url("Muli-Bold.woff") format("woff");
+  src: url("../fonts/Muli-Bold.woff2") format("woff2"),
+    url("../fonts/Muli-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -75,8 +78,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-Light.woff2") format("woff2"),
-    url("Muli-Light.woff") format("woff");
+  src: url("../fonts/Muli-Light.woff2") format("woff2"),
+    url("../fonts/Muli-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -84,8 +87,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-Italic.woff2") format("woff2"),
-    url("Muli-Italic.woff") format("woff");
+  src: url("../fonts/Muli-Italic.woff2") format("woff2"),
+    url("../fonts/Muli-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -93,8 +96,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-ExtraLightItalic.woff2") format("woff2"),
-    url("Muli-ExtraLightItalic.woff") format("woff");
+  src: url("../fonts/Muli-ExtraLightItalic.woff2") format("woff2"),
+    url("../fonts/Muli-ExtraLightItalic.woff") format("woff");
   font-weight: 200;
   font-style: italic;
   font-display: swap;
@@ -102,8 +105,8 @@
 
 @font-face {
   font-family: "Muli";
-  src: url("Muli-Semi-BoldItalic.woff2") format("woff2"),
-    url("Muli-Semi-BoldItalic.woff") format("woff");
+  src: url("../fonts/Muli-Semi-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Muli-Semi-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
   font-display: swap;
