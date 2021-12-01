@@ -69,7 +69,7 @@ class CategoryModel extends DB
     }
     public function deleteCategory($id)
     {
-        $sql = "DELETE  FROM category where category_id=$id";
+        $sql = "DELETE FROM category where category_id=$id";
         return mysqli_query($this->con, $sql);
     }
 }

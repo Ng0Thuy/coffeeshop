@@ -1,5 +1,30 @@
 // PRODUCTS
- 
+function deleteProduct(id) {
+  var option = confirm('Bạn có chắc chắn muốn xoá sản phẩm này không?')
+  if(!option) {
+    return;
+  }
+  $.post('./deleteProduct', {
+    'id': id,
+    'action': 'delete'
+  }, function(data) {
+    location.reload()
+  })
+}
+
+// USER
+function deleteUser(id) {
+  var option = confirm('Bạn có chắc chắn muốn xoá người dùng này không?')
+  if(!option) {
+    return;
+  }
+  $.post('./deleteUser', {
+    'id': id,
+    'action': 'delete'
+  }, function(data) {
+    location.reload()
+  })
+}
 
 
 

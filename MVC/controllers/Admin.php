@@ -67,10 +67,12 @@ class Admin extends Controller
   function product()
   {
     $Category = $this->model("CategoryModel");
+    $Product = $this->model("ProductModel");
     $Models = $this->model("AdminModel");
     $this->view("masterAdmin", [
       "Page" => "product",
-      "ShowCategory" => $Category->ListAll()
+      "ShowCategory" => $Category->ListAll(),
+      "ShowProduct" => $Product->ListAllAdmin(),
     ]);
   }
 
@@ -80,6 +82,94 @@ class Admin extends Controller
     $Add = $Product->add();
   }
 
+  // Sửa sản phẩm
+  function editProduct($id)
+  {
+    $Product = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
+    // $Category->checkid($id);
+    $this->view("masterAdmin", [
+      "Page" => "editProduct",
+      "ShowEdit" => $Product->ListItem($id),
+      "ShowCategory" => $Category->ListAll(),
+      "ShowProduct" => $Product->ListItem($id),
+      "ShowVariant" => $Product->ShowVariant($id),
+    ]);
+  }
+  function editProductAct(){
+    $Product = $this->model("ProductModel");
+    $Add = $Product->edit();
+  }
+
+  function deleteProduct()
+  {
+    $Product = $this->model("ProductModel");
+    if (!empty($_POST)) {
+      if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+        switch ($action) {
+          case 'delete':
+            if (isset($_POST['id'])) {
+              $id = $_POST['id'];
+              $Product->deleteProduct($id);
+              $Product->deleteVariant($id);
+            }
+            break;
+        }
+      }
+    }
+  }
+
+  // USER
+
+  function user()
+  {
+    $Category = $this->model("CategoryModel");
+    $Product = $this->model("ProductModel");
+    $UserModel = $this->model("UserModel");
+    $Models = $this->model("AdminModel");
+    $this->view("masterAdmin", [
+      "Page" => "user",
+      "showUser" => $UserModel->ListUserRole(),
+      "ShowCategory" => $Category->ListAll(),
+      "ShowProduct" => $Product->ListAllAdmin(),
+    ]);
+  }
+
+  function editUser($id)
+  {
+    $UserModel = $this->model("UserModel");
+    $this->view("masterAdmin", [
+      "Page" => "editUser",
+      "ShowEdit" => $UserModel->ListItem($id),
+      "showUserItem" => $UserModel->ListItem($id),
+      "showRole" => $UserModel->showRole(),
+    ]);
+  }
+
+  function editUserAct()
+  {
+    $UserModel = $this->model("UserModel");
+    $edit = $UserModel->edit();
+  }
+
+  function deleteUser()
+  {
+    $User = $this->model("UserModel");
+    if (!empty($_POST)) {
+      if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+        switch ($action) {
+          case 'delete':
+            if (isset($_POST['id'])) {
+              $id = $_POST['id'];
+              $User->deleteUser($id);
+            }
+            break;
+        }
+      }
+    }
+  }
 
 
 }

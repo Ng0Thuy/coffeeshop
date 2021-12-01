@@ -21,7 +21,7 @@
                   <h4>Thêm sản phẩm</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="<?=BASE_URL?>/Admin/addProduct" method="POST" enctype="multipart/form-data">
+                <form action="<?= BASE_URL ?>/Admin/addProduct" method="POST" enctype="multipart/form-data">
                   <div class="modal-body">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Danh mục</label>
@@ -92,7 +92,7 @@
           <table class="table border-0 rounded">
             <thead class="thead-dark">
               <tr>
-                <th style="width: 10px" scope="col">STT</th>
+                <!-- <th style="width: 10px" scope="col">STT</th> -->
                 <th scope="col">Ảnh</th>
                 <th scope="col">Tên</th>
                 <th scope="col">Giá</th>
@@ -105,21 +105,26 @@
               </tr>
             </thead>
             <tbody id="tableProduct">
-              <tr>
-                <th scope="row">1</th>
-                <td>
-                  <img style="width: 70px" src="http://gongcha.com.vn/wp-content/uploads/2018/10/Hinh-Web-OKINAWA-TR%C3%80-S%E1%BB%AEA.png" alt="" />
-                </td>
-                <td>Trà sữa trân châu đường đen</td>
-                <td>20.000 VNĐ</td>
-                <td>20%</td>
-                <td>202</td>
-                <td>20</td>
-                <!-- <td class="descriptonSp">Trà sữa trân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đentrân châu đường đenTrà sữa trân châu đường đen</td> -->
-                <td>20/10/2022</td>
-                <td><button class="btn btn-warning">Sửa</button></td>
-                <td><button class="btn btn-danger">Xóa</button></td>
-              </tr>
+              <?php
+              while ($row = mysqli_fetch_array(($data['ShowProduct']))) {
+              ?>
+                <tr>
+                  <!-- <th scope="row">1</th> -->
+                  <td>
+                    <img style="width: 70px" src="<?=BASE_URL?>/<?= $row['thumbnail'] ?>" alt="" />
+                  </td>
+                  <td><?= $row['product_name'] ?></td>
+                  <td><?= $row['price'] ?> VNĐ</td>
+                  <td><?= $row['price_sale'] ?>%</td>
+                  <td><?= $row['view'] ?></td>
+                  <td>20</td>
+                  <td><?= date("d/m/Y", strtotime($row['import_date'])); ?></td>
+                  <td><a href="<?= BASE_URL ?>/Admin/editProduct/<?= $row['product_id'] ?>" class="btn btn-warning">Sửa</a></td>
+                  <td><button class="btn btn-danger" onclick="deleteProduct(<?=$row['product_id']?>)">Xóa</button></td>
+                </tr>
+              <?php
+              }
+              ?>
             </tbody>
           </table>
         </section>
