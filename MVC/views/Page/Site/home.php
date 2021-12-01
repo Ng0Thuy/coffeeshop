@@ -265,7 +265,7 @@
 
             <div class="featured-product__content">
                 <div class="list-product row sm-gutter">
-                <div class="col l-2-5 m-4 c-6">
+                    <div class="col l-2-5 m-4 c-6">
                         <a href="<?= BASE_URL ?>/product" class="product-cart">
                             <div class="product-cart__tags">
                                 <div class="tag-new">new</div>

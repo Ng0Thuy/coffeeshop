@@ -121,116 +121,123 @@
   </div>
   <div class="nhan_container related-products">
     <h2 class="related-products__heading">Sản phẩm liên quan</h2>
-    <div class="list-product related-products__list">
-      <a href="<?= BASE_URL ?>/product" class="product-cart">
-        <div class="product-cart__tags">
-          <div class="tag-new">new</div>
-          <div class="tag-discount">30%</div>
-        </div>
-        <div class="product-cart__img">
-          <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-        </div>
-        <div class="product-cart__info">
-          <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-          <div class="info-rating">
-            <div class="rating-list">
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
+    <div class="list-product related-products__list row sm-gutter">
+      <div class="col l-2-5 m-4 c-6">
+        <a href="<?= BASE_URL ?>/product" class="product-cart">
+          <div class="product-cart__tags">
+            <div class="tag-new">new</div>
+            <div class="tag-discount">30%</div>
+          </div>
+          <div class="product-cart__img">
+            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+          </div>
+          <div class="product-cart__info">
+            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+            <div class="info-rating">
+              <div class="rating-list">
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+              </div>
+              <p class="rating-text">(2 đánh giá)</p>
             </div>
-            <p class="rating-text">(2 đánh giá)</p>
-          </div>
-          <div class="info-price">
-            <div class="info-origin-price">25,000 đ</div>
-            <div class="info-sale-price">30,000 đ</div>
-          </div>
-          <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-        </div>
-      </a>
-      <a href="<?= BASE_URL ?>/product" class="product-cart">
-        <div class="product-cart__tags">
-          <div class="tag-new">new</div>
-          <div class="tag-discount">30%</div>
-        </div>
-        <div class="product-cart__img">
-          <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-        </div>
-        <div class="product-cart__info">
-          <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-          <div class="info-rating">
-            <div class="rating-list">
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
+            <div class="info-price">
+              <div class="info-origin-price">25,000 đ</div>
+              <div class="info-sale-price">30,000 đ</div>
             </div>
-            <p class="rating-text">(1002 đánh giá)</p>
+            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
           </div>
-          <div class="info-price">
-            <div class="info-origin-price">25,000 đ</div>
-            <div class="info-sale-price">30,000 đ</div>
+        </a>
+      </div>
+      <div class="col l-2-5 m-4 c-6">
+        <a href="<?= BASE_URL ?>/product" class="product-cart">
+          <div class="product-cart__tags">
+            <div class="tag-new">new</div>
+            <div class="tag-discount">30%</div>
           </div>
-          <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-        </div>
-      </a>
-      <a href="<?= BASE_URL ?>/product" class="product-cart">
-        <div class="product-cart__tags">
-          <div class="tag-new">new</div>
-          <div class="tag-discount">30%</div>
-        </div>
-        <div class="product-cart__img">
-          <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-        </div>
-        <div class="product-cart__info">
-          <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-          <div class="info-rating">
-            <div class="rating-list">
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
+          <div class="product-cart__img">
+            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+          </div>
+          <div class="product-cart__info">
+            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+            <div class="info-rating">
+              <div class="rating-list">
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+              </div>
+              <p class="rating-text">(2 đánh giá)</p>
             </div>
-            <p class="rating-text">(25 đánh giá)</p>
-          </div>
-          <div class="info-price">
-            <div class="info-origin-price">25,000 đ</div>
-            <div class="info-sale-price">30,000 đ</div>
-          </div>
-          <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-        </div>
-      </a>
-      <a href="<?= BASE_URL ?>/product" class="product-cart">
-        <div class="product-cart__tags">
-          <div class="tag-new">new</div>
-          <div class="tag-discount">30%</div>
-        </div>
-        <div class="product-cart__img">
-          <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-        </div>
-        <div class="product-cart__info">
-          <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-          <div class="info-rating">
-            <div class="rating-list">
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
-              <i class="rating-icon fas fa-star"></i>
+            <div class="info-price">
+              <div class="info-origin-price">25,000 đ</div>
+              <div class="info-sale-price">30,000 đ</div>
             </div>
-            <p class="rating-text">(52 đánh giá)</p>
+            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
           </div>
-          <div class="info-price">
-            <div class="info-origin-price">25,000 đ</div>
-            <div class="info-sale-price">30,000 đ</div>
+        </a>
+      </div>
+      <div class="col l-2-5 m-4 c-6">
+        <a href="<?= BASE_URL ?>/product" class="product-cart">
+          <div class="product-cart__tags">
+            <div class="tag-new">new</div>
+            <div class="tag-discount">30%</div>
           </div>
-          <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-        </div>
-      </a>
-      
+          <div class="product-cart__img">
+            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+          </div>
+          <div class="product-cart__info">
+            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+            <div class="info-rating">
+              <div class="rating-list">
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+              </div>
+              <p class="rating-text">(2 đánh giá)</p>
+            </div>
+            <div class="info-price">
+              <div class="info-origin-price">25,000 đ</div>
+              <div class="info-sale-price">30,000 đ</div>
+            </div>
+            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+          </div>
+        </a>
+      </div>
+      <div class="col l-2-5 m-4 c-6">
+        <a href="<?= BASE_URL ?>/product" class="product-cart">
+          <div class="product-cart__tags">
+            <div class="tag-new">new</div>
+            <div class="tag-discount">30%</div>
+          </div>
+          <div class="product-cart__img">
+            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
+          </div>
+          <div class="product-cart__info">
+            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
+            <div class="info-rating">
+              <div class="rating-list">
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+                <i class="rating-icon fas fa-star"></i>
+              </div>
+              <p class="rating-text">(2 đánh giá)</p>
+            </div>
+            <div class="info-price">
+              <div class="info-origin-price">25,000 đ</div>
+              <div class="info-sale-price">30,000 đ</div>
+            </div>
+            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </main>
