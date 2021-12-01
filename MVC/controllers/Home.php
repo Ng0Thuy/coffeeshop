@@ -7,11 +7,22 @@ class Home extends Controller
 
   function Default()
   {
-    $Models = $this->model("HomeModel");
+    $Product = $this->model("ProductModel");
     $this->view("master1", [
       "Page" => "home",
+      "showProduct" => $Product->ListAllAdmin()
     ]);
   }
+
+  function product($id)
+  {
+    $Product = $this->model("ProductModel");
+    $this->view("master2", [
+      "Page" => "product",
+      "showProductItem" => $Product->ListItemProduct($id),
+    ]);
+  }
+
   function login()
   {
     $Models = $this->model("HomeModel");

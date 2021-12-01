@@ -1324,9 +1324,9 @@ form#form_login button:hover {
   max-width: 600px;
   margin: 0px auto;
 }
-#form_login input{
+/* #form_login input{
   width: 100%;
-}
+} */
 /* =======REGSITER============== */
 #regsiter {
   display: none;

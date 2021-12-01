@@ -15,7 +15,61 @@
 
             <div class="featured-product__content">
                 <div class="list-product row sm-gutter">
-                    <div class="col l-2-5 m-4 c-6">
+                    <?php
+                    while ($row = mysqli_fetch_array(($data['showProduct']))) {
+                    ?>
+                        <div class="col l-2-5 m-4 c-6">
+                            <a href="<?= BASE_URL ?>/home/product/<?=$row['product_id']?>" class="product-cart">
+                                <div class="product-cart__tags">
+                                    <div class="tag-new">new</div>
+                                    <?php
+                                    if ($row['price_sale'] > 0) {
+                                    ?>
+                                        <div class="tag-discount"><?= $row['price_sale'] ?>%</div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="product-cart__img">
+                                    <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+                                </div>
+                                <div class="product-cart__info">
+                                    <div class="info-title"><?= $row['product_name'] ?></div>
+                                    <div class="info-rating">
+                                        <div class="rating-list">
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                        </div>
+                                        <p class="rating-text">(10 đánh giá)</p>
+                                    </div>
+                                    <div class="info-price">
+                                        <div class="info-origin-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        if ($row['price_sale'] > 0) {
+                                            $price = $row['price'];
+                                            $sale = $row['price_sale'];
+                                            $price_sale = $sale % $price;
+                                            $priceTop = $price + $price_sale;
+                                        ?>
+                                            <div class="info-sale-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
+
+
+                    <!-- <div class="col l-2-5 m-4 c-6">
                         <a href="<?= BASE_URL ?>/product" class="product-cart">
                             <div class="product-cart__tags">
                                 <div class="tag-new">new</div>
@@ -246,7 +300,7 @@
                                 <div class="btn btn--primary btn-order-product">Đặt hàng</div>
                             </div>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="#">Xem tất cả</a></div>
             </div>

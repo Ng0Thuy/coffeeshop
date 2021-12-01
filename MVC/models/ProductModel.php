@@ -7,16 +7,44 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product";
         return mysqli_query($this->con, $sql);
     }
-    public function ListAllAdmin()
-    {
-        $sql = "SELECT * FROM product INNER JOIN variant ON product.product_id = variant.product_id WHERE size = 'Vừa' ORDER BY import_date DESC";
-        return mysqli_query($this->con, $sql);
-    }
+
     public function ListItem($id)
     {
         $sql = "SELECT * FROM product where product_id = $id";
         return mysqli_query($this->con, $sql);
     }
+
+    public function ListItemProduct($id)
+    {
+        $sql = "SELECT * FROM variant, product, category WHERE variant.size='Vừa' AND product.product_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function ShowProductList()
+    {
+        $sql = "SELECT * FROM product";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListAllAdmin()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Vừa' 
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+   
+
+    public function showProductNew()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN comment ON product.product_id = comment.product_id 
+        WHERE size = 'Vừa' 
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
     public function ListItemVariant($id)
     {
         // $sql = "SELECT * FROM product variant where product_id = $id";
