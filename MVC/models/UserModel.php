@@ -130,7 +130,7 @@ class UserModel extends DB
             } else {
                 $userlogin = [$email, $password, $data['name'], $data['user_id'], $data['phone']];
                 $_SESSION['userlogin'] = $userlogin;
-                
+
                 echo json_encode(array(
                     'status' => 1,
                     'message' => 'Đăng nhập thành công'
@@ -144,5 +144,45 @@ class UserModel extends DB
             ));
             exit;
         }
+    }
+
+    public function comment()
+    {
+        $error = false;
+        if (isset($_SESSION['userlogin'])) {
+            if (isset($_POST['content']) && !empty($_POST['content'])) {
+                $comment_content = $_POST['content'];
+                $product_id = $_POST['product_id'];
+                $user_id = $_SESSION['userlogin'][3];
+                $comment_date = date('Y-m-d H:i:s');
+                $result = mysqli_query($this->con, "INSERT INTO comment (user_id,product_id, comment_content,comment_date) VALUES ('" . $user_id . "','" . $product_id . "','" . $comment_content . "','" . $comment_date . "')");
+                mysqli_close($this->con);
+                if ($error !== false) {
+                    echo json_encode(array(
+                        'status' => 0,
+                        'message' => 'Bình luận không thành công!'
+                    ));
+                    exit;
+                } else {
+                    echo json_encode(array(
+                        'status' => 1,
+                        'message' => 'Bình luận thành công!'
+                    ));
+                    exit;
+                }
+            }
+        } else {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Vui lòng đăng nhập để sử dụng tính năng này'
+            ));
+            exit;
+        }
+    }
+
+    public function showUserCheckout($user_id)
+    {
+        $sql = "SELECT * FROM user WHERE user_id=$user_id";
+        return mysqli_query($this->con, $sql);
     }
 }

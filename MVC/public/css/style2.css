@@ -399,11 +399,27 @@ img {
   border-radius: 20px;
 }
 .comment-user__name {
+  text-transform:capitalize;
   font-size: 1.7rem;
+  font-weight: 600;
+}
+.deletecomment{
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: red;
+  font-weight: 600;
+  margin-top: 0px;
+}
+.deletecomment:hover{
   font-weight: 600;
 }
 .comment-user__content {
   font-size: 1.5rem;
+}
+.time{
+  text-align: right;
+  transform: translateY(-210%);
+  margin-right: 10px;
 }
 .view-more-comments {
   display: flex;

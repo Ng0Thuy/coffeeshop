@@ -9,13 +9,6 @@
       <li><a href=""><?= $row['product_name'] ?></a></li>
     </ul>
   </nav>
-  <?php
-  // session_destroy();
-  if (isset($_SESSION['userlogin'])) {
-    echo "đã có giỏ hàng";
-    var_dump($_SESSION['giohang']);
-  }
-  ?>
   <div class="card mt-1">
     <!-- card left -->
     <div class="product-imgs">
@@ -94,28 +87,36 @@
     <div class="tab_container_area" id="danhgia">
       <div class="tab_container">
         <h3 class="comment-heading">Bình luận</h3>
-        <div class="comment-list">
-          <div class="comment">
-            <div class="comment-avatar">
-              <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
-            </div>
-            <div class="comment-user">
-              <div class="comment-user__name">Nguyễn Đăng Thành</div>
-              <div class="comment-user__content">Tôi rất thích sản phẩm này</div>
+        <?php
+        while ($row = mysqli_fetch_array($data['showComment'])) {
+        ?>
+          <div class="comment-list">
+            <div class="comment">
+              <div class="comment-avatar">
+                <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
+              </div>
+              <div class="comment-user">
+                <div class="comment-user__name"><?= $row['name'] ?></div>
+                <div class="comment-user__content"><?= $row['comment_content'] ?></div>
+                <div class="comment-user__content time"><?= $row['comment_date'] ?></div>
+                <?php
+                if ($row['user_id'] == $_SESSION['userlogin'][3]) {
+                ?>
+                  <a href="" class="deletecomment">Xóa</a>
+                <?php
+                }
+                ?>
+              </div>
             </div>
           </div>
-          <div class="view-more-comments">
-            <div class="view-more-comment__text">
-              <span>View More Comments</span>
-            </div>
-            <div class="view-more-comment__quantity">
-              <span>3 of 60</span>
-            </div>
-          </div>
-        </div>
+        <?php
+        }
+        ?>
+
         <form action="" method="post" id="formComment">
-          <textarea cols="131" rows="4" placeholder="Viết bình luận..."></textarea>
-          <input type="text" hidden name="id" value="<?= $row['product_id'] ?>">
+          <textarea cols="131" name="content" rows="4" placeholder="Viết bình luận..."></textarea>
+          <input type="text" hidden name="product_id" value="<?= $row['product_id'] ?>"> <br>
+          <input type="text" hidden name="user_id" value="<?= $_SESSION['userlogin'][3] ?>"> <br>
           <button type="submitComment">Gửi bình luận</button>
         </form>
       </div>
@@ -243,3 +244,8 @@
     </div>
   </div>
 </main>
+<style>
+  #content-error {
+    font-size: 1.6rem;
+  }
+</style>

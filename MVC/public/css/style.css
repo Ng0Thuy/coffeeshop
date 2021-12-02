@@ -1075,12 +1075,12 @@ main.container .checkout .checkout-main form.form-checkout input[type="text"] {
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 1rem;
-  border: 1px solid #495057c7;
+  border: 1px solid #c2d4e7c7;
 }
 main.container .checkout .checkout-main form.form-checkout input:focus {
   color: #495057c7;
   background-color: #fff;
-  border-color: #80bdff;
+  border-color: #cad2da;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
@@ -1109,12 +1109,12 @@ main.container .checkout .checkout-main form.form-checkout textarea {
   border-radius: 4px;
   margin-bottom: 1rem;
   padding: 10px;
-  border: 1px solid #495057c7;
+  border: 1px solid #c2d4e7c7;
 }
 main.container .checkout .checkout-main form.form-checkout textarea:focus {
   color: #495057c7;
   background-color: #fff;
-  border-color: #80bdff;
+  border-color: #cad2da;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
@@ -1190,9 +1190,10 @@ main.container
 }
 
 .checkout .checkout-main .checkout-cart img.thumbnail-checkoit-pr {
-  width: 60px;
+  width: 80px;
   height: auto;
   border-radius: 4px;
+  margin-right: 1rem;
 }
 .d-between {
   display: flex;

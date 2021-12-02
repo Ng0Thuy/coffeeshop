@@ -27,26 +27,64 @@ function loginOnblur() {
 
   $(document).ready(function(){ 
 
-      // CART NUMBERư
-
-        $("input[type=radio]").change(function(){
-            var data= $(this).attr("value");
-            var nho= $("p.Nhỏ").attr("name");
-            var vua= $("p.Vừa").attr("name");
-            var lon= $("p.Lớn").attr("name");
-            if(data=='Nhỏ'){
-                $("#priceSize").html(nho);
-                $("#pricepost").val(nho);
-            }
-            if(data=='Vừa'){
-                $("#priceSize").html(vua);
-                $("#pricepost").val(vua);
-            }
-            if(data=='Lớn'){
-                $("#priceSize").html(lon);
-                $("#pricepost").val(lon);
-            }
+    // Thanh toán
+        $("#checkoutSubmit").click(function() {
+            $("#checkoutForm").submit();
         });
+
+
+    // Bình luận
+    $("#formComment").validate({
+        rules: {
+            content: {
+                required: true,
+                minlength: 2,
+            },
+        },
+        messages: {
+            content: {
+                required: "Bạn chưa nhập nội dung",
+                minlength: "Ký tự tối thiểu là 2",
+            },
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                type: "POST",
+                url: '../commentAction',
+                id: 'id',
+                data: $(form).serializeArray(),
+                success: function(response) {
+                    response = JSON.parse(response);
+                    if (response.status == 0) {
+                        swal("Thất bại!", response.message, "error");
+                    } else {
+                        document.getElementById("formComment").reset();
+                        swal("Thành công!", response.message, "success");
+                    }
+                }
+            });
+        }
+    });
+
+    // CART NUMBERư
+    $("input[type=radio]").change(function(){
+        var data= $(this).attr("value");
+        var nho= $("p.Nhỏ").attr("name");
+        var vua= $("p.Vừa").attr("name");
+        var lon= $("p.Lớn").attr("name");
+        if(data=='Nhỏ'){
+            $("#priceSize").html(nho);
+            $("#pricepost").val(nho);
+        }
+        if(data=='Vừa'){
+            $("#priceSize").html(vua);
+            $("#pricepost").val(vua);
+        }
+        if(data=='Lớn'){
+            $("#priceSize").html(lon);
+            $("#pricepost").val(lon);
+        }
+    });
     
 
 
@@ -280,4 +318,4 @@ $("#form_login").validate({
 const toggle = document.querySelector('#toggle');
 const nav = document.querySelector('#nav-tablet-mobile');
 
-toggle.addEventListener('click', () => nav.classList.toggle('active'))
+toggle.addEventListener('click', () => nav.classList.toggle('active'));

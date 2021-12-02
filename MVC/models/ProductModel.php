@@ -29,6 +29,11 @@ class ProductModel extends DB
         return mysqli_query($this->con, $sql);
     }
 
+    public function showComment($id)
+    {
+        $sql = "SELECT * from comment, user where comment.user_id = user.user_id AND product_id=$id ORDER BY comment_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
 
     public function ShowProductList()
     {
