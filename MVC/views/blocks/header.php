@@ -49,15 +49,57 @@
     <ul class="menu-list2">
       <li class="menu-item2">
         <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
-          <span class="cart-notice">3</span></a>
+          <?php
+          if (isset($_SESSION['giohang'])) {
+            $numCart = 0;
+            for ($i = 0; $i < count($_SESSION['giohang']); $i++) {
+              $numCart += $_SESSION['giohang'][$i][2];
+            }
+            echo '<span class="cart-notice">' . $numCart . '</span></a>';
+          } else {
+            echo '<span class="cart-notice">0</span></a>';
+          }
+          ?>
+        </a>
       </li>
-      <li class="menu-item2">
-        <span class="login" id="login-tab">ĐĂNG NHẬP</span>
-      </li>
+      <?php
+      if (isset($_SESSION['userlogin'])) {
+      ?>
+        <li class="menu-item2">
+          <div class="login-children" onclick="loginOnclick()">
+            <div class="my-account">
+              <span class="user-name text-white"><?= $_SESSION['userlogin'][2] ?></span>
+              <i class="icon-down ti-angle-down text-white"></i>
+            </div>
+            <ul class="login-children__list" onblur="loginOnblur()">
+              <li class="login-item">
+                <a class="login-link" href="<?= BASE_URL ?>/home/user">
+                  <i class="fas fa-user"></i>Tài khoản của tôi
+                </a>
+              </li>
+              <li class="login-item">
+                <a class="login-link" href="">
+                  <i class="fas fa-key"></i>Đổi mật khẩu
+                </a>
+              </li>
+              <li class="login-item">
+                <a class="login-link" href="">
+                  <i class="fas fa-sign-out-alt"></i>Đăng xuất
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      <?php
+      } else {
+      ?>
+        <li class="menu-item2">
+          <span class="login" id="login-tab">ĐĂNG NHẬP</span>
+        </li>
+      <?php
+      }
+      ?>
     </ul>
-    <div class="search">
-
-    </div>
   </div>
 
   <div class="banner">

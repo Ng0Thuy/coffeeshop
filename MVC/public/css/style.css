@@ -253,6 +253,7 @@
 }
 .login-children .my-account span {
   font-size: 1.4rem;
+  text-transform:capitalize;
   font-weight: 500;
 }
 .my-account:hover {

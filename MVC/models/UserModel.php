@@ -130,6 +130,7 @@ class UserModel extends DB
             } else {
                 $userlogin = [$email, $password, $data['name'], $data['user_id'], $data['phone']];
                 $_SESSION['userlogin'] = $userlogin;
+                
                 echo json_encode(array(
                     'status' => 1,
                     'message' => 'Đăng nhập thành công'

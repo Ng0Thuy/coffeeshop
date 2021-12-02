@@ -1,11 +1,11 @@
-window.addEventListener("scroll", function () {
-    let headerMenu = document.querySelector('#menu-area');
-    if (window.pageYOffset > 0) {
-        headerMenu.classList.add("cus-nav");
-    } else {
-        headerMenu.classList.remove("cus-nav");
-    }
-})
+// window.addEventListener("scroll", function () {
+//     let headerMenu = document.querySelector('#menu-area');
+//     if (window.pageYOffset > 0) {
+//         headerMenu.classList.add("cus-nav");
+//     } else {
+//         headerMenu.classList.remove("cus-nav");
+//     }
+// })
 
 function loginOnclick() {
     var x = document.querySelector('.login-children__list');
@@ -26,6 +26,48 @@ function loginOnblur() {
 }
 
   $(document).ready(function(){ 
+
+      // CART NUMBERư
+
+        $("input[type=radio]").change(function(){
+            var data= $(this).attr("value");
+            var nho= $("p.Nhỏ").attr("name");
+            var vua= $("p.Vừa").attr("name");
+            var lon= $("p.Lớn").attr("name");
+            if(data=='Nhỏ'){
+                $("#priceSize").html(nho);
+                $("#pricepost").val(nho);
+            }
+            if(data=='Vừa'){
+                $("#priceSize").html(vua);
+                $("#pricepost").val(vua);
+            }
+            if(data=='Lớn'){
+                $("#priceSize").html(lon);
+                $("#pricepost").val(lon);
+            }
+        });
+    
+
+
+    var inputVal = $('input#input').val();
+    $('span#plus').click(function(){ 
+        inputVal++;
+        $("input[name='num']").val(inputVal);
+        console.log(inputVal);
+        return false;     
+    }); 
+    $('span#minus').click(function(){ 
+        inputVal--;
+        if(inputVal=1){
+            $('span#minus').prop('disabled', true);
+        }
+        $("input[name='num']").val(inputVal);
+        console.log(inputVal);
+        return false;     
+    }); 
+
+
     //   On TOP
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 500) { 
@@ -120,6 +162,7 @@ $('.danhgia').click(function(){
     $(".danhgia").addClass( "active" ); 
     return false;     
 }); 
+
 
 
 // REGSITER VALIDATE

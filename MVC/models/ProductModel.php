@@ -16,9 +16,19 @@ class ProductModel extends DB
 
     public function ListItemProduct($id)
     {
-        $sql = "SELECT * FROM variant, product, category WHERE variant.size='Vừa' AND product.product_id=$id";
+        // $sql = "SELECT * FROM variant, product, category WHERE variant.size='Vừa' AND product.product_id=$id";
+        $sql = "SELECT * FROM variant, product, category 
+        WHERE product.product_id=$id 
+        AND variant.product_id=$id 
+        AND product.category_id=category.category_id";
         return mysqli_query($this->con, $sql);
     }
+    public function showPrice($id)
+    {
+        $sql = "SELECT * FROM variant WHERE product_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
 
     public function ShowProductList()
     {
@@ -33,7 +43,7 @@ class ProductModel extends DB
         ORDER BY import_date DESC";
         return mysqli_query($this->con, $sql);
     }
-   
+
 
     public function showProductNew()
     {
@@ -415,6 +425,20 @@ class ProductModel extends DB
     {
         $sql = "DELETE FROM product where product_id=$id";
         var_dump($sql);
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showCart()
+    {
+        for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+            $num = $_SESSION['giohang'][$i][2];
+            $size = $_SESSION['giohang'][$i][0];
+            $id = $_SESSION['giohang'][$i][1];
+            $sql = "SELECT * FROM product ,variant 
+                WHERE variant.product_id=$id 
+            AND size='$size' 
+            AND variant.product_id=product.product_id";
+        }
         return mysqli_query($this->con, $sql);
     }
 }

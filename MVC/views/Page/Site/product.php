@@ -9,19 +9,21 @@
       <li><a href=""><?= $row['product_name'] ?></a></li>
     </ul>
   </nav>
+  <?php
+  // session_destroy();
+  if (isset($_SESSION['userlogin'])) {
+    echo "đã có giỏ hàng";
+    var_dump($_SESSION['giohang']);
+  }
+  ?>
   <div class="card mt-1">
     <!-- card left -->
     <div class="product-imgs">
       <div class="img-display">
         <div class="img-showcase">
-<<<<<<< HEAD
           <a href="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>">
             <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
           </a>
-=======
-          <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
-
->>>>>>> b3266fe3b9461323fa391da29220a550e3300a2c
         </div>
       </div>
 
@@ -29,34 +31,51 @@
     <!-- card right -->
     <div class="product-content">
       <h3 class="product-title"><?= $row['product_name'] ?></h3>
+      <form action="<?= BASE_URL ?>/Home/AddToCart" method="POST">
+        <div class="product-price">
+          <?php
+          while ($item = mysqli_fetch_array(($data['showPrice']))) {
+          ?>
+            <p class="new-price price-bg <?= $item['size'] ?>" hidden name="<?= $item['price'] ?>" style="font-size: 3rem;"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</p>
+          <?php
+          }
+          ?>
+          <p class="new-price price-bg" id="priceSize" name="<?= $row['size'] ?>" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
+          <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Meta Coffee hoàn tiền</p>
+        </div>
+        <div class="product-detail">
+          <ul class="product-detail__list">
+            <li class="product-detail__item">Danh mục: <span><?= $row['category_name'] ?></span></li>
+            <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
+            <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
+          </ul>
+        </div>
+        <div class="purchase-info">
+          <!-- <button name="sizeS" value="S" class="size">S</button>
+        <button name="sizeM" class="size">M</button>
+        <button name="sizeL" class="size">L</button> -->
+          <span class="giapos"></span>
+          <input class="sizes" name="size" checked type="radio" value="Nhỏ" id="sizeNho">
+          <label for="sizeNho">Nhỏ</label>
+          <input class="sizes" name="size" type="radio" value="Vừa" id="sizeVua">
+          <label for="sizeVua">Vừa</label>
+          <input class="sizes" name="size" type="radio" value="Lớn" id="sizeLon">
+          <label for="sizeLon">Lớn</label>
+        </div>
+        <div class="purchase-info">
+          <span class="btn" id="minus">-</span>
+          <input type="number" name="num" min="1" value="1" id="input">
+          <span class="btn" id="plus" style="margin-right: 50px;">+</span>
+        </div>
+        <input type="number" hidden name="id" value="<?= $row['product_id'] ?>">
+        <input type="number" hidden id="pricepost" name="price" value="<?= $row['price'] ?>">
+        <input type="text" hidden name="thumbnail" value="<?= $row['thumbnail'] ?>">
+        <input type="text" hidden name="name" value="<?= $row['product_name'] ?>">
 
-      <div class="product-price">
-        <p class="new-price price-bg" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
-        <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Meta Coffee hoàn tiền</p>
-      </div>
-
-      <div class="product-detail">
-        <ul class="product-detail__list">
-          <li class="product-detail__item">Danh mục: <span><?= $row['category_name'] ?></span></li>
-          <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
-          <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
-        </ul>
-      </div>
-
-      <div class="purchase-info">
-        <button class="size">S</button>
-        <button class="size">M</button>
-        <button class="size">L</button>
-      </div>
-      <div class="purchase-info">
-        <button class="btn" id="minus">-</button>
-        <input type="number" readonly min="1" value="1" id="input">
-        <button class="btn" id="plus" style="margin-right: 50px;">+</button>
-      </div>
-      <div class="click">
-        <button type="button" id="btn1"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-        <!-- <button type="button" id="btn2">Đặt hàng ngay</button> -->
-      </div>
+        <div class="click">
+          <button type="submit" name="addToCart" id="btn1"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+        </div>
+      </form>
     </div>
   </div>
   <div class="nhan_container">
