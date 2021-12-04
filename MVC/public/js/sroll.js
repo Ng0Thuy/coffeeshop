@@ -32,6 +32,11 @@ function loginOnblur() {
             $("#checkoutForm").submit();
         });
 
+        var address= $("#address").length;
+        // var checkoutSubmit= $("#checkoutSubmit");
+        if(address==0){
+        $('button#checkoutSubmit').prop('disabled', true);
+        }
 
     // Bình luận
     $("#formComment").validate({
@@ -65,6 +70,7 @@ function loginOnblur() {
             });
         }
     });
+
 
     // CART NUMBERư
     $("input[type=radio]").change(function(){

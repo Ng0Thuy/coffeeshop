@@ -79,31 +79,31 @@
     <div class="tab_container_area" id="mota">
       <div class="tab_container">
         <h3 class="comment-heading">Mô tả sản phẩm</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat doloribus dolor deleniti facilis temporibus aperiam sint. Omnis eum fuga distinctio vitae rerum, sed laudantium ipsa totam, magnam sapiente consequatur!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore fuga rem ipsum atque nam velit deserunt, earum officiis est aliquam recusandae similique fugiat voluptatum cupiditate eius magnam quibusdam unde iste.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ab distinctio culpa quia quas hic, cumque eum est eligendi quam cupiditate repudiandae, reprehenderit soluta inventore labore dignissimos veniam ipsum non?</p>
+      <p><?=$row['description']?></p>
       </div>
     </div>
     <div class="tab_container_area" id="danhgia">
       <div class="tab_container">
         <h3 class="comment-heading">Bình luận</h3>
         <?php
-        while ($row = mysqli_fetch_array($data['showComment'])) {
+        while ($item = mysqli_fetch_array($data['showComment'])) {
         ?>
-          <div class="comment-list">
+          <div class="comment-list" id="load_data">
             <div class="comment">
               <div class="comment-avatar">
                 <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
               </div>
               <div class="comment-user">
-                <div class="comment-user__name"><?= $row['name'] ?></div>
-                <div class="comment-user__content"><?= $row['comment_content'] ?></div>
-                <div class="comment-user__content time"><?= $row['comment_date'] ?></div>
+                <div class="comment-user__name"><?= $item['name'] ?></div>
+                <div class="comment-user__content"><?= $item['comment_content'] ?></div>
+                <div class="comment-user__content time"><?= $item['comment_date'] ?></div>
                 <?php
-                if ($row['user_id'] == $_SESSION['userlogin'][3]) {
+                if (isset($_SESSION['userlogin'])) {
+                  if ($item['user_id'] == $_SESSION['userlogin'][3]) {
                 ?>
-                  <a href="" class="deletecomment">Xóa</a>
+                    <a href="" class="deletecomment">Xóa</a>
                 <?php
+                  }
                 }
                 ?>
               </div>
@@ -112,11 +112,17 @@
         <?php
         }
         ?>
-
         <form action="" method="post" id="formComment">
           <textarea cols="131" name="content" rows="4" placeholder="Viết bình luận..."></textarea>
           <input type="text" hidden name="product_id" value="<?= $row['product_id'] ?>"> <br>
-          <input type="text" hidden name="user_id" value="<?= $_SESSION['userlogin'][3] ?>"> <br>
+          <?php
+          if (isset($_SESSION['userlogin'])) {
+            ?>
+            <input type="text" hidden name="user_id" value="<?= $_SESSION['userlogin'][3] ?>"> <br>
+            <?php
+          }
+          ?>
+          
           <button type="submitComment">Gửi bình luận</button>
         </form>
       </div>

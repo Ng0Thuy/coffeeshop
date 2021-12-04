@@ -7,6 +7,7 @@ class Home extends Controller
 
   function Default()
   {
+    // session_destroy();
     $Product = $this->model("ProductModel");
     $this->view("master1", [
       "Page" => "home",
@@ -22,6 +23,7 @@ class Home extends Controller
       "showProductItem" => $Product->ListItemProduct($id),
       "showPrice" => $Product->showPrice($id),
       "showComment" => $Product->showComment($id),
+      "showSize" => $Product->showPrice($id),
     ]);
   }
 
@@ -48,13 +50,23 @@ class Home extends Controller
 
   function checkout()
   {
+    // if (sizeof($_SESSION['giohang']) == 0) {
+      if(!isset($_SESSION['giohang'])){
+      echo '
+            <script>
+                alert("Chưa có sản phẩm trong giỏ hàng")
+                window.location.assign("../");
+            </script>
+        ';
+    }
+
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
     } else {
       echo '
             <script>
                 alert("Vui lòng đăng nhập để tiến hành đặt hàng")
-                window.location.assign("./product");
+                window.location.assign("../");
             </script>
         ';
     }
@@ -65,11 +77,32 @@ class Home extends Controller
     ]);
   }
 
+  function checkoutAct()
+  {
+    $Product = $this->model("ProductModel");
+    $checkoutAct = $Product->checkoutAct();
+  }
+
   function history()
   {
-    $Models = $this->model("HomeModel");
+    if(isset($_SESSION['userlogin'])){
+      $id = $_SESSION['userlogin'][3];
+    }
+    else{
+      $id ="1";
+    }
+    $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
       "Page" => "history",
+      "showHistoty" => $ProductModel->showHistoty($id),
+    ]);
+  }
+  function historyDetails($id)
+  {
+    $ProductModel = $this->model("ProductModel");
+    $this->view("master2", [
+      "Page" => "historyDetails",
+      "showHistoryDetails" => $ProductModel->showHistoryDetails($id),
     ]);
   }
 
@@ -90,6 +123,11 @@ class Home extends Controller
   {
     $comment = $this->model("UserModel");
     $kq = $comment->comment();
+  }
+  function loadComment()
+  {
+    $comment = $this->model("UserModel");
+    $kq = $comment->loadComment();
   }
 
   function AddToCart()

@@ -12,6 +12,20 @@ class AdminModel extends DB
         return mysqli_query($this->con, $sql);
     }
 
+    public function showCommentAd()
+    {
+        $sql = "SELECT * FROM comment, product, user
+        WHERE comment.product_id=product.product_id 
+        AND comment.user_id=user.user_id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showOrder()
+    {
+        $sql = "SELECT * FROM user,orders WHERE orders.user_id=user.user_id";
+        return mysqli_query($this->con, $sql);
+    }
+
     
 
    

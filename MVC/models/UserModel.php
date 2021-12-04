@@ -153,7 +153,7 @@ class UserModel extends DB
             if (isset($_POST['content']) && !empty($_POST['content'])) {
                 $comment_content = $_POST['content'];
                 $product_id = $_POST['product_id'];
-                $user_id = $_SESSION['userlogin'][3];
+                $user_id = $_POST['user_id'];
                 $comment_date = date('Y-m-d H:i:s');
                 $result = mysqli_query($this->con, "INSERT INTO comment (user_id,product_id, comment_content,comment_date) VALUES ('" . $user_id . "','" . $product_id . "','" . $comment_content . "','" . $comment_date . "')");
                 mysqli_close($this->con);
@@ -178,6 +178,13 @@ class UserModel extends DB
             ));
             exit;
         }
+        echo "OK";
+    }
+
+    public function deleteComment($id)
+    {
+        $sql = "DELETE FROM comment WHERE comment_id =$id";
+        return mysqli_query($this->con, $sql);
     }
 
     public function showUserCheckout($user_id)
@@ -185,4 +192,5 @@ class UserModel extends DB
         $sql = "SELECT * FROM user WHERE user_id=$user_id";
         return mysqli_query($this->con, $sql);
     }
+    
 }

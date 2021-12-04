@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= BASE_URL ?>/mvc/views/Page/Admin/public/style.css">
+    <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script>
+
     <title>Admin MetaCoffee</title>
 </head>
 
@@ -25,6 +27,9 @@
         // require_once "./mvc/views/Page/Admin/blocks/footer.php"; 
         ?>
     </div>
+    <script>
+        // swal("Good job!", "You clicked the button!", "success");
+    </script>
     <script src="<?= BASE_URL ?>/mvc/views/Page/Admin/public/style.js"></script>
 </body>
 </html>

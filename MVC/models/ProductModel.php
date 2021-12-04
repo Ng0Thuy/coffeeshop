@@ -45,7 +45,7 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product 
         INNER JOIN variant ON product.product_id = variant.product_id 
         WHERE size = 'Vừa' 
-        ORDER BY import_date DESC";
+        ORDER BY import_date DESC limit 12";
         return mysqli_query($this->con, $sql);
     }
 
@@ -445,5 +445,148 @@ class ProductModel extends DB
             AND variant.product_id=product.product_id";
         }
         return mysqli_query($this->con, $sql);
+    }
+
+    public function checkoutAct()
+    {
+        $error = false;
+        if (isset($_POST['address']) && !empty($_POST['address']) && isset($_POST['phone']) && !empty($_POST['phone'])) {
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $note = $_POST['note'];
+            $user_id = $_POST['user_id'];
+            $banking = $_POST['banking'];
+            $order_date = date('Y-m-d H:i:s');
+            $status = "Đang tiến hành";
+
+            $cart = [];
+            if (isset($_SESSION['giohang'])) {
+                $cart = $_SESSION['giohang'];
+                // $cart = json_decode($json, true);
+            }
+            $result = mysqli_query($this->con, "INSERT INTO orders (user_id, address, phone, note, method,status, order_date) 
+            VALUES ('" . $user_id . "','" . $address . "','" . $phone . "','" . $note . "','" . $banking . "','" . $status . "','" . $order_date . "')");
+            if (!$result) {
+                if (strpos(mysqli_error($this->con), "Duplicate entry") !== FALSE) {
+                    echo json_encode(array(
+                        'status' => 0,
+                        'message' => 'Có lỗi khi đặt hàng, vui lòng thử lại'
+                    ));
+                    exit;
+                }
+            }
+
+            // mysqli_close($this->con);
+            if ($error !== false) {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Có lỗi khi đặt đặt hàng, xin mời thử lại'
+                ));
+                exit;
+            } else {
+                // lấy ra id orders
+                $sql = "SELECT * FROM orders WHERE order_date = '$order_date'";
+
+                $order = mysqli_query($this->con, $sql);
+                foreach ($order as $item) {
+                    $orderId = $item['order_id'];
+                }
+                // lấy ra id user
+                $id_user = $_SESSION['userlogin'][3];
+
+                // lấy ra id variant 
+                if (isset($_SESSION['giohang'])) {
+                    $idProduct = [];
+                    for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+                        $idProduct[] = $_SESSION['giohang'][$i][1];
+                        $sizeProduct[] = "'" . $_SESSION['giohang'][$i][0] . "'";
+                    }
+                    if (count($idProduct) > 0) {
+                        $idProduct = implode(',', $idProduct); // cắt mảng
+                        $sizeProduct = implode(',', $sizeProduct); // cắt mảng
+                        $sql = "SELECT * FROM variant where product_id in ('$idProduct') AND size in ($sizeProduct)";
+                        $cartList = mysqli_query($this->con, $sql);
+                    } else {
+                        $cartList = [];
+                    }
+                    foreach ($cartList as $item) {
+                        $price_total = 0;
+                        $num = 0;
+                        for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+                            if ($_SESSION['giohang'][$i][1] == $item['product_id']) {
+                                $num = $_SESSION['giohang'][$i][2];
+                                $item[''] = +$item['price'];
+                                break;
+                            }
+                            $price_total = $item['price'] + $item['price'];
+                        }
+                        $sql = "INSERT into order_details (order_id, variant_id, price_total, num) 
+                        values ('$orderId', '" . $item['variant_id'] . "','" . $item['price'] . "','$num')";
+                        mysqli_query($this->con, $sql);
+                    }
+                }
+                unset($_SESSION['giohang']);
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'Đặt hàng thành công!'
+                ));
+                exit;
+            }
+        } else {
+
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Bạn chưa nhập thông tin'
+            ));
+            exit;
+        }
+    }
+
+    public function showHistoty($id)
+    {
+        $sql = "SELECT * FROM orders WHERE user_id=$id";
+        // $sql="SELECT * FROM orders, order_details WHERE user_id=$id AND orders.order_id=order_details.order_id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showHistoryDetails($id)
+    {
+        $sql = "SELECT * FROM order_details, product,variant 
+        WHERE order_id=$id
+        AND order_details.variant_id=variant.variant_id 
+        and variant.product_id = product.product_id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showStatus($id)
+    {
+        $sql = "SELECT * FROM orders WHERE order_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function updateOrder($status, $id)
+    {
+        $sql = "UPDATE orders SET status='$status' WHERE order_id =$id";
+        $result= mysqli_query($this->con, $sql);
+        if ($result !== false) {
+            echo '
+                <script>
+                    alert("Cập nhật thành công");
+                    history.back();
+                </script>
+            ';
+            exit;
+        } 
+        else{
+            echo '
+                <script>
+                    alert("Đã xảy ra lỗi");
+                    history.back();
+                </script>
+            ';
+            exit;
+        }
+
     }
 }

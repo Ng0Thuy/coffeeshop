@@ -11,33 +11,31 @@
             <table class="table-cart">
                 <thead>
                     <tr class="title-table">
-                        <th>Tên khách hàng</th>
-                        <th>Địa chỉ</th>
-                        <th width="200px">Số điện thoại</th>
-                        <th width="200px">Trạng thái</th>
-                        <th width="200px">Thời gian</th>
-                        <th width="50px"></th>
+                        <th>Sản phẩm</th>
+                        <th>Kích thước</th>
+                        <th width="200px">Số lượng</th>
+                        <th width="200px">Tổng giá</th>
+                        <!-- <th width="200px">Trạng thái</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    while ($history = mysqli_fetch_array($data['showHistoty'])) {
+                    while ($history = mysqli_fetch_assoc($data['showHistoryDetails'])) {
                     ?>
                         <tr>
-                            <td class="img-name">Nguyễn Đăng Thành</td>
-                            <td><span class="size-cart"><?= $history['address'] ?></span></td>
-                            <td><?= $history['phone'] ?></td>
-                            <td><?= $history['order_date'] ?></td>
-                            <td class="success"><?= $history['status'] ?></td>
-                            <td class="success"><a href="<?=BASE_URL?>/Home/historyDetails/<?=$history['order_id']?>">Xem</a></td>
+                            <td class="img-name"><img src="<?=BASE_URL?>/<?=$history['thumbnail']?>" alt=""><a href="<?=BASE_URL?>/home/product/<?=$history['product_id']?>"><?=$history['product_name']?></a></td>
+                            <td><span class="size-cart"><?=$history['size']?></span></td>
+                            <td><?=$history['num']?></td>
+                            <td><?=number_format($history['price'], 0, ",", ".")?> VNĐ</td>
+                            <!-- <td class="success">Đã nhận hàng</td> -->
                         </tr>
                     <?php
                     }
                     ?>
                 </tbody>
             </table>
-            <!-- </section>
-        <nav aria-label="">
+        </section>
+        <!-- <nav aria-label="">
             <ul class="pagination pt-2">
                 <li class="page-item ">
                     <span class="page-link">Previous</span>
@@ -51,7 +49,7 @@
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
-        </nav>
-    </section> -->
+        </nav> -->
+    </section>
 
 </main>

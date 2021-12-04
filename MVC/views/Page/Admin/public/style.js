@@ -25,6 +25,19 @@ function deleteUser(id) {
     location.reload()
   })
 }
+// COMMENT
+function deleteComment(id) {
+  var option = confirm('Bạn có chắc chắn muốn xoá bình luận này không?')
+  if(!option) {
+    return;
+  }
+  $.post('./deleteComment', {
+    'id': id,
+    'action': 'delete'
+  }, function(data) {
+    location.reload()
+  })
+}
 
 
 

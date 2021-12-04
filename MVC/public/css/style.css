@@ -37,6 +37,9 @@
 .b-600 {
   font-weight: 600;
 }
+.capitalize{
+  text-transform: capitalize;
+}
 /* Begin: Header */
 .header {
   /* margin-bottom: 20px;
@@ -1184,6 +1187,7 @@ main.container
   border: 0;
   font-weight: 600;
   border-radius: 4px;
+  cursor: pointer;
 }
 .checkout .checkout-main .checkout-cart .btn-checkout:hover {
   opacity: 0.9;

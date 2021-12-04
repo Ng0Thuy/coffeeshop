@@ -77,7 +77,8 @@ class Admin extends Controller
   }
 
   // Thêm sản phẩm
-  function addProduct(){
+  function addProduct()
+  {
     $Product = $this->model("ProductModel");
     $Add = $Product->add();
   }
@@ -96,7 +97,8 @@ class Admin extends Controller
       "ShowVariant" => $Product->ShowVariant($id),
     ]);
   }
-  function editProductAct(){
+  function editProductAct()
+  {
     $Product = $this->model("ProductModel");
     $Add = $Product->edit();
   }
@@ -171,5 +173,61 @@ class Admin extends Controller
     }
   }
 
+  // COMMENT
+  function comment()
+  {
+    $AdminModel = $this->model("AdminModel");
+    $this->view("masterAdmin", [
+      "Page" => "comment",
+      "showCommentAd" => $AdminModel->showCommentAd(),
+    ]);
+  }
+
+  function deleteComment()
+  {
+    $User = $this->model("UserModel");
+    if (!empty($_POST)) {
+      if (isset($_POST['action'])) {
+        $action = $_POST['action'];
+        switch ($action) {
+          case 'delete':
+            if (isset($_POST['id'])) {
+              $id = $_POST['id'];
+              $User->deleteComment($id);
+            }
+            break;
+        }
+      }
+    }
+  }
+
+  // ORDER
+  function order()
+  {
+    $AdminModel = $this->model("AdminModel");
+    $this->view("masterAdmin", [
+      "Page" => "order",
+      "showOrder" => $AdminModel->showOrder(),
+    ]);
+  }
+  function orderDetails($id)
+  {
+    $ProductModel = $this->model("ProductModel");
+    $this->view("masterAdmin", [
+      "Page" => "orderdetails",
+      "showOrderDetails" => $ProductModel->showHistoryDetails($id),
+      "showOrderDetailsID" => $ProductModel->showHistoryDetails($id),
+      "showStatus" => $ProductModel->showStatus($id),
+    ]);
+  }
+  function updateOrder($id)
+  {
+    if (isset($_POST['status'])) {
+      $status = $_POST['status'];
+    }
+    $Product = $this->model("ProductModel");
+    $Add = $Product->updateOrder($status, $id);
+    
+  }
 
 }
