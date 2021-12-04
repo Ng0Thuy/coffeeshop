@@ -27,12 +27,12 @@
         <a href="<?= BASE_URL ?>" class="menu-item__link">TRANG CHỦ</a>
       </li>
       <li class="menu-item">
-        <a href="" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
+        <a href="<?=BASE_URL?>/home/thucdon" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
         <ul class="menu-children">
-          <li class="children-item"><a href="">Trà sữa</a></li>
-          <li class="children-item"><a href="">Cà phê</a></li>
-          <li class="children-item"><a href="">Thức ăn nhanh</a></li>
-          <li class="children-item"><a href="">Đồ uống chai</a></li>
+          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Trà sữa</a></li>
+          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Cà phê</a></li>
+          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Thức ăn nhanh</a></li>
+          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Đồ uống chai</a></li>
         </ul>
       </li>
       <li class="menu-item">

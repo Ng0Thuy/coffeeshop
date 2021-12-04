@@ -14,9 +14,16 @@
     <div class="product-imgs">
       <div class="img-display">
         <div class="img-showcase">
-          <a href="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>">
+          <a class="price_sale_a" href="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>">
             <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
           </a>
+          <?php
+          if ($row['price_sale'] > 0) {
+          ?>
+            <p class="price_sale_img"><?= $row['price_sale'] ?>%</p>
+          <?php
+          }
+          ?>
         </div>
       </div>
 
@@ -79,7 +86,7 @@
     <div class="tab_container_area" id="mota">
       <div class="tab_container">
         <h3 class="comment-heading">Mô tả sản phẩm</h3>
-      <p><?=$row['description']?></p>
+        <p><?= $row['description'] ?></p>
       </div>
     </div>
     <div class="tab_container_area" id="danhgia">
@@ -117,12 +124,12 @@
           <input type="text" hidden name="product_id" value="<?= $row['product_id'] ?>"> <br>
           <?php
           if (isset($_SESSION['userlogin'])) {
-            ?>
+          ?>
             <input type="text" hidden name="user_id" value="<?= $_SESSION['userlogin'][3] ?>"> <br>
-            <?php
+          <?php
           }
           ?>
-          
+
           <button type="submitComment">Gửi bình luận</button>
         </form>
       </div>

@@ -98,10 +98,10 @@
                 <div class="slidebar-favorite-product">
                     <div class="favorite-product__title">
                         <h3 class="favorite-product__heading">Yêu thích nhất</h3>
-                        <div class="favorite-product__toggle">
+                        <!-- <div class="favorite-product__toggle">
                             <i class="toggle-icon fas fa-arrow-left"></i>
                             <i class="toggle-icon fas fa-arrow-right"></i>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="favorite-product__list">
                         <a class="favorite-product__item" href="">
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div>
-        <div class="col l-9">
+        <div class="col l-9 ml-auto">
             <div class="product-all__title">
                 <h3 class="product-all_heading">Tất cả sản phẩm</h3>
                 <div class="product-all__filter">

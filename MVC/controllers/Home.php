@@ -11,7 +11,8 @@ class Home extends Controller
     $Product = $this->model("ProductModel");
     $this->view("master1", [
       "Page" => "home",
-      "showProduct" => $Product->ListAllAdmin()
+      "showProduct" => $Product->ListAllAdmin(),
+      "showProductSelling" => $Product->showProductSelling(),
     ]);
   }
 

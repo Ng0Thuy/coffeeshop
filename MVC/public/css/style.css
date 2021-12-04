@@ -37,7 +37,7 @@
 .b-600 {
   font-weight: 600;
 }
-.capitalize{
+.capitalize {
   text-transform: capitalize;
 }
 /* Begin: Header */
@@ -49,8 +49,26 @@
 .bold {
   font-weight: bold;
 }
-.error{
+.error {
   color: red;
+}
+.img-showcase {
+  position: relative;
+}
+.price_sale_img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  padding-top: 10px;
+  color: var(--primary-color);
+  background-color: #3f3737;
+  border-radius: 50%;
+  text-align: center;
+  margin: 5px;
 }
 /* Menu-Area */
 #menu-area {
@@ -256,7 +274,7 @@
 }
 .login-children .my-account span {
   font-size: 1.4rem;
-  text-transform:capitalize;
+  text-transform: capitalize;
   font-weight: 500;
 }
 .my-account:hover {
@@ -580,10 +598,14 @@ li.login-item:last-child {
 }
 .list-product {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
 }
-.list-product .col.l-2-5.m-4.c-6{
+.ml-auto{
+  margin-left: auto;
+}
+.list-product .col.l-2-5.m-4.c-6 {
   padding: 10px;
 }
 .product-cart {
@@ -1317,7 +1339,7 @@ form#form_login button:hover {
   opacity: 0.9;
 }
 /* =======END LOGIN============== */
-#login-dev{
+#login-dev {
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -1326,11 +1348,11 @@ form#form_login button:hover {
   padding: 2rem 1rem 5rem;
   box-shadow: var(--shadow-primary);
 }
-#login-dev .login-title{
+#login-dev .login-title {
   text-align: center;
-  font-size:2.5rem;
+  font-size: 2.5rem;
 }
-#form_login{
+#form_login {
   max-width: 600px;
   margin: 0px auto;
 }
@@ -2055,7 +2077,7 @@ input[type="range"]::-ms-thumb {
 }
 .change-password__btn:hover {
 }
-.info-user .btn:hover{
+.info-user .btn:hover {
   opacity: 0.9;
 }
 .info-user__main {

@@ -74,6 +74,7 @@ img {
 }
 .img-showcase img {
   min-width: 100%;
+  border-radius: 5px;
 }
 .img-select {
   display: flex;

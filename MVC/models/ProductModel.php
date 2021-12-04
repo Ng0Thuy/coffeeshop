@@ -44,11 +44,27 @@ class ProductModel extends DB
     {
         $sql = "SELECT * FROM product 
         INNER JOIN variant ON product.product_id = variant.product_id 
-        WHERE size = 'Vừa' 
-        ORDER BY import_date DESC limit 12";
+        WHERE size = 'Nhỏ' 
+        ORDER BY import_date DESC";
         return mysqli_query($this->con, $sql);
     }
 
+    public function showProductSelling()
+    {
+        // $sql = "SELECT * FROM variant, product, order_details
+        // WHERE product.product_id=variant.product_id 
+        // and variant.variant_id=order_details.variant_id 
+        // ORDER by order_details.num DESC";
+        $sql = "SELECT product.product_id, product.product_name, product.price_sale, 
+        product.thumbnail, variant.size, variant.price,
+        SUM(order_details.num) as num
+        FROM variant, product, order_details
+        WHERE product.product_id=variant.product_id
+        and variant.variant_id=order_details.variant_id 
+        GROUP BY product.product_id
+        ORDER by order_details.num DESC";
+        return mysqli_query($this->con, $sql);
+    }
 
     public function showProductNew()
     {
