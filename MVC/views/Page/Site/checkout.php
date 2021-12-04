@@ -19,10 +19,10 @@
                 <input type="text" required name="phone" value="<?= $result['phone'] ?>" placeholder="Số điện thoại...">
 
                 <label for="">Địa chỉ<span class="red">*</span></label>
-                <textarea required name="address" id="address" value="<?= $result['address'] ?>" cols="30" rows="10" placeholder="Địa chỉ nhận hàng..."></textarea>
+                <textarea required name="address" id="address" value="<?= $result['address'] ?>" cols="30" rows="4" placeholder="Địa chỉ nhận hàng..."></textarea>
 
                 <label for="">Ghi chú đơn hàng</label>
-                <textarea name="note" id="" cols="30" rows="10" placeholder="Ghi chú cho đơn hàng..."></textarea>
+                <textarea name="note" id="" cols="30" rows="2" placeholder="Ghi chú cho đơn hàng..."></textarea>
 
                 <label class="title" for="">Hình thức thanh toán<span class="red">*</span></label>
                 <div class="form-group">

@@ -136,7 +136,11 @@
     </div>
   </div>
   <div class="nhan_container related-products">
-    <h2 class="related-products__heading">Sản phẩm liên quan</h2>
+    <div class="featured-product__title">
+      <div class="text-2 line-bottom">
+        SẢN PHẨM BÁN CHẠY
+      </div>
+    </div>
     <div class="list-product related-products__list row sm-gutter">
       <div class="col l-2-5 m-4 c-6">
         <a href="<?= BASE_URL ?>/product" class="product-cart">

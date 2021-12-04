@@ -45,7 +45,7 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product 
         INNER JOIN variant ON product.product_id = variant.product_id 
         WHERE size = 'Nhỏ' 
-        ORDER BY import_date DESC";
+        ORDER BY import_date DESC limit 10";
         return mysqli_query($this->con, $sql);
     }
 
@@ -543,10 +543,12 @@ class ProductModel extends DB
                     }
                 }
                 unset($_SESSION['giohang']);
-                echo json_encode(array(
-                    'status' => 1,
-                    'message' => 'Đặt hàng thành công!'
-                ));
+                echo '
+                    <script>
+                        alert("Đặt hàng thành công");
+                        window.location.assign("../");
+                    </script>
+                ';
                 exit;
             }
         } else {

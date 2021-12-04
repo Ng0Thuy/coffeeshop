@@ -608,6 +608,14 @@ li.login-item:last-child {
 .list-product .col.l-2-5.m-4.c-6 {
   padding: 10px;
 }
+.grid-4{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+.grid-4 div{
+  max-width: 100%;
+}
 .product-cart {
   /* width: calc(25% - 30px); */
   display: block;
@@ -668,9 +676,12 @@ li.login-item:last-child {
 .product-cart__img {
   overflow: hidden;
 }
-
+.w-100{
+  width: 100%;
+}
 .product-cart__img img {
   width: 100%;
+  height: 270px;
   transition: all 0.2s;
   vertical-align: middle;
   border-style: none;
@@ -756,7 +767,7 @@ li.login-item:last-child {
 .btn-view-all a {
   color: var(--white-color);
   text-decoration: none;
-  padding: 10px 16px;
+  padding: 15px 35px;
 }
 .btn-view-all a:hover {
   color: var(--primary-color);
@@ -901,10 +912,11 @@ main.container {
   margin: 0px auto;
 }
 main.container nav.nav-top {
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   padding: 1.3rem 0;
   margin-top: 1rem;
   border-radius: 4px;
+  background-color: #ebcdcd;
 }
 main.container nav.nav-top ul {
   display: flex;
@@ -935,7 +947,7 @@ section.product-carts {
   width: 100%;
   margin: 1rem auto;
   padding-bottom: 10rem;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   border-radius: 4px;
 }
 section.product-carts .product-carts_title {
@@ -1029,7 +1041,7 @@ section.product-carts .cart-list .table-cart tbody tr td input.numCart {
 .cart-act .cart-act_checkout {
   /* background-color: var(--primary-color); */
   width: 500px;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   border-radius: 4px;
   padding: 1rem;
   line-height: 2;
@@ -1070,7 +1082,7 @@ section.product-carts .cart-list .table-cart tbody tr td input.numCart {
 /* END CART  */
 /* =======CHECK OUT============== */
 main.container .checkout {
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   margin: 1rem 0;
   padding-bottom: 10rem;
   border-radius: 4px;
@@ -1101,9 +1113,11 @@ main.container .checkout .checkout-main form.form-checkout input[type="text"] {
   border-radius: 4px;
   margin-bottom: 1rem;
   border: 1px solid #c2d4e7c7;
+  font-size: 1.7rem;
+  background-color: #f6f8fa;
 }
 main.container .checkout .checkout-main form.form-checkout input:focus {
-  color: #495057c7;
+  color: black;
   background-color: #fff;
   border-color: #cad2da;
   outline: 0;
@@ -1112,10 +1126,11 @@ main.container .checkout .checkout-main form.form-checkout input:focus {
 main.container .checkout .checkout-main form.form-checkout input[type="radio"] {
   border: 0;
   margin-right: 10px;
+  background-color: #f6f8fa;
 }
 main.container .checkout .checkout-main form.form-checkout label {
   display: block;
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 500;
 }
 
@@ -1128,16 +1143,18 @@ main.container .checkout .checkout-main form.form-checkout label.title {
 }
 main.container .checkout .checkout-main form.form-checkout textarea {
   width: 100%;
-  height: 60px;
+  /* height: 60px; */
   border: none;
   /* box-shadow: 0px 0px 3px 0px blue; */
   border-radius: 4px;
   margin-bottom: 1rem;
   padding: 10px;
   border: 1px solid #c2d4e7c7;
+  background-color: #f6f8fa;
+  font-size: 1.7rem;
 }
 main.container .checkout .checkout-main form.form-checkout textarea:focus {
-  color: #495057c7;
+  color: black;
   background-color: #fff;
   border-color: #cad2da;
   outline: 0;
@@ -1242,7 +1259,7 @@ main.container
   height: auto;
   border-radius: 10px;
   width: 100vh;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
@@ -1346,7 +1363,7 @@ form#form_login button:hover {
   border-radius: 4px;
   margin-top: 1rem;
   padding: 2rem 1rem 5rem;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
 }
 #login-dev .login-title {
   text-align: center;
@@ -1373,7 +1390,7 @@ form#form_login button:hover {
   height: auto;
   border-radius: 10px;
   width: 100vh;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
@@ -1513,7 +1530,7 @@ form#form_regsiter button:hover {
   height: auto;
   border-radius: 10px;
   width: 100vh;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
@@ -1653,8 +1670,8 @@ form#form_forgot button:hover {
 .app__content {
   padding: 2rem 0 5rem 0;
   margin: 1rem 0 20px 0;
-  box-shadow: 1px 0px 60px 0 rgb(12 18 34 / 11%),
-    2px 2px 90px 0 rgb(23 33 54 / 11%);
+  /* box-shadow: 1px 0px 60px 0 rgb(12 18 34 / 11%),
+    2px 2px 90px 0 rgb(23 33 54 / 11%); */
 }
 .slidebar {
   border-radius: 2px;
@@ -2019,7 +2036,7 @@ input[type="range"]::-ms-thumb {
 }
 .info-user {
   margin-top: 10px;
-  box-shadow: var(--shadow-primary);
+  /* box-shadow: var(--shadow-primary); */
   padding: 1rem 1rem 5rem 1rem;
 }
 .info-user__heading {

@@ -6,19 +6,18 @@
         </ul>
     </nav>
     <div class="row sm-gutter app__content">
-        <div class="col l-2-4">
+        <form method="GET" action="" class="col l-2-4">
             <div class="slidebar">
                 <div class="slidebar-menu">
                     <h3 class="slidebar-menu__heading">Thực đơn</h3>
                     <div class="slidebar-menu__category">
                         <div class="category-item">
                             <label class="checkbox">
-                                <input type="checkbox" name="">
+                                <input type="checkbox" name="trasua">
                                 <i class="icon-checkbox"></i>
-                                <span class="category-name">Trà sữa</span>
+                                <span  class="category-name">Trà sữa</span>
                             </label>
                         </div>
-
                         <div class="category-item">
                             <label class="checkbox">
                                 <input type="checkbox" name="">
@@ -177,7 +176,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="col l-9 ml-auto">
             <div class="product-all__title">
                 <h3 class="product-all_heading">Tất cả sản phẩm</h3>

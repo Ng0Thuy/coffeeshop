@@ -13,8 +13,8 @@
                 </div>
             </div>
 
-            <div class="featured-product__content">
-                <div class="list-product row sm-gutter">
+            <div class="featured-product__content w-100">
+                <div class="list-product row sm-gutter grid-4">
                     <?php
                     while ($row = mysqli_fetch_array(($data['showProduct']))) {
                     ?>
@@ -86,7 +86,7 @@
             </div>
 
             <div class="featured-product__content">
-                <div class="list-product row sm-gutter">
+                <div class="list-product row sm-gutter grid-4">
                     <?php
                     while ($item = mysqli_fetch_array($data['showProductSelling'])) {
                     ?>
