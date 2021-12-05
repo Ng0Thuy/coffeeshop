@@ -2,7 +2,7 @@
 class DB
 {
     public $con;
-    protected $servername = "localhost";
+    protected $servername = "localhost:3325";
     protected $username = "root";
     protected $password = "";
     protected $dbname = "metacoffee";
@@ -13,5 +13,4 @@ class DB
         mysqli_select_db($this->con, $this->dbname);
         mysqli_query($this->con, "SET NAMES 'utf8'");
     }
-    
 }

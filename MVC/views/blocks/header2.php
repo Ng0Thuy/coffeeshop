@@ -35,7 +35,7 @@
     </ul>
     <ul class="menu-list2">
       <li class="menu-item2">
-        <a href="" class="cart"><i class="cart-icon ti-shopping-cart"></i>
+        <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
           <?php
           if (isset($_SESSION['giohang'])) {
             $numCart = 0;
@@ -55,7 +55,14 @@
         <li class="menu-item2">
           <div class="login-children" onclick="loginOnclick()">
             <div class="my-account">
-              <span class="user-name text-white"><?= $_SESSION['userlogin'][2] ?></span>
+              <span class="user-name text-white">
+                <?php
+                if (isset($data['ShowNameUser'])) {
+                  $row = mysqli_fetch_assoc($data['ShowNameUser']);
+                  echo $row['name'];
+                }
+                ?>
+              </span>
               <i class="icon-down ti-angle-down text-white"></i>
             </div>
             <ul class="login-children__list" onblur="loginOnblur()">
@@ -65,7 +72,7 @@
                 </a>
               </li>
               <li class="login-item">
-                <a class="login-link" href="">
+                <a class="login-link" href="<?= BASE_URL ?>/home/user">
                   <i class="fas fa-key"></i>Đổi mật khẩu
                 </a>
               </li>
@@ -95,7 +102,7 @@
     <div class="banner-texts">
       <h1 class="text-black">Đặt món nào</h1>
       <p class="text-red">Cùng free ship</p>
-      <form action="<?=BASE_URL?>/home/search" method="POST" id="search-bn">
+      <form action="<?= BASE_URL ?>/home/search" method="POST" id="search-bn">
         <i class="fas fa-search search-bn"></i>
         <input name="search" class="search-sp" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
       </form>

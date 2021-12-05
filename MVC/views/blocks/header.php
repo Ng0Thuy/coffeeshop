@@ -33,7 +33,7 @@
           if (isset($data['ShowMenu'])) {
             while ($row = mysqli_fetch_array($data['ShowMenu'])) {
           ?>
-              <li class="children-item"><a href="<?= BASE_URL ?>/home/danhmuc/<?=$row['category_id']?>"><?=$row['category_name']?></a></li>
+              <li class="children-item"><a href="<?= BASE_URL ?>/home/danhmuc/<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a></li>
           <?php
             }
           }
@@ -73,7 +73,14 @@
         <li class="menu-item2">
           <div class="login-children" onclick="loginOnclick()">
             <div class="my-account">
-              <span class="user-name text-white"><?= $_SESSION['userlogin'][2] ?></span>
+              <span class="user-name text-white">
+                <?php
+                if (isset($data['ShowNameUser'])) {
+                  $row = mysqli_fetch_assoc($data['ShowNameUser']);
+                  echo $row['name'];
+                }
+                ?>
+              </span>
               <i class="icon-down ti-angle-down text-white"></i>
             </div>
             <ul class="login-children__list" onblur="loginOnblur()">
@@ -83,7 +90,7 @@
                 </a>
               </li>
               <li class="login-item">
-                <a class="login-link" href="">
+                <a class="login-link" href="<?= BASE_URL ?>/home/user">
                   <i class="fas fa-key"></i>Đổi mật khẩu
                 </a>
               </li>
@@ -111,7 +118,7 @@
     <div class="banner-text">
       <h1>Đậm vị thiên nhiên<br>hạnh phúc trọn đời!</h1>
       <p>Với sứ mệnh mang tới niềm vui và hạnh phúc, Meta Coffee hy vọng sẽ tạo nên <br> một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi</p>
-      <form action="<?=BASE_URL?>/home/search" method="POST" id="search-bn-home">
+      <form action="<?= BASE_URL ?>/home/search" method="POST" id="search-bn-home">
         <i class="fas fa-search search-bn"></i>
         <input name="search" class="search-bn-home" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
       </form>

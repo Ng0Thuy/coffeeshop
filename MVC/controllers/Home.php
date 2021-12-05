@@ -8,6 +8,13 @@ class Home extends Controller
   function Default()
   {
     // session_destroy();
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $Product = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
     $this->view("master1", [
@@ -15,11 +22,19 @@ class Home extends Controller
       "showProduct" => $Product->ListAllAdmin(),
       "showProductSelling" => $Product->showProductSelling(),
       "ShowMenu" => $Category->ListAll(),
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function product($id)
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $Product = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
     $this->view("master2", [
@@ -30,14 +45,23 @@ class Home extends Controller
       "showSize" => $Product->showPrice($id),
       "ShowMenu" => $Category->ListAll(),
       "ProductRelated" => $Product->ProductRelated($id),
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function login()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $Models = $this->model("HomeModel");
     $this->view("master3", [
       "Page" => "login1",
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
   function loginAction()
@@ -48,6 +72,13 @@ class Home extends Controller
 
   function thucdon()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
@@ -57,12 +88,19 @@ class Home extends Controller
       "showNum" => $ProductModel->showNum(),
       "ListAllAdmin" => $ProductModel->ListAllAdmin(),
       "ShowMenu" => $CategoryModel->ListAll(),
-
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function danhmuc($id)
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
@@ -73,11 +111,19 @@ class Home extends Controller
       "ListAllCt" => $ProductModel->ListAllCt($id),
       "ShowMenu" => $CategoryModel->ListAll(),
       "ShowName" => $CategoryModel->ListItem($id),
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function search()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
     if (isset($_POST['search'])) {
@@ -89,11 +135,19 @@ class Home extends Controller
       "ShowMenu" => $CategoryModel->ListAll(),
       "ListSearch" => $ProductModel->ListSearch($id),
       "ListNumSearch" => $ProductModel->ListNumSearch($id),
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function checkout()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     // if (sizeof($_SESSION['giohang']) == 0) {
     if (!isset($_SESSION['giohang'])) {
       echo '
@@ -120,18 +174,32 @@ class Home extends Controller
       "Page" => "checkout",
       "showUserCheckout" => $User->showUserCheckout($user_id),
       "ShowMenu" => $Category->ListAll(),
-
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function checkoutAct()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $Product = $this->model("ProductModel");
     $checkoutAct = $Product->checkoutAct();
   }
 
   function history()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     if (isset($_SESSION['userlogin'])) {
       $id = $_SESSION['userlogin'][3];
     } else {
@@ -143,27 +211,45 @@ class Home extends Controller
       "Page" => "history",
       "showHistoty" => $ProductModel->showHistoty($id),
       "ShowMenu" => $Category->ListAll(),
-
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
   function historyDetails($id)
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
     $ProductModel = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "historyDetails",
       "showHistoryDetails" => $ProductModel->showHistoryDetails($id),
       "ShowMenu" => $Category->ListAll(),
-
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
   function user()
   {
+    if (isset($_SESSION['userlogin'])) {
+      $user_id = $_SESSION['userlogin'][3];
+    } else {
+      $user_id = "";
+    }
+
+    $User = $this->model("UserModel");
+    $id = $_SESSION['userlogin'][3];
+    $UserModel = $this->model("UserModel");
     $Category = $this->model("CategoryModel");
     $this->view("master3", [
       "Page" => "user",
       "ShowMenu" => $Category->ListAll(),
+      "ShowAbout" => $UserModel->ListItem($id),
+      "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
 
@@ -186,14 +272,22 @@ class Home extends Controller
   //   $passwordnew = $_POST['passwordnew'];
   //   $checkPass = $UserModel->checkPass($password, $passwordnew, $user_id);
   // }
-  
+
   function changepass()
   {
     $UserModel = $this->model("UserModel");
     $password = $_POST['password'];
     $user_id = $_POST['user_id'];
     $passwordnew = $_POST['passwordnew'];
-    $checkPass = $UserModel->checkPass($password, $passwordnew, $user_id);
+  }
+
+  function edituser()
+  {
+    $UserModel = $this->model("UserModel");
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $user_id = $_POST['user_id'];
   }
 
   function loadComment()

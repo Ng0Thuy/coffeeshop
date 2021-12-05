@@ -24,16 +24,18 @@
                 </ul>
             </li>
             <li class="menu-item">
-                <a href="<?= BASE_URL ?>/home/tintuc" class="menu-item__link">TIN TỨC</a>
+                <a href="" class="menu-item__link">TIN TỨC</a>
             </li>
             <li class="menu-item">
-                <a href="<?= BASE_URL ?>/home/about" class="menu-item__link">GIỚI THIỆU</a>
+                <a href="" class="menu-item__link">GIỚI THIỆU</a>
             </li>
             <li class="menu-item">
-                <a href="<?= BASE_URL ?>/home/contact" class="menu-item__link">LIÊN HỆ</a>
+                <a href="" class="menu-item__link">LIÊN HỆ</a>
             </li>
-            <li class="menu-item">
-                <a href="" class="cart"><i class="cart-icon ti-shopping-cart"></i>
+        </ul>
+        <ul class="menu-list2">
+            <li class="menu-item2">
+                <a href="<?= BASE_URL ?>/cart" class="cart"><i class="cart-icon ti-shopping-cart"></i>
                     <?php
                     if (isset($_SESSION['giohang'])) {
                         $numCart = 0;
@@ -53,7 +55,14 @@
                 <li class="menu-item2">
                     <div class="login-children" onclick="loginOnclick()">
                         <div class="my-account">
-                            <span class="user-name text-white"><?= $_SESSION['userlogin'][2] ?></span>
+                            <span class="user-name text-white">
+                                <?php
+                                if (isset($data['ShowNameUser'])) {
+                                    $row = mysqli_fetch_assoc($data['ShowNameUser']);
+                                    echo $row['name'];
+                                }
+                                ?>
+                            </span>
                             <i class="icon-down ti-angle-down text-white"></i>
                         </div>
                         <ul class="login-children__list" onblur="loginOnblur()">
@@ -63,7 +72,7 @@
                                 </a>
                             </li>
                             <li class="login-item">
-                                <a class="login-link" href="">
+                                <a class="login-link" href="<?= BASE_URL ?>/home/user">
                                     <i class="fas fa-key"></i>Đổi mật khẩu
                                 </a>
                             </li>
@@ -85,6 +94,7 @@
             }
             ?>
         </ul>
+
     </div>
     <div class="clear"></div>
     <!-- <div class="banners">

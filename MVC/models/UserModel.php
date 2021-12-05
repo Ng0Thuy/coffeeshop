@@ -1,6 +1,12 @@
 <?php
 class UserModel extends DB
 {
+    public function ShowNameUser($user_id)
+    {
+        $sql = "SELECT * FROM user WHERE user_id='$user_id'";
+        return mysqli_query($this->con, $sql);
+    }
+
     public function ListAll()
     {
         $sql = "SELECT * FROM user";
@@ -51,6 +57,31 @@ class UserModel extends DB
             echo json_encode(array(
                 'status' => 0,
                 'message' => 'Đã xảy ra lỗi'
+            ));
+            exit;
+        }
+    }
+
+    public function edit_user($name, $address, $phone, $user_id)
+    {
+        if (isset($name) && isset($address) && isset($phone)) {
+            $sql = "UPDATE user set `name` ='$name', `address` ='$address', `phone` ='$phone' where `user_id` ='$user_id'";
+            $result = mysqli_query($this->con, $sql);
+            if (!$result) {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Thay đổi thông tin không thành công.'
+                ));
+            } else {
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'Thay đổi thông tin thành công.'
+                ));
+            }
+        } else {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Thay đổi không tin không thành công.'
             ));
             exit;
         }
