@@ -213,6 +213,46 @@ $('.danhgia').click(function(){
     return false;     
 }); 
 
+// ĐỔI MẬT KHÂUr
+$("#changepass_form").validate({
+    rules: {
+        password: {
+            required: true,
+            minlength: 6
+        },
+        passwordnew: {
+            required: true,
+            minlength: 6
+        },
+    },
+    messages: {
+        password: {
+            required: "Bạn phải nhập mật khẩu",
+            minlength: "Mật khẩu tối thiểu là 6 ký tự"
+        },
+        passwordnew: {
+            required: "Bạn phải nhập mật khẩu",
+            minlength: "Mật khẩu tối thiểu là 6 ký tự"
+        },
+
+    },
+    submitHandler: function(form) {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost/DuAn1/Home/changepass',
+            data: $(form).serializeArray(),
+            success: function(response) {
+                response = JSON.parse(response);
+                if (response.status == 0) { 
+                    swal("Thất bại!", response.message, "error");
+                } else {
+                    swal("Thành công!", response.message, "success");
+                    setTimeout("location.href = './';", 1000);
+                }
+            }
+        });
+    }
+});
 
 
 // REGSITER VALIDATE
@@ -263,7 +303,7 @@ $("#form_regsiter").validate({
     submitHandler: function(form) {
         $.ajax({
             type: "POST",
-            url: './Home/RegisterAction',
+            url: 'http://localhost/DuAn1/Home/RegisterAction',
             data: $(form).serializeArray(),
             success: function(response) {
                 response = JSON.parse(response);
@@ -274,6 +314,7 @@ $("#form_regsiter").validate({
                     $(".app").css("opacity", "1");     
                 } else {
                     swal("Thành công!", response.message, "success");
+                    setTimeout("location.href = './';", 1000);
                     $("#regsiter").css("display", "none");  
                     $("#forgot").css("display", "none");  
                     $(".app").css("opacity", "1");     
@@ -308,7 +349,7 @@ $("#form_login").validate({
     submitHandler: function(form) {
         $.ajax({
             type: "POST",
-            url: './Home/loginAction',
+            url: 'http://localhost/DuAn1/Home/loginAction',
             data: $(form).serializeArray(),
             success: function(response) {
                 response = JSON.parse(response);
@@ -318,6 +359,7 @@ $("#form_login").validate({
                     $(".app").css("opacity", "1");     
                 } else { //Đăng nhập thành công
                     swal("Thành công!", response.message, "success");
+                    setTimeout("location.href = './';", 1000);
                     $("#login").css("display", "none");  
                     $(".app").css("opacity", "1");     
                 }

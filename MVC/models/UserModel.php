@@ -12,6 +12,50 @@ class UserModel extends DB
         INNER JOIN role WHERE role.role_id = user.role_id ORDER BY user_id DESC";
         return mysqli_query($this->con, $sql);
     }
+    // public function checkPass($password,$passwordnew, $user_id){
+    //     $sql = "SELECT * FROM user WHERE user_id='$user_id' AND password ='$password'";
+    //     $check = mysqli_query($this->con, $sql);
+    //     if(mysqli_num_rows($check)>0){
+    //         $sql = "UPDATE user set password ='$passwordnew' where user_id ='$user_id'";
+    //         $result = mysqli_query($this->con, $sql);
+    //         echo '
+    //         <script>
+    //             alert("sửa thông tin người dùng thành công");
+    //             window.location.assign("./user");
+    //         </script>
+    //         ';
+    //     }
+    // }
+
+
+    public function checkPass($password, $passwordnew, $user_id)
+    {
+        if (isset($password) && isset($passwordnew) && isset($user_id)) {
+            $sql = "SELECT * FROM user WHERE user_id='$user_id' AND password ='$password'";
+            $check = mysqli_query($this->con, $sql);
+            if (mysqli_num_rows($check) > 0) {
+                $sql = "UPDATE user set password ='$passwordnew' where user_id ='$user_id'";
+                $result = mysqli_query($this->con, $sql);
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'Đổi mật khẩu thành công'
+                ));
+            } else {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Mật khẩu không trùng'
+                ));
+                exit;
+            }
+        } else {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Đã xảy ra lỗi'
+            ));
+            exit;
+        }
+    }
+
 
     public function ListItem($id)
     {
@@ -192,5 +236,4 @@ class UserModel extends DB
         $sql = "SELECT * FROM user WHERE user_id=$user_id";
         return mysqli_query($this->con, $sql);
     }
-    
 }

@@ -2,7 +2,7 @@
       <i class="far fa-times-circle close-login"></i>
       <h3 class="login-title">Đăng nhập hệ thống</h3>
       <p>Bạn chưa có tài khoản? <span class="regsiter-show">Đăng ký</span></p>
-      <form action="" method="POST" id="form_login">
+      <form method="POST" id="form_login">
         <div class="form-group-login">
           <label for="">Email</label>
           <input type="text" name="email" id="" class="email-ip" placeholder="Nhập email" />

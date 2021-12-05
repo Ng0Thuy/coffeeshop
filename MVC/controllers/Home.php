@@ -3,7 +3,6 @@ class Home extends Controller
 {
   public function __construct()
   {
-    
   }
 
   function Default()
@@ -62,7 +61,8 @@ class Home extends Controller
     ]);
   }
 
-  function danhmuc($id){
+  function danhmuc($id)
+  {
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
@@ -76,10 +76,11 @@ class Home extends Controller
     ]);
   }
 
-  function search(){
+  function search()
+  {
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
-    if(isset($_POST['search'])){
+    if (isset($_POST['search'])) {
       $id = $_POST['search'];
     }
     $this->view("master2", [
@@ -90,11 +91,11 @@ class Home extends Controller
       "ListNumSearch" => $ProductModel->ListNumSearch($id),
     ]);
   }
-  
+
   function checkout()
   {
     // if (sizeof($_SESSION['giohang']) == 0) {
-      if(!isset($_SESSION['giohang'])){
+    if (!isset($_SESSION['giohang'])) {
       echo '
             <script>
                 alert("Chưa có sản phẩm trong giỏ hàng")
@@ -131,11 +132,10 @@ class Home extends Controller
 
   function history()
   {
-    if(isset($_SESSION['userlogin'])){
+    if (isset($_SESSION['userlogin'])) {
       $id = $_SESSION['userlogin'][3];
-    }
-    else{
-      $id ="1";
+    } else {
+      $id = "1";
     }
     $ProductModel = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
@@ -160,12 +160,10 @@ class Home extends Controller
 
   function user()
   {
-    $Models = $this->model("HomeModel");
     $Category = $this->model("CategoryModel");
     $this->view("master3", [
       "Page" => "user",
       "ShowMenu" => $Category->ListAll(),
-
     ]);
   }
 
@@ -179,6 +177,25 @@ class Home extends Controller
     $comment = $this->model("UserModel");
     $kq = $comment->comment();
   }
+
+  // function changepass()
+  // {
+  //   $UserModel = $this->model("UserModel");
+  //   $password = $_POST['password'];
+  //   $user_id = $_POST['user_id'];
+  //   $passwordnew = $_POST['passwordnew'];
+  //   $checkPass = $UserModel->checkPass($password, $passwordnew, $user_id);
+  // }
+  
+  function changepass()
+  {
+    $UserModel = $this->model("UserModel");
+    $password = $_POST['password'];
+    $user_id = $_POST['user_id'];
+    $passwordnew = $_POST['passwordnew'];
+    $checkPass = $UserModel->checkPass($password, $passwordnew, $user_id);
+  }
+
   function loadComment()
   {
     $comment = $this->model("UserModel");

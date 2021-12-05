@@ -8,19 +8,19 @@
     <div class="info-user">
         <h2 class="info-user__heading">Thông tin khách hàng</h2>
         <div class="form-info-user row">
-            <form action="" method="" class="col l-3 change-password">
+            <form action="" id="changepass_form" method="" class="col l-3 change-password">
                 <h2 class="change-password__heading">Đổi mật khẩu</h2>
                 <div class="change-password__main">
                     <div class="change-password__item">
                         <p class="change-password__text">Mật khẩu cũ <sup style="color:red;">*</sup></p>
-                        <input type="password" name="" id="" class="change-password__input" placeholder="Nhập mật khẩu cũ">
-                        <!-- <p class="error">Mật không đúng</p> -->
+                        <input type="password" name="password" id="" class="change-password__input" placeholder="Nhập mật khẩu cũ">
                     </div>
                     <div class="clear"></div>
                     
                     <div class="change-password__item">
                         <p class="change-password__text">Mật khẩu mới <sup style="color:red;">*</sup></p>
-                        <input type="password" name="" id="" class="change-password__input" placeholder="Nhập mật khẩu mới">
+                        <input type="password" name="passwordnew" id="" class="change-password__input" placeholder="Nhập mật khẩu mới">
+                        <input type="text" hidden name="user_id" value="<?=$_SESSION['userlogin'][3]?>">
                         <span class="error"></span>
                     </div>
                 </div>
