@@ -27,12 +27,17 @@
         <a href="<?= BASE_URL ?>" class="menu-item__link">TRANG CHỦ</a>
       </li>
       <li class="menu-item">
-        <a href="<?=BASE_URL?>/home/thucdon" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
+        <a href="<?= BASE_URL ?>/home/thucdon" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
         <ul class="menu-children">
-          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Trà sữa</a></li>
-          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Cà phê</a></li>
-          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Thức ăn nhanh</a></li>
-          <li class="children-item"><a href="<?=BASE_URL?>/home/thucdon">Đồ uống chai</a></li>
+          <?php
+          if (isset($data['ShowMenu'])) {
+            while ($row = mysqli_fetch_array($data['ShowMenu'])) {
+          ?>
+              <li class="children-item"><a href="<?= BASE_URL ?>/home/danhmuc/<?=$row['category_id']?>"><?=$row['category_name']?></a></li>
+          <?php
+            }
+          }
+          ?>
         </ul>
       </li>
       <li class="menu-item">
@@ -106,9 +111,9 @@
     <div class="banner-text">
       <h1>Đậm vị thiên nhiên<br>hạnh phúc trọn đời!</h1>
       <p>Với sứ mệnh mang tới niềm vui và hạnh phúc, Meta Coffee hy vọng sẽ tạo nên <br> một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi</p>
-      <form action="" id="search-bn-home">
+      <form action="<?=BASE_URL?>/home/search" method="POST" id="search-bn-home">
         <i class="fas fa-search search-bn"></i>
-        <input class="search-bn-home" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
+        <input name="search" class="search-bn-home" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">
       </form>
     </div>
   </div>

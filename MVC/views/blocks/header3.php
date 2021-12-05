@@ -10,22 +10,27 @@
                 <a href="<?= BASE_URL ?>" class="menu-item__link">TRANG CHỦ</a>
             </li>
             <li class="menu-item">
-                <a href="" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
+                <a href="<?= BASE_URL ?>/home/thucdon" class="menu-item__link">THỰC ĐƠN <i class="ti-angle-down"></i></a>
                 <ul class="menu-children">
-                    <li class="children-item"><a href="">Trà sữa</a></li>
-                    <li class="children-item"><a href="">Cà phê</a></li>
-                    <li class="children-item"><a href="">Thức ăn nhanh</a></li>
-                    <li class="children-item"><a href="">Đồ uống chai</a></li>
+                    <?php
+                    if (isset($data['ShowMenu'])) {
+                        while ($row = mysqli_fetch_array($data['ShowMenu'])) {
+                    ?>
+                            <li class="children-item"><a href="<?= BASE_URL ?>/home/danhmuc/<?= $row['category_id'] ?>"><?= $row['category_name'] ?></a></li>
+                    <?php
+                        }
+                    }
+                    ?>
                 </ul>
             </li>
             <li class="menu-item">
-                <a href="" class="menu-item__link">TIN TỨC</a>
+                <a href="<?= BASE_URL ?>/home/tintuc" class="menu-item__link">TIN TỨC</a>
             </li>
             <li class="menu-item">
-                <a href="" class="menu-item__link">GIỚI THIỆU</a>
+                <a href="<?= BASE_URL ?>/home/about" class="menu-item__link">GIỚI THIỆU</a>
             </li>
             <li class="menu-item">
-                <a href="" class="menu-item__link">LIÊN HỆ</a>
+                <a href="<?= BASE_URL ?>/home/contact" class="menu-item__link">LIÊN HỆ</a>
             </li>
             <li class="menu-item">
                 <a href="" class="cart"><i class="cart-icon ti-shopping-cart"></i>

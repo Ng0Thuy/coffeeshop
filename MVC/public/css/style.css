@@ -16,6 +16,23 @@
   /* border-radius: 10px; */
 }
 /* CSS CHUNG */
+.error-search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+.error-search img{
+  max-width: 25%;
+}
+.error-search div{
+  font-size: 2rem;
+  
+}
+.error-search div.title{
+  font-size: 2rem;
+  font-weight: bold;
+}
 .text-white {
   color: white;
 }
@@ -556,6 +573,17 @@ li.login-item:last-child {
   left: 0;
   right: 0;
 }
+.linecha .line-bottom::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  right: 0;
+}
 .line-bottom {
   position: relative;
 }
@@ -612,6 +640,14 @@ li.login-item:last-child {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
+}
+.grid-3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+.grid-3 a{
+  min-width: 100%;
 }
 .grid-4 div{
   max-width: 100%;
@@ -1709,6 +1745,12 @@ form#form_forgot button:hover {
 .checkbox:hover {
   cursor: pointer;
 }
+a.category-item{
+  padding: 20px 0;
+}
+.justify-content-right{
+  justify-content: right;
+}
 /* CheckBox */
 .checkbox {
   display: inline-block;
@@ -1752,7 +1794,7 @@ form#form_forgot button:hover {
 /* CheckBox */
 
 .category-name {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: var(--text-color);
   text-decoration: none;
   padding: 0 20px;

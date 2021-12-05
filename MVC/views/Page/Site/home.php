@@ -20,8 +20,8 @@
                     ?>
                         <div class="col l-2-5 m-4 c-6">
                             <a href="<?= BASE_URL ?>/home/product/<?= $row['product_id'] ?>" class="product-cart">
-                                <div class="product-cart__tags">
-                                    <div class="tag-new">new</div>
+                                <div class="product-cart__tags justify-content-right">
+                                    <!-- <div class="tag-new">new</div> -->
                                     <?php
                                     if ($row['price_sale'] > 0) {
                                     ?>
@@ -43,7 +43,7 @@
                                             <i class="rating-icon fas fa-star"></i>
                                             <i class="rating-icon fas fa-star"></i>
                                         </div>
-                                        <p class="rating-text">(10 đánh giá)</p>
+                                        <!-- <p class="rating-text">(10 đánh giá)</p> -->
                                     </div>
                                     <div class="info-price">
                                         <?php
@@ -92,8 +92,8 @@
                     ?>
                         <div class="col l-2-5 m-4 c-6">
                             <a href="<?= BASE_URL ?>/home/product/<?= $item['product_id'] ?>" class="product-cart">
-                                <div class="product-cart__tags">
-                                    <div class="tag-new">new</div>
+                                <div class="product-cart__tags justify-content-right">
+                                    <!-- <div class="tag-new">new</div> -->
                                     <?php
                                     if ($item['price_sale'] > 0) {
                                     ?>
@@ -115,7 +115,7 @@
                                             <i class="rating-icon fas fa-star"></i>
                                             <i class="rating-icon fas fa-star"></i>
                                         </div>
-                                        <p class="rating-text">(10 đánh giá)</p>
+                                        <!-- <p class="rating-text">(10 đánh giá)</p> -->
                                     </div>
                                     <div class="info-price">
                                         <?php

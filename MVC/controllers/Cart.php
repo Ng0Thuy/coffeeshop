@@ -8,6 +8,7 @@ class Cart extends Controller
   function Default()
   {
     $Product = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     if (isset($_SESSION['giohang'])) {
       for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
           $num = $_SESSION['giohang'][$i][2];
@@ -17,6 +18,7 @@ class Cart extends Controller
   }
     $this->view("master2", [
       "Page" => "cart",
+      "ShowMenu" => $Category->ListAll(),
     ]);
   }
 

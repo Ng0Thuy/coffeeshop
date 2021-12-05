@@ -136,128 +136,68 @@
     </div>
   </div>
   <div class="nhan_container related-products">
-    <div class="featured-product__title">
+    <div class="featured-product__title linecha">
       <div class="text-2 line-bottom">
-        SẢN PHẨM BÁN CHẠY
+        SẢN PHẨM LIÊN QUAN
       </div>
     </div>
-    <div class="list-product related-products__list row sm-gutter">
-      <div class="col l-2-5 m-4 c-6">
-        <a href="<?= BASE_URL ?>/product" class="product-cart">
-          <div class="product-cart__tags">
-            <div class="tag-new">new</div>
-            <div class="tag-discount">30%</div>
-          </div>
-          <div class="product-cart__img">
-            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-          </div>
-          <div class="product-cart__info">
-            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-            <div class="info-rating">
-              <div class="rating-list">
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
+    <div class="list-product related-products__list row sm-gutter grid-4">
+      <?php
+      if (isset($data['ProductRelated'])) {
+        while ($item = mysqli_fetch_array($data['ProductRelated'])) {
+      ?>
+          <div class="col l-2-5 m-4 c-6">
+            <a href="<?= BASE_URL ?>/home/product/<?= $item['product_id'] ?>" class="product-cart">
+              <div class="product-cart__tags justify-content-right">
+                <?php
+                if ($item['price_sale'] > 0) {
+                ?>
+                  <div class="tag-discount"><?= $item['price_sale'] ?>%</div>
+                <?php
+                }
+                ?>
               </div>
-              <p class="rating-text">(2 đánh giá)</p>
-            </div>
-            <div class="info-price">
-              <div class="info-origin-price">25,000 đ</div>
-              <div class="info-sale-price">30,000 đ</div>
-            </div>
-            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-          </div>
-        </a>
-      </div>
-      <div class="col l-2-5 m-4 c-6">
-        <a href="<?= BASE_URL ?>/product" class="product-cart">
-          <div class="product-cart__tags">
-            <div class="tag-new">new</div>
-            <div class="tag-discount">30%</div>
-          </div>
-          <div class="product-cart__img">
-            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-          </div>
-          <div class="product-cart__info">
-            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-            <div class="info-rating">
-              <div class="rating-list">
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
+              <div class="product-cart__img">
+                <img src="<?= BASE_URL ?>/<?= $item['thumbnail'] ?>" alt="">
               </div>
-              <p class="rating-text">(2 đánh giá)</p>
-            </div>
-            <div class="info-price">
-              <div class="info-origin-price">25,000 đ</div>
-              <div class="info-sale-price">30,000 đ</div>
-            </div>
-            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-          </div>
-        </a>
-      </div>
-      <div class="col l-2-5 m-4 c-6">
-        <a href="<?= BASE_URL ?>/product" class="product-cart">
-          <div class="product-cart__tags">
-            <div class="tag-new">new</div>
-            <div class="tag-discount">30%</div>
-          </div>
-          <div class="product-cart__img">
-            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-          </div>
-          <div class="product-cart__info">
-            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-            <div class="info-rating">
-              <div class="rating-list">
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
+              <div class="product-cart__info">
+                <div class="info-title"><?= $item['product_name'] ?></div>
+                <div class="info-rating">
+                  <div class="rating-list">
+                    <i class="rating-icon fas fa-star"></i>
+                    <i class="rating-icon fas fa-star"></i>
+                    <i class="rating-icon fas fa-star"></i>
+                    <i class="rating-icon fas fa-star"></i>
+                    <i class="rating-icon fas fa-star"></i>
+                  </div>
+                  <p class="rating-text">(2 đánh giá)</p>
+                </div>
+                <div class="info-price">
+                  <?php
+                  if ($item['price_sale'] > 0) {
+                    $price = $item['price'];
+                    $sale = $item['price_sale'];
+                    $price_sale = ($sale / 100) * $price;
+                    $priceTop = $price - $price_sale;
+                  ?>
+                    <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                    <div class="info-sale-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                  <?php
+                  } else {
+                  ?>
+                    <div class="info-origin-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                  <?php
+                  }
+                  ?>
+                </div>
+                <div class="btn btn--primary btn-order-product">Đặt hàng</div>
               </div>
-              <p class="rating-text">(2 đánh giá)</p>
-            </div>
-            <div class="info-price">
-              <div class="info-origin-price">25,000 đ</div>
-              <div class="info-sale-price">30,000 đ</div>
-            </div>
-            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="col l-2-5 m-4 c-6">
-        <a href="<?= BASE_URL ?>/product" class="product-cart">
-          <div class="product-cart__tags">
-            <div class="tag-new">new</div>
-            <div class="tag-discount">30%</div>
-          </div>
-          <div class="product-cart__img">
-            <img src="<?= BASE_URL ?>/MVC/public/images/products/choco-creamcake.png" alt="">
-          </div>
-          <div class="product-cart__info">
-            <div class="info-title">Sữa chua dâu tằm hoàng kim</div>
-            <div class="info-rating">
-              <div class="rating-list">
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-                <i class="rating-icon fas fa-star"></i>
-              </div>
-              <p class="rating-text">(2 đánh giá)</p>
-            </div>
-            <div class="info-price">
-              <div class="info-origin-price">25,000 đ</div>
-              <div class="info-sale-price">30,000 đ</div>
-            </div>
-            <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-          </div>
-        </a>
-      </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 </main>

@@ -27,6 +27,12 @@ function loginOnblur() {
 
   $(document).ready(function(){ 
 
+    // LỘC
+    // $(".checkbox1").click(function() {
+    //     $("#filter").submit();
+    //     console.log("K");
+    // });
+
     // Thanh toán
         $("#checkoutSubmit").click(function() {
             $("#checkoutForm").submit();

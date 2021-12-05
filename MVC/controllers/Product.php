@@ -16,16 +16,20 @@ class Product extends Controller
   function name($id)
   {
     $Models = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "product",
+      "ShowMenu" => $Category->ListAll(),
     ]);
   }
 
   function list_product()
   {
     $Models = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "list_product",
+      "ShowMenu" => $Category->ListAll(),
     ]);
   }
   

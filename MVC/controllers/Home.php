@@ -3,28 +3,34 @@ class Home extends Controller
 {
   public function __construct()
   {
+    
   }
 
   function Default()
   {
     // session_destroy();
     $Product = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master1", [
       "Page" => "home",
       "showProduct" => $Product->ListAllAdmin(),
       "showProductSelling" => $Product->showProductSelling(),
+      "ShowMenu" => $Category->ListAll(),
     ]);
   }
 
   function product($id)
   {
     $Product = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "product",
       "showProductItem" => $Product->ListItemProduct($id),
       "showPrice" => $Product->showPrice($id),
       "showComment" => $Product->showComment($id),
       "showSize" => $Product->showPrice($id),
+      "ShowMenu" => $Category->ListAll(),
+      "ProductRelated" => $Product->ProductRelated($id),
     ]);
   }
 
@@ -43,12 +49,48 @@ class Home extends Controller
 
   function thucdon()
   {
-    $Models = $this->model("ProductModel");
+    $CategoryModel = $this->model("CategoryModel");
+    $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
-      "Page" => "list_product",
+      "Page" => "list_Product",
+      "showMenu" => $CategoryModel->ListAll(),
+      "showAll" => $ProductModel->ListAll(),
+      "showNum" => $ProductModel->showNum(),
+      "ListAllAdmin" => $ProductModel->ListAllAdmin(),
+      "ShowMenu" => $CategoryModel->ListAll(),
+
     ]);
   }
 
+  function danhmuc($id){
+    $CategoryModel = $this->model("CategoryModel");
+    $ProductModel = $this->model("ProductModel");
+    $this->view("master2", [
+      "Page" => "list_Product",
+      "showMenu" => $CategoryModel->ListAll(),
+      "ListItemId" => $ProductModel->ListItemId($id),
+      "showNum" => $ProductModel->showNumId($id),
+      "ListAllCt" => $ProductModel->ListAllCt($id),
+      "ShowMenu" => $CategoryModel->ListAll(),
+      "ShowName" => $CategoryModel->ListItem($id),
+    ]);
+  }
+
+  function search(){
+    $CategoryModel = $this->model("CategoryModel");
+    $ProductModel = $this->model("ProductModel");
+    if(isset($_POST['search'])){
+      $id = $_POST['search'];
+    }
+    $this->view("master2", [
+      "Page" => "list_Product",
+      "showMenu" => $CategoryModel->ListAll(),
+      "ShowMenu" => $CategoryModel->ListAll(),
+      "ListSearch" => $ProductModel->ListSearch($id),
+      "ListNumSearch" => $ProductModel->ListNumSearch($id),
+    ]);
+  }
+  
   function checkout()
   {
     // if (sizeof($_SESSION['giohang']) == 0) {
@@ -72,9 +114,12 @@ class Home extends Controller
         ';
     }
     $User = $this->model("UserModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "checkout",
       "showUserCheckout" => $User->showUserCheckout($user_id),
+      "ShowMenu" => $Category->ListAll(),
+
     ]);
   }
 
@@ -93,25 +138,34 @@ class Home extends Controller
       $id ="1";
     }
     $ProductModel = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "history",
       "showHistoty" => $ProductModel->showHistoty($id),
+      "ShowMenu" => $Category->ListAll(),
+
     ]);
   }
   function historyDetails($id)
   {
     $ProductModel = $this->model("ProductModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master2", [
       "Page" => "historyDetails",
       "showHistoryDetails" => $ProductModel->showHistoryDetails($id),
+      "ShowMenu" => $Category->ListAll(),
+
     ]);
   }
 
   function user()
   {
     $Models = $this->model("HomeModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master3", [
       "Page" => "user",
+      "ShowMenu" => $Category->ListAll(),
+
     ]);
   }
 

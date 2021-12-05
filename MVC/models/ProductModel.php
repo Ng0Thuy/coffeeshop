@@ -7,12 +7,30 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product";
         return mysqli_query($this->con, $sql);
     }
+    public function showNum()
+    {
+        $sql = "SELECT count(*) FROM product";
+        return mysqli_query($this->con, $sql);
+    }
+    public function showNumId($id)
+    {
+        $sql = "SELECT count(*) FROM product WHERE category_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
 
     public function ListItem($id)
     {
-        $sql = "SELECT * FROM product where product_id = $id";
+        $sql = "SELECT * FROM product where product_id =$id";
+        var_dump($sql);
         return mysqli_query($this->con, $sql);
     }
+
+    public function ListItemId($id)
+    {
+        $sql = "SELECT * FROM product where category_id =$id";
+        return mysqli_query($this->con, $sql);
+    }
+
 
     public function ListItemProduct($id)
     {
@@ -35,6 +53,20 @@ class ProductModel extends DB
         return mysqli_query($this->con, $sql);
     }
 
+
+    public function ProductRelated($id)
+    {
+        $qr = "SELECT category_id FROM product WHERE product_id=$id";
+        $checkid = mysqli_query($this->con, $qr);
+        $row = mysqli_fetch_assoc($checkid);
+        $category_id = $row['category_id'];
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ' AND category_id=$category_id
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
     public function ShowProductList()
     {
         $sql = "SELECT * FROM product";
@@ -44,17 +76,41 @@ class ProductModel extends DB
     {
         $sql = "SELECT * FROM product 
         INNER JOIN variant ON product.product_id = variant.product_id 
-        WHERE size = 'Nhỏ' 
-        ORDER BY import_date DESC limit 10";
+        WHERE size = 'Nhỏ'
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListAllCt($id)
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ' AND category_id=$id
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function ListSearch($id)
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN category ON product.category_id = category.category_id 
+        WHERE size = 'Nhỏ' AND product_name like '%$id%'
+        OR size = 'Nhỏ' AND category_name like '%$id%'
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListNumSearch($id)
+    {
+        $sql = "SELECT count(*) FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN category ON product.category_id = category.category_id 
+        WHERE size = 'Nhỏ' AND product_name like '%$id%'
+        OR size = 'Nhỏ' AND category_name like '%$id%'";
         return mysqli_query($this->con, $sql);
     }
 
     public function showProductSelling()
     {
-        // $sql = "SELECT * FROM variant, product, order_details
-        // WHERE product.product_id=variant.product_id 
-        // and variant.variant_id=order_details.variant_id 
-        // ORDER by order_details.num DESC";
         $sql = "SELECT product.product_id, product.product_name, product.price_sale, 
         product.thumbnail, variant.size, variant.price,
         SUM(order_details.num) as num
@@ -586,7 +642,7 @@ class ProductModel extends DB
     public function updateOrder($status, $id)
     {
         $sql = "UPDATE orders SET status='$status' WHERE order_id =$id";
-        $result= mysqli_query($this->con, $sql);
+        $result = mysqli_query($this->con, $sql);
         if ($result !== false) {
             echo '
                 <script>
@@ -595,8 +651,7 @@ class ProductModel extends DB
                 </script>
             ';
             exit;
-        } 
-        else{
+        } else {
             echo '
                 <script>
                     alert("Đã xảy ra lỗi");
@@ -605,6 +660,5 @@ class ProductModel extends DB
             ';
             exit;
         }
-
     }
 }
