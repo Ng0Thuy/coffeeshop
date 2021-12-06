@@ -7,6 +7,11 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product";
         return mysqli_query($this->con, $sql);
     }
+    public function countProduct()
+    {
+        $sql = "SELECT count(*) FROM product";
+        return mysqli_query($this->con, $sql);
+    }
     public function showNum()
     {
         $sql = "SELECT count(*) FROM product";
@@ -69,7 +74,7 @@ class ProductModel extends DB
         $category_id = $row['category_id'];
         $sql = "SELECT * FROM product 
         INNER JOIN variant ON product.product_id = variant.product_id 
-        WHERE size = 'Nhỏ' AND category_id=$category_id
+        WHERE size = 'Nhỏ' AND product.category_id=$category_id
         ORDER BY import_date DESC";
         return mysqli_query($this->con, $sql);
     }

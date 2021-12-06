@@ -71,7 +71,7 @@
                     }
                     ?>
                 </div>
-                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="#">Xem tất cả</a></div>
+                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="<?= BASE_URL ?>/home/thucdon">Xem tất cả</a></div>
             </div>
         </div>
 
@@ -145,7 +145,7 @@
 
 
                 </div>
-                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="">Xem tất cả</a></div>
+                <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="<?= BASE_URL ?>/home/thucdon">Xem tất cả</a></div>
             </div>
         </div>
         <!-- Slider -->

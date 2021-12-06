@@ -7,14 +7,50 @@ class Admin extends Controller
 
   function Default()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Models = $this->model("HomeModel");
+    $Category = $this->model("CategoryModel");
+    $Product = $this->model("ProductModel");
+    $User = $this->model("UserModel");
     $this->view("masterAdmin", [
       "Page" => "home",
+      "countCategory" => $Category->countCategory(),
+      "countProduct" => $Product->countProduct(),
+      "countUser" => $User->countUser(),
+      "countOrder" => $Models->countOrder(),
+      "countComment" => $Models->countComment(),
     ]);
+  }
+
+
+  function logout()
+  {
+    unset($_SESSION['userAdmin']);
+    header("Location: http://localhost/DuAn1/Admin/login");
+  }
+
+  function login()
+  {
+    $Category = $this->model("CategoryModel");
+    $this->view("masterAdmin", [
+      "Page" => "login",
+      "countCategory" => $Category->ListAll()
+    ]);
+  }
+
+  function loginAction()
+  {
+    $Login = $this->model("UserModel");
+    $kq = $Login->LoginAdmin();
   }
 
   function category()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     $this->view("masterAdmin", [
       "Page" => "category",
@@ -24,6 +60,9 @@ class Admin extends Controller
 
   function editCategory($id)
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     $Category->checkid($id);
     $this->view("masterAdmin", [
@@ -38,6 +77,9 @@ class Admin extends Controller
 
   function addCategory()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     if (isset($_POST['name'])) {
       $name = $_POST['name'];
@@ -47,6 +89,9 @@ class Admin extends Controller
 
   function deleteCategory()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     if (!empty($_POST)) {
       if (isset($_POST['action'])) {
@@ -66,6 +111,9 @@ class Admin extends Controller
 
   function product()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     $Product = $this->model("ProductModel");
     $Models = $this->model("AdminModel");
@@ -86,6 +134,9 @@ class Admin extends Controller
   // Sửa sản phẩm
   function editProduct($id)
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Product = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
     // $Category->checkid($id);
@@ -126,6 +177,9 @@ class Admin extends Controller
 
   function user()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $Category = $this->model("CategoryModel");
     $Product = $this->model("ProductModel");
     $UserModel = $this->model("UserModel");
@@ -140,6 +194,9 @@ class Admin extends Controller
 
   function editUser($id)
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $UserModel = $this->model("UserModel");
     $this->view("masterAdmin", [
       "Page" => "editUser",
@@ -176,6 +233,9 @@ class Admin extends Controller
   // COMMENT
   function comment()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $AdminModel = $this->model("AdminModel");
     $this->view("masterAdmin", [
       "Page" => "comment",
@@ -204,6 +264,9 @@ class Admin extends Controller
   // ORDER
   function order()
   {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+    }
     $AdminModel = $this->model("AdminModel");
     $this->view("masterAdmin", [
       "Page" => "order",
@@ -227,7 +290,5 @@ class Admin extends Controller
     }
     $Product = $this->model("ProductModel");
     $Add = $Product->updateOrder($status, $id);
-    
   }
-
 }

@@ -16,20 +16,19 @@
   /* border-radius: 10px; */
 }
 /* CSS CHUNG */
-.error-search{
+.error-search {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
 }
-.error-search img{
+.error-search img {
   max-width: 25%;
 }
-.error-search div{
+.error-search div {
   font-size: 2rem;
-  
 }
-.error-search div.title{
+.error-search div.title {
   font-size: 2rem;
   font-weight: bold;
 }
@@ -166,6 +165,9 @@
 }
 .login-children {
   width: 150px;
+}
+.login-children:hover .login-children__list{
+  display: block;
 }
 .my-account {
   width: 100%;
@@ -308,8 +310,19 @@
   background-color: #f5f5f5;
   border-radius: 0 0 4px 4px;
 }
+.login-children__list::before{
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transform: translateY(-100%);
+  height: 50px;
+}
 .login-item {
   border-bottom: 1px dotted grey;
+  background-color: #282828;
 }
 li.login-item:last-child {
   border: none;
@@ -322,14 +335,15 @@ li.login-item:last-child {
   display: block;
   font-size: 1.4rem;
   font-weight: 500;
-  color: #282828;
+  color: white;
   text-decoration: none;
 }
 .login-children__list .login-link i {
   margin-right: 10px;
 }
 .login-item:hover {
-  background-color: #282828;
+  background-color: #282828c7;
+  
 }
 .login-item:hover a {
   color: white;
@@ -630,26 +644,24 @@ li.login-item:last-child {
   justify-content: center;
   gap: 10px;
 }
-.ml-auto{
+.ml-auto {
   margin-left: auto;
 }
 .list-product .col.l-2-5.m-4.c-6 {
   padding: 10px;
 }
-.grid-4{
+.grid-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
 }
-.grid-3{
+.grid-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-
 }
-.grid-3 a{
+.grid-3 a {
   min-width: 100%;
 }
-.grid-4 div{
+.grid-4 div {
   max-width: 100%;
 }
 .product-cart {
@@ -712,7 +724,7 @@ li.login-item:last-child {
 .product-cart__img {
   overflow: hidden;
 }
-.w-100{
+.w-100 {
   width: 100%;
 }
 .product-cart__img img {
@@ -1367,6 +1379,41 @@ main.container
   top: 34%;
   left: 11%; */
 }
+form.login_alone {
+  min-width: 90%;
+}
+.login_alone label {
+  margin-left: 0px;
+}
+.login_alone input {
+  width: 100%;
+}
+.login_alone input[type="checkbox"] {
+  width: auto;
+}
+.login_alone .titlelogin {
+  font-size: 1.7rem;
+  margin-top: 2rem;
+}
+.login_alone .titlelogin a {
+  text-decoration: none;
+  color: blue;
+}
+.login_alone button {
+  margin-right: auto;
+  max-width: 20%;
+}
+.login_alone p.forgot-shows {
+  font-size: 1.7rem;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+  color: blue;
+  cursor: pointer;
+}
+#login-dev form.login_alone .savepass-login {
+  margin: 0.5rem 0 1rem 0;
+}
 form#form_login .savepass-login {
   /* margin-left: 2.7rem; */
   margin: 0.5rem 0 1rem 5.5rem;
@@ -1413,6 +1460,13 @@ form#form_login button:hover {
   width: 100%;
 } */
 /* =======REGSITER============== */
+#deletecomment {
+  cursor: pointer;
+}
+#regsiter-dev h3 {
+  text-align: center;
+  font-size: 2.5rem;
+}
 #regsiter {
   display: none;
   background-color: white;
@@ -1500,7 +1554,7 @@ form#form_login button:hover {
   border-radius: 8px;
   border: 1px solid #d3b673;
   width: 80%;
-  padding: 10px 10px;
+  padding: 14px 10px;
   font-size: 1.7rem;
 }
 /* .form-group-regsiter input:not(:placeholder-shown) + label,
@@ -1531,10 +1585,54 @@ form#form_login button:hover {
   margin-right: auto;
   margin-left: 6rem;
 }
-form#form_regsiter .btn-regsiter {
+form.regsiter_alone {
+  min-width: 90%;
+  max-width: 600px;
+  margin: 0px auto;
+}
+form.regsiter_alone label {
+  margin-left: 0px;
+}
+form.regsiter_alone input {
+  min-width: 100%;
+  padding: 14px 10px;
+}
+#regsiter-dev {
+  margin-bottom: 5rem;
+}
+#regsiter-dev form.regsiter_alone .btn-regsiter {
+  display: flex;
+  justify-content: left;
+}
+#regsiter-dev form.regsiter_alone button {
+  width: 20%;
+  margin-left: 0;
+}
+#regsiter-dev form.regsiter_alone .forgot-passs {
+  text-align: left;
+  font-size: 1.7rem;
+  color: blue;
+  margin-top: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#regsiter-dev form.regsiter_alone .textLogin {
+  text-align: left;
+  font-size: 1.7rem;
+  margin-top: 1rem;
+}
+#regsiter-dev form.regsiter_alone .textLogin a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+form #form_regsiter .btn-regsiter {
   display: flex;
   justify-content: center;
 }
+
 form#form_regsiter button {
   border: 0;
   width: 80%;
@@ -1545,6 +1643,7 @@ form#form_regsiter button {
   font-weight: 600;
   font-size: 1.8rem;
   font-family: Muli, sans-serif;
+  margin-left: 6rem;
 }
 form#form_regsiter button:hover {
   cursor: pointer;
@@ -1566,7 +1665,7 @@ form#form_regsiter button:hover {
   height: auto;
   border-radius: 10px;
   width: 100vh;
-  /* box-shadow: var(--shadow-primary); */
+  box-shadow: var(--shadow-primary);
   padding: 2rem 2rem 10rem 2rem;
   line-height: 1.5;
 }
@@ -1592,11 +1691,17 @@ form#form_regsiter button:hover {
   text-align: center;
 }
 .form-group-forgot {
-  position: relative;
-  width: 100%;
+  /* position: relative; */
+  max-width: 600px;
+  margin: 0px auto;
+  width: 80%;
   display: flex;
+  flex-flow: column;
   justify-content: center;
   padding: 10px 0;
+}
+.form-group-forgot .error {
+  color: red;
 }
 .regsiter-show {
   cursor: pointer;
@@ -1604,18 +1709,18 @@ form#form_regsiter button:hover {
 .form-group-forgot input {
   border-radius: 8px;
   border: 1px solid #d3b673;
-  width: 80%;
+  width: 100%;
   padding: 14px 10px;
   font-size: 1.7rem;
 }
-.form-group-forgot input:not(:placeholder-shown) + label,
+/* .form-group-forgot input:not(:placeholder-shown) + label,
 .form-group-forgot input:focus + label {
   position: absolute;
   padding: 0 5px;
   top: -7%;
   background-color: white;
   left: 11%;
-}
+} */
 .form-group-forgot input:focus {
   border: o;
   outline: 0;
@@ -1627,10 +1732,10 @@ form#form_regsiter button:hover {
   color: #877777;
   transition: all 0.4s;
   font-size: 1.7rem;
-  position: absolute;
+  /* position: absolute; */
   padding: 0 5px;
-  top: 34%;
-  left: 11%;
+  /* top: 34%;
+  left: 11%; */
 }
 form#form_forgot .savepass-forgot {
   /* margin-left: 2.7rem; */
@@ -1639,6 +1744,7 @@ form#form_forgot .savepass-forgot {
 }
 form#form_forgot .btn-forgot {
   display: flex;
+  margin-top: 10px;
   justify-content: center;
 }
 form#form_forgot button {
@@ -1745,10 +1851,10 @@ form#form_forgot button:hover {
 .checkbox:hover {
   cursor: pointer;
 }
-a.category-item{
+a.category-item {
   padding: 20px 0;
 }
-.justify-content-right{
+.justify-content-right {
   justify-content: right;
 }
 /* CheckBox */

@@ -56,3 +56,8 @@
         </div>
     </div>
 </main>
+<style>
+    .error{
+        font-size: 1.4rem;
+    }
+</style>

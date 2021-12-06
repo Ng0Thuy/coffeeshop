@@ -90,12 +90,12 @@
                 </a>
               </li>
               <li class="login-item">
-                <a class="login-link" href="<?= BASE_URL ?>/home/user">
-                  <i class="fas fa-key"></i>Đổi mật khẩu
+                <a class="login-link" href="<?= BASE_URL ?>/home/history">
+                  <i class="fas fa-shopping-cart"></i>Lịch sử mua
                 </a>
               </li>
               <li class="login-item">
-                <a class="login-link" href="">
+                <a class="login-link" href="<?= BASE_URL ?>/home/logout">
                   <i class="fas fa-sign-out-alt"></i>Đăng xuất
                 </a>
               </li>

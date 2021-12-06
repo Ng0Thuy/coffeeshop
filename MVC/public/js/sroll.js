@@ -202,6 +202,9 @@ $(document).ready(function () {
     $("#login").css("display", "none");
     $("#regsiter").css("display", "none");
     $("#forgot").css("display", "block");
+    $(".app").css("opacity", "0.8");
+    $("html, body").animate({ scrollTop: 0 }, 100);
+
   });
   $(".login-show").click(function () {
     $("#regsiter").css("display", "none");
@@ -388,6 +391,50 @@ $("#form_regsiter").validate({
     });
   },
 });
+
+
+// QUÊN MK
+$("#form_forgot").validate({
+  rules: {
+    email: {
+      required: true,
+      email: true,
+    },
+  },
+  messages: {
+    email: {
+      required: "Bạn chưa nhập email",
+      email: "Email chưa đúng định dạng",
+    },
+  },
+  submitHandler: function (form) {
+    $.ajax({
+      type: "POST",
+      url: "http://localhost/DuAn1/Home/forgotAction",
+      data: $(form).serializeArray(),
+      success: function (response) {
+        response = JSON.parse(response);
+        if (response.status == 0) {
+          //Đăng nhập lỗi
+          $("#login").css("display", "none");
+          $("#forgot").css("display", "none");
+          $("#regsiter").css("display", "none");
+          $(".app").css("opacity", "1");
+          swal("Thất bại!", response.message, "error");
+         
+        } else {
+          //Đăng nhập thành công
+          $("#login").css("display", "none");
+          $("#forgot").css("display", "none");
+          $("#regsiter").css("display", "none");
+          $(".app").css("opacity", "1");
+          swal("Thành công!", response.message, "success");
+        }
+      },
+    });
+  },
+});
+
 
 // LOGIN VALIDATE
 $("#form_login").validate({

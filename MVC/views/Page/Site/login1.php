@@ -1,8 +1,8 @@
 <main class="grid wide container user" style="margin: 85px auto 20px;">
 <nav class="nav-top">
         <ul>
-            <li><a href=""><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
-            <li><a href="">Đăng nhập</a></li>
+            <li><a href="<?=BASE_URL?>"><i class="fas fa-home"></i>Trang chủ</a></li><span>/</span>
+            <li><a href="<?=BASE_URL?>/home/login">Đăng nhập</a></li>
         </ul>
     </nav>
 <div id="login-dev">
@@ -20,11 +20,11 @@
           <input type="checkbox" id="savepass" />
           <label for="savepass">Lưu mật khẩu</label>
         </div>
-        <a href="" class="forgot-shows">Quên mật khẩu?</a>        
+        <p class="forgot-shows forgot-show">Quên mật khẩu?</p>        
         <div class="btn-login">
           <button>Đăng nhập</button>
         </div>
-        <p class="titlelogin">Bạn chưa có tài khoản? <a href="" >Đăng ký</a></p>
+        <p class="titlelogin">Bạn chưa có tài khoản? <a href="<?=BASE_URL?>/home/regsiter" >Đăng ký</a></p>
       </form>
 
     </div>

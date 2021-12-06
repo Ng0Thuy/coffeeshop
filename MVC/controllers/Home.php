@@ -26,6 +26,14 @@ class Home extends Controller
     ]);
   }
 
+  function logout(){
+    unset($_SESSION['userlogin']);
+    echo '
+      <script>
+      history.back();
+      </script>
+    ';
+  }
   function product($id)
   {
     if (isset($_SESSION['userlogin'])) {
@@ -49,6 +57,12 @@ class Home extends Controller
     ]);
   }
 
+  function forgotAction()
+  {
+    $user = $this->model("UserModel");
+    $kq = $user->forgot();
+  }
+
   function login()
   {
     if (isset($_SESSION['userlogin'])) {
@@ -59,11 +73,23 @@ class Home extends Controller
 
     $User = $this->model("UserModel");
     $Models = $this->model("HomeModel");
+    $Category = $this->model("CategoryModel");
     $this->view("master3", [
       "Page" => "login1",
+      "ShowMenu" => $Category->ListAll(),
       "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
+
+  function regsiter()
+  {
+    $Category = $this->model("CategoryModel");
+    $this->view("master3", [
+      "Page" => "regsiter1",
+      "ShowMenu" => $Category->ListAll(),
+    ]);
+  }
+
   function loginAction()
   {
     $Login = $this->model("UserModel");
@@ -156,8 +182,7 @@ class Home extends Controller
                 window.location.assign("../");
             </script>
         ';
-    }
-    else{
+    } else {
       if (isset($_SESSION['giohang'])) {
         $numCart = 0;
         for ($i = 0; $i < count($_SESSION['giohang']); $i++) {
@@ -304,11 +329,9 @@ class Home extends Controller
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $user_id = $_POST['user_id'];
-    
+
     $UserModel = $this->model("UserModel");
     $checkPass = $UserModel->editUser($user_id, $name, $address, $phone);
-
-
   }
 
   function deleteComment()
@@ -387,5 +410,4 @@ class Home extends Controller
       header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
   }
-
 }
