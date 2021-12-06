@@ -33,7 +33,7 @@ class Home extends Controller
     } else {
       $user_id = "";
     }
-
+    $_SESSION['idSP'] = $id;
     $User = $this->model("UserModel");
     $Product = $this->model("ProductModel");
     $Category = $this->model("CategoryModel");
@@ -157,6 +157,22 @@ class Home extends Controller
             </script>
         ';
     }
+    else{
+      if (isset($_SESSION['giohang'])) {
+        $numCart = 0;
+        for ($i = 0; $i < count($_SESSION['giohang']); $i++) {
+          $numCart += $_SESSION['giohang'][$i][2];
+        }
+        if ($numCart == 0) {
+          echo '
+            <script>
+                alert("Chưa có sản phẩm trong giỏ hàng")
+                window.location.assign("../");
+            </script>
+        ';
+        }
+      }
+    }
 
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
@@ -279,21 +295,64 @@ class Home extends Controller
     $password = $_POST['password'];
     $user_id = $_POST['user_id'];
     $passwordnew = $_POST['passwordnew'];
+    $checkPass = $UserModel->checkPass($password, $passwordnew, $user_id);
   }
 
   function edituser()
   {
-    $UserModel = $this->model("UserModel");
     $name = $_POST['name'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
     $user_id = $_POST['user_id'];
+    
+    $UserModel = $this->model("UserModel");
+    $checkPass = $UserModel->editUser($user_id, $name, $address, $phone);
+
+
+  }
+
+  function deleteComment()
+  {
+    if (isset($_POST['id'])) {
+      $id = $_POST['id'];
+    } else {
+      $id = 0;
+    }
+    $ProductModel = $this->model("ProductModel");
+    $deleteComment = $ProductModel->deleteComment($id);
   }
 
   function loadComment()
   {
-    $comment = $this->model("UserModel");
-    $kq = $comment->loadComment();
+    $ProductModel = $this->model("ProductModel");
+    $id = $_SESSION['idSP'];
+    $result = $ProductModel->showComment($id);
+
+    while ($binhluan = mysqli_fetch_assoc($result)) {
+?>
+      <div class="comment-list" id="load_data">
+        <div class="comment">
+          <div class="comment-avatar">
+            <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
+          </div>
+          <div class="comment-user">
+            <div class="comment-user__name"><?= $binhluan['name'] ?></div>
+            <div class="comment-user__content"><?= $binhluan['comment_content'] ?></div>
+            <div class="comment-user__content time"><?= $binhluan['comment_date'] ?></div>
+            <?php
+            if (isset($_SESSION['userlogin'])) {
+              if ($binhluan['user_id'] == $_SESSION['userlogin'][3]) {
+            ?>
+                <p id="deletecomment" onclick="deleteComment(<?= $binhluan['comment_id'] ?>)" class="deletecomment">Xóa</p>
+            <?php
+              }
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+<?php
+    }
   }
 
   function AddToCart()
@@ -328,4 +387,5 @@ class Home extends Controller
       header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
   }
+
 }

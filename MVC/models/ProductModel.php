@@ -53,6 +53,13 @@ class ProductModel extends DB
         return mysqli_query($this->con, $sql);
     }
 
+    public function deleteComment($id)
+    {
+        $sql = "DELETE FROM comment WHERE comment_id='$id'";
+        var_dump($sql);
+        return mysqli_query($this->con, $sql);
+    }
+
 
     public function ProductRelated($id)
     {

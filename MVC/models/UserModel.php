@@ -62,6 +62,7 @@ class UserModel extends DB
         }
     }
 
+
     public function edit_user($name, $address, $phone, $user_id)
     {
         if (isset($name) && isset($address) && isset($phone)) {
@@ -221,6 +222,34 @@ class UserModel extends DB
         }
     }
 
+    public function editUser($user_id, $name, $address, $phone)
+    {
+        if (isset($user_id) && isset($name) && isset($address) && isset($phone)) {
+            $sql = "UPDATE user SET name='$name', address='$address', phone='$phone' WHERE user_id='$user_id'";
+            $result = mysqli_query($this->con, $sql);
+
+            if (!$result) {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Cập nhật thông tin không thành công'
+                ));
+                exit;
+            } else {
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => 'Cập nhật thông tin thành công'
+                ));
+                exit;
+            }
+        } {
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Đã xảy ra lỗi'
+            ));
+            exit;
+        }
+    }
+
     public function comment()
     {
         $error = false;
@@ -253,7 +282,6 @@ class UserModel extends DB
             ));
             exit;
         }
-        echo "OK";
     }
 
     public function deleteComment($id)

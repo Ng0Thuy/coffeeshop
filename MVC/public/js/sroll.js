@@ -25,6 +25,23 @@ function loginOnblur() {
   }
 }
 
+function deleteComment(id) {
+  var option = confirm("Bạn có chắc chắn muốn xoá sản phẩm này không?");
+  if (!option) {
+    return;
+  }
+  $.post(
+    "../deleteComment",
+    {
+      id: id,
+      action: "delete",
+    },
+    function (data) {
+      location.reload();
+    }
+  );
+}
+
 $(document).ready(function () {
   // LỘC
   // $(".checkbox1").click(function() {
@@ -69,12 +86,26 @@ $(document).ready(function () {
             swal("Thất bại!", response.message, "error");
           } else {
             document.getElementById("formComment").reset();
-            swal("Thành công!", response.message, "success");
+            // swal("Thành công!", response.message, "success");
+            loadComment();
           }
         },
       });
     },
   });
+
+  loadComment();
+  function loadComment() {
+    $.ajax({
+      url: "../loadComment",
+      type: "post",
+      data: {
+        orderby: "DESC",
+      },
+    }).done(function (data) {
+      $("#loadComment").html(data);
+    });
+  }
 
   // CART NUMBERư
   $("input[type=radio]").change(function () {

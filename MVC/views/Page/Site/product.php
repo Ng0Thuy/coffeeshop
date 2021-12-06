@@ -92,33 +92,9 @@
     <div class="tab_container_area" id="danhgia">
       <div class="tab_container">
         <h3 class="comment-heading">Bình luận</h3>
-        <?php
-        while ($item = mysqli_fetch_array($data['showComment'])) {
-        ?>
-          <div class="comment-list" id="load_data">
-            <div class="comment">
-              <div class="comment-avatar">
-                <img src="<?= BASE_URL ?>/MVC/public/images/users/SEIJ6567.JPG" alt="">
-              </div>
-              <div class="comment-user">
-                <div class="comment-user__name"><?= $item['name'] ?></div>
-                <div class="comment-user__content"><?= $item['comment_content'] ?></div>
-                <div class="comment-user__content time"><?= $item['comment_date'] ?></div>
-                <?php
-                if (isset($_SESSION['userlogin'])) {
-                  if ($item['user_id'] == $_SESSION['userlogin'][3]) {
-                ?>
-                    <a href="" class="deletecomment">Xóa</a>
-                <?php
-                  }
-                }
-                ?>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-        ?>
+        <div id="loadComment">
+          <!-- NÔI DUNG BÌNH LUẬN Ở ĐÂY -->
+        </div>
         <form action="" method="post" id="formComment">
           <textarea cols="131" name="content" rows="4" placeholder="Viết bình luận..."></textarea>
           <input type="text" hidden name="product_id" value="<?= $row['product_id'] ?>"> <br>

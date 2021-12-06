@@ -7,7 +7,7 @@
     </nav>
 <div id="login-dev">
       <h3 class="login-title">Đăng nhập hệ thống</h3>
-      <form action="" method="POST" id="form_login">
+      <form action="" method="POST" id="form_login" class="login_alone">
         <div class="form-group-login">
           <label for="">Email</label>
           <input type="text" name="email" id="" class="email-ip" placeholder="Nhập email" />
@@ -20,12 +20,12 @@
           <input type="checkbox" id="savepass" />
           <label for="savepass">Lưu mật khẩu</label>
         </div>
-        <div class="forgot-pass mb-2"><span class="forgot-show">Quên mật khẩu?</span></div>
+        <a href="" class="forgot-shows">Quên mật khẩu?</a>        
         <div class="btn-login">
           <button>Đăng nhập</button>
         </div>
+        <p class="titlelogin">Bạn chưa có tài khoản? <a href="" >Đăng ký</a></p>
       </form>
-      <p>Bạn chưa có tài khoản? <span class="regsiter-show">Đăng ký</span></p>
 
     </div>
 </main>
