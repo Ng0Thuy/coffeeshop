@@ -3,8 +3,18 @@
 *,a, span ,input{
     font-family: 'Source Sans Pro', sans-serif;
 } */
-
+.locsp{
+  display: flex;
+}
+.locsp p{
+  padding-right: 5px;
+}
 /* Thanh scrol; */
+.pagination_active{
+  border: 1px solid #ff929b;
+  background-color: #ff929b;
+  color: white;
+}
 .success a{
   text-decoration: none;
 }

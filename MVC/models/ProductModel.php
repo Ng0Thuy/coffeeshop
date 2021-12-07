@@ -98,8 +98,10 @@ class ProductModel extends DB
             $category_id = implode("','",$_POST['category']);
             $sql.="AND category_id IN ('$category_id')";
         } 
-
-        $sql.=" ORDER BY import_date DESC LIMIT $start_from, $record_per_page";
+        if (isset($_POST['locSP'])) {
+            $locSP = $_POST['locSP'];
+            $sql.=" ORDER BY import_date $locSP LIMIT $start_from, $record_per_page";
+        }
 
         $phantrang = mysqli_query($this->con, $sql);
 ?>
@@ -167,6 +169,7 @@ class ProductModel extends DB
             $category_id = implode("','",$_POST['category']);
             $page_query.="AND category_id IN ('$category_id')";
         } 
+
         $page_query.=" ORDER BY import_date DESC";
         
 
@@ -183,6 +186,22 @@ class ProductModel extends DB
             }
             ?>
             <div>
+        <?php
+    }
+
+    public function showNumAjax()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $sql.="AND category_id IN ('$category_id')";
+        } 
+        $result = mysqli_query($this->con, $sql);
+        $num = mysqli_num_rows($result);
+        ?>
+        <p><span><?=$num?></span> Sản phẩm</p>
         <?php
     }
 
@@ -394,13 +413,25 @@ class ProductModel extends DB
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Nhỏ','" . $sizeM . "')");
             }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Nhỏ','" . 0 . "')");
+            }
             if ($sizeML !== "") {
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Vừa','" . $sizeML . "')");
             }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Vừa','" . 0 . "')");
+            }
             if ($sizeL !== "") {
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Lớn','" . $sizeL . "')");
+            }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Lớn','" . 0 . "')");
             }
             mysqli_close($this->con);
             if ($error !== false) {

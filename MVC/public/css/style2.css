@@ -198,14 +198,14 @@ img {
   margin: 1.5rem 0 0 2rem;
 }
 .purchase-info input[type="number"] {
-  width: 60px;
-  height: 35px;
+  width: 80px;
+  height: 40px;
   border: 1.5px solid #ddd;
   border-radius: 25px;
   text-align: center;
   padding: 0.45rem 0.8rem;
   outline: none;
-  margin: 15px 30px 30px 32px;
+  margin: 15px 25px 30px 25px;
   padding: 10px;
   font-size: 15px;
 }
@@ -214,8 +214,8 @@ img {
   border: 1px solid #000;
 }
 .purchase-info .btn {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: transparent;
   color: rgb(241, 127, 146);
   border: 1px solid rgb(241, 127, 146);
@@ -235,10 +235,20 @@ img {
   height: 17px;
 }
 .purchase-info input:checked + label {
-  font-weight: 600;
+    font-weight: 600;
+    background: #ff929b;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: white;
 }
 .purchase-info label {
   padding-right: 20px;
+  padding-right: 20px;
+  /* margin: 0px 10px; */
+  border: 1px solid #ff929b;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin-right: 10px;
 }
 .purchase-info .size {
   width: 37px;
@@ -256,7 +266,14 @@ img {
   background: rgb(241, 127, 146);
   color: #000;
 }
-
+.purchase-info span.btn{
+  transition: all 0.3s;
+}
+.purchase-info span.btn:hover{
+  cursor: pointer;
+  background-color: rgb(255 146 155);
+  color: white;
+}
 /* .click{
     background: yellow;
 } */

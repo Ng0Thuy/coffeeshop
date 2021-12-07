@@ -45,6 +45,12 @@ class Home extends Controller
     $phantrang = $ProductModel->phantrang();
   }
 
+  function showNumAjax()
+  {
+    $ProductModel = $this->model("ProductModel");
+    $showNumAjax = $ProductModel->showNumAjax();
+  }
+
   function product($id)
   {
     if (isset($_SESSION['userlogin'])) {
@@ -62,6 +68,7 @@ class Home extends Controller
       "showPrice" => $Product->showPrice($id),
       "showComment" => $Product->showComment($id),
       "showSize" => $Product->showPrice($id),
+      "showSize2" => $Product->showPrice($id),
       "ShowMenu" => $Category->ListAll(),
       "ProductRelated" => $Product->ProductRelated($id),
       "ShowNameUser" => $User->ShowNameUser($user_id),

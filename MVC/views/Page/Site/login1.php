@@ -14,12 +14,12 @@
         </div>
         <div class="form-group-login">
           <label for="">Mật khẩu</label>
-          <input type="text" name="password" id="" placeholder="Nhập mật khẩu" />
+          <input type="password" name="password" id="" placeholder="Nhập mật khẩu" />
         </div>
-        <div class="savepass-login">
+        <!-- <div class="savepass-login">
           <input type="checkbox" id="savepass" />
           <label for="savepass">Lưu mật khẩu</label>
-        </div>
+        </div> -->
         <p class="forgot-shows forgot-show">Quên mật khẩu?</p>        
         <div class="btn-login">
           <button>Đăng nhập</button>

@@ -17,7 +17,7 @@
     </div>
     <div class="form-group-regsiter">
       <label for="">Mật khẩu</label>
-      <input type="text" name="password" id="" placeholder="Nhập mật khẩu" />
+      <input type="password" name="password" id="" placeholder="Nhập mật khẩu" />
     </div>
     <div class="forgot-pass"><span class="forgot-show">Quên mật khẩu?</span></div>
     <div class="btn-regsiter pt-2">

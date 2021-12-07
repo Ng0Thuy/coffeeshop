@@ -17,7 +17,7 @@
                         ?>
                                 <div class="category-item">
                                     <label class="checkbox">
-                                        <input class="category" value="<?=$row['category_id']?>" type="checkbox" name="category">
+                                        <input class="category" value="<?= $row['category_id'] ?>" type="checkbox" name="category">
                                         <i class="icon-checkbox"></i>
                                         <span class="category-name"><?= $row['category_name'] ?></span>
                                     </label>
@@ -72,40 +72,16 @@
                 <?php
                 }
                 ?>
-                <?php
-                if (isset($_POST['search'])) {
-                ?>
-                    <h3 class="product-all_heading">Sản phẩm cho: <?= $_POST['search'] ?></h3>
-                <?php
-                }
-                ?>
-
-                <?php
-                if (isset($data['ListAllCt'])) {
-                    $row = mysqli_fetch_assoc($data['ShowName']);
-                ?>
-                    <h3 class="product-all_heading">Sản phẩm cho: <?= $row['category_name'] ?></h3>
-                <?php
-                }
-                ?>
-
-
                 <div class="product-all__filter">
-                    <p>Lọc theo: <span>A - Z</span> </p>
-                    <p><span id="showNum">
-                            <?php
-                            if (isset($data['showNum'])) {
-                                $item = mysqli_fetch_assoc($data['showNum']);
-                                echo $item['count(*)'];
-                            }
-                            ?>
-                            <?php
-                            if (isset($data['ListNumSearch'])) {
-                                $item = mysqli_fetch_assoc($data['ListNumSearch']);
-                                echo $item['count(*)'];
-                            }
-                            ?>
-                        </span> sản phẩm</p>
+                    <div class="locsp">
+                    <p>Lọc theo: </p>
+                    <select id="cars" class="locSP">
+                        <option value="DESC">Giá thấp nhất</option>
+                        <option value="ASC">Giá cao nhất</option>
+                    </select>
+                    </div>
+                    <div id="showNum"></div>
+
                 </div>
             </div>
             <?php

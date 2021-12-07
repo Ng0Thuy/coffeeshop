@@ -45,15 +45,25 @@ function deleteComment(id) {
 $(document).ready(function () {
   // PHÂN TRANG
   phantrang();
-  
+  showNumAjax();
+
   var category = [];
   $(".category").click(function () {
     console.log(category);
     phantrang();
+    showNumAjax();
+  });
+
+  var locSP = "DESC";
+  $(".locSP").click(function () {
+    var locSP = $(".locSP").val();
+    phantrang();
+    showNumAjax();
   });
 
   function phantrang(page) {
     var category = getClass("category");
+    var locSP = $(".locSP").val();
 
     $.ajax({
       url: "http://localhost/DuAn1/home/phantrang",
@@ -61,9 +71,25 @@ $(document).ready(function () {
       data: {
         page: page,
         category: category,
+        locSP: locSP,
       },
       success: function (data) {
         $("#pagination_data").html(data);
+      },
+    });
+  }
+
+  function showNumAjax(page) {
+    var category = getClass("category");
+    $.ajax({
+      url: "http://localhost/DuAn1/home/showNumAjax",
+      method: "POST",
+      data: {
+        page: page,
+        category: category,
+      },
+      success: function (data) {
+        $("#showNum").html(data);
       },
     });
   }
@@ -139,23 +165,53 @@ $(document).ready(function () {
     });
   }
 
-  // CART NUMBERư
+  function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  }
+
+  var data = $(this).attr("value");
+  var nho = $("p.Nhỏ").attr("name");
+  var vua = $("p.Vừa").attr("name");
+  var lon = $("p.Lớn").attr("name");
+
+  if(nho==0){
+    console.log("undefined");
+    $("#sizeNho").prop('disabled', true);
+  }
+  if(vua==0){
+    console.log("undefined");
+    $("#sizeVua").prop('disabled', true);
+  }
+  if(lon==0){
+    console.log("undefined");
+    $("#sizeLon").prop('disabled', true);
+  }
+
+  // CART NUMBER
   $("input[type=radio]").change(function () {
     var data = $(this).attr("value");
     var nho = $("p.Nhỏ").attr("name");
     var vua = $("p.Vừa").attr("name");
     var lon = $("p.Lớn").attr("name");
+
     if (data == "Nhỏ") {
-      $("#priceSize").html(nho);
-      $("#pricepost").val(nho);
+      nho2 = formatNumber(nho);
+      $("#priceSize").html(nho2+ " VNĐ");
+      $("#pricePost").val(nho2+ " VNĐ");
+      $("#pricePost2").val(nho);
     }
     if (data == "Vừa") {
-      $("#priceSize").html(vua);
-      $("#pricepost").val(vua);
+      vua2 = formatNumber(vua);
+      $("#priceSize").html(vua2+ " VNĐ");
+      $("#pricePost").val(vua2+ " VNĐ");
+      $("#pricePost2").val(vua);
     }
     if (data == "Lớn") {
-      $("#priceSize").html(lon);
-      $("#pricepost").val(lon);
+      lon2 = formatNumber(lon);
+      $("#priceSize").html(lon2+ " VNĐ");
+      $("#pricePost").val(lon2+ " VNĐ");
+      $("#pricePost2").val(lon);
+
     }
   });
 
@@ -163,7 +219,6 @@ $(document).ready(function () {
   $("span#plus").click(function () {
     inputVal++;
     $("input[name='num']").val(inputVal);
-    console.log(inputVal);
     return false;
   });
   $("span#minus").click(function () {
@@ -501,7 +556,7 @@ $("#form_login").validate({
         } else {
           //Đăng nhập thành công
           swal("Thành công!", response.message, "success");
-          setTimeout("location.href = './';", 1000);
+          location.reload();
           $("#login").css("display", "none");
           $(".app").css("opacity", "1");
         }

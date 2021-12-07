@@ -36,11 +36,11 @@
           <?php
           while ($item = mysqli_fetch_array(($data['showPrice']))) {
           ?>
-            <p class="new-price price-bg <?= $item['size'] ?>" hidden name="<?= $item['price'] ?>" style="font-size: 3rem;"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</p>
+            <p class="new-price price-bg <?= $item['size'] ?>" hidden name="<?=$item['price']?>" style="font-size: 3rem;"><?= number_format($item['price'], 0, ",", ",") ?> VNĐ</p>
           <?php
           }
           ?>
-          <p class="new-price price-bg" id="priceSize" name="<?= $row['size'] ?>" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</p>
+          <p class="new-price price-bg" id="priceSize" name="<?= $row['size'] ?>" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ",") ?> VNĐ</p>
           <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Meta Coffee hoàn tiền</p>
         </div>
         <div class="product-detail">
@@ -55,12 +55,12 @@
         <button name="sizeM" class="size">M</button>
         <button name="sizeL" class="size">L</button> -->
           <span class="giapos"></span>
-          <input class="sizes" name="size" checked type="radio" value="Nhỏ" id="sizeNho">
-          <label for="sizeNho">Nhỏ</label>
-          <input class="sizes" name="size" type="radio" value="Vừa" id="sizeVua">
-          <label for="sizeVua">Vừa</label>
-          <input class="sizes" name="size" type="radio" value="Lớn" id="sizeLon">
-          <label for="sizeLon">Lớn</label>
+            <input class="sizes" hidden checked name="size" type="radio" value="Nhỏ" id="sizeNho">
+            <label for="sizeNho">Nhỏ</label>
+            <input class="sizes" hidden name="size" type="radio" value="Vừa" id="sizeVua">
+            <label for="sizeVua">Vừa</label>
+            <input class="sizes" hidden name="size" type="radio" value="Lớn" id="sizeLon">
+            <label for="sizeLon">Lớn</label>
         </div>
         <div class="purchase-info">
           <span class="btn" id="minus">-</span>
@@ -68,7 +68,8 @@
           <span class="btn" id="plus" style="margin-right: 50px;">+</span>
         </div>
         <input type="number" hidden name="id" value="<?= $row['product_id'] ?>">
-        <input type="number" hidden id="pricepost" name="price" value="<?= $row['price'] ?>">
+        <input type="text" hidden id="pricePost" name="" value="<?= $row['price'] ?>">
+        <input type="text" hidden id="pricePost2" name="price" value="<?= $row['price'] ?>">
         <input type="text" hidden name="thumbnail" value="<?= $row['thumbnail'] ?>">
         <input type="text" hidden name="name" value="<?= $row['product_name'] ?>">
 
