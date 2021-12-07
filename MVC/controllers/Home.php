@@ -26,7 +26,8 @@ class Home extends Controller
     ]);
   }
 
-  function logout(){
+  function logout()
+  {
     unset($_SESSION['userlogin']);
     echo '
       <script>
@@ -34,6 +35,16 @@ class Home extends Controller
       </script>
     ';
   }
+  
+  function phantrang()
+  {
+    if (isset($_POST['category'])) {
+      $category_id_o = implode("','",$_POST['category']);
+    } 
+    $ProductModel = $this->model("ProductModel");
+    $phantrang = $ProductModel->phantrang();
+  }
+
   function product($id)
   {
     if (isset($_SESSION['userlogin'])) {
@@ -81,6 +92,8 @@ class Home extends Controller
     ]);
   }
 
+
+
   function regsiter()
   {
     $Category = $this->model("CategoryModel");
@@ -98,6 +111,7 @@ class Home extends Controller
 
   function thucdon()
   {
+    
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
     } else {
@@ -116,6 +130,7 @@ class Home extends Controller
       "ShowMenu" => $CategoryModel->ListAll(),
       "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
+    
   }
 
   function danhmuc($id)
@@ -125,12 +140,11 @@ class Home extends Controller
     } else {
       $user_id = "";
     }
-
     $User = $this->model("UserModel");
     $CategoryModel = $this->model("CategoryModel");
     $ProductModel = $this->model("ProductModel");
     $this->view("master2", [
-      "Page" => "list_Product",
+      "Page" => "danhmuc",
       "showMenu" => $CategoryModel->ListAll(),
       "ListItemId" => $ProductModel->ListItemId($id),
       "showNum" => $ProductModel->showNumId($id),
@@ -352,7 +366,7 @@ class Home extends Controller
     $result = $ProductModel->showComment($id);
 
     while ($binhluan = mysqli_fetch_assoc($result)) {
-?>
+    ?>
       <div class="comment-list" id="load_data">
         <div class="comment">
           <div class="comment-avatar">

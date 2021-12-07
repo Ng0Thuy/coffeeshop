@@ -122,9 +122,8 @@
             }
             ?>
 
-            <div class="product-all-list" id="pagination_data">
-                <!-- <div class="list-product grid-3" id="pagination_data"> -->
-
+            <div class="product-all-list " id="pagination_data2">
+                <div class="list-product grid-3" id="pagination_data">
                 <?php
                 if (isset($data['ListAllCt'])) {
                     while ($item = mysqli_fetch_array($data['ListAllCt'])) {
@@ -241,7 +240,7 @@
                     <div class="pagination_link">1</div>
                 </div> -->
             <!-- <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="">Xem thêm</a></div> -->
-            <!-- </div> -->
+            </div>
         </div>
     </div>
 

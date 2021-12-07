@@ -43,11 +43,43 @@ function deleteComment(id) {
 }
 
 $(document).ready(function () {
-  // LỘC
-  // $(".checkbox1").click(function() {
-  //     $("#filter").submit();
-  //     console.log("K");
-  // });
+  // PHÂN TRANG
+  phantrang();
+  
+  var category = [];
+  $(".category").click(function () {
+    console.log(category);
+    phantrang();
+  });
+
+  function phantrang(page) {
+    var category = getClass("category");
+
+    $.ajax({
+      url: "http://localhost/DuAn1/home/phantrang",
+      method: "POST",
+      data: {
+        page: page,
+        category: category,
+      },
+      success: function (data) {
+        $("#pagination_data").html(data);
+      },
+    });
+  }
+
+  $(document).on("click", ".pagination_link", function () {
+    var page = $(this).attr("id");
+    phantrang(page);
+  });
+
+  function getClass(className) {
+    var filter = [];
+    $("." + className + ":checked").each(function () {
+      filter.push($(this).val());
+    });
+    return filter;
+  }
 
   // Thanh toán
   $("#checkoutSubmit").click(function () {
@@ -204,7 +236,6 @@ $(document).ready(function () {
     $("#forgot").css("display", "block");
     $(".app").css("opacity", "0.8");
     $("html, body").animate({ scrollTop: 0 }, 100);
-
   });
   $(".login-show").click(function () {
     $("#regsiter").css("display", "none");
@@ -392,7 +423,6 @@ $("#form_regsiter").validate({
   },
 });
 
-
 // QUÊN MK
 $("#form_forgot").validate({
   rules: {
@@ -421,7 +451,6 @@ $("#form_forgot").validate({
           $("#regsiter").css("display", "none");
           $(".app").css("opacity", "1");
           swal("Thất bại!", response.message, "error");
-         
         } else {
           //Đăng nhập thành công
           $("#login").css("display", "none");
@@ -434,7 +463,6 @@ $("#form_forgot").validate({
     });
   },
 });
-
 
 // LOGIN VALIDATE
 $("#form_login").validate({
@@ -483,7 +511,7 @@ $("#form_login").validate({
 });
 
 /* Animated Navigation */
-const toggle = document.querySelector("#toggle");
-const nav = document.querySelector("#nav-tablet-mobile");
+// const toggle = document.querySelector("#toggle");
+// const nav = document.querySelector("#nav-tablet-mobile");
 
-toggle.addEventListener("click", () => nav.classList.toggle("active"));
+// toggle.addEventListener("click", () => nav.classList.toggle("active"));

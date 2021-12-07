@@ -5,7 +5,13 @@
 } */
 
 /* Thanh scrol; */
-
+.success a{
+  text-decoration: none;
+}
+.success a:hover{
+  cursor: pointer;
+  font-weight: 700;
+}
 ::-webkit-scrollbar {
   width: 5px;
   background-color: light-grey;

@@ -79,6 +79,113 @@ class ProductModel extends DB
         return mysqli_query($this->con, $sql);
     }
 
+    public function phantrang()
+    {
+        $record_per_page = 6;
+        $page = '';
+        $output = '';
+        if (isset($_POST["page"])) {
+            $page = $_POST["page"];
+        } else {
+            $page = 1;
+        }
+        $start_from = ($page - 1) * $record_per_page;
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $sql.="AND category_id IN ('$category_id')";
+        } 
+
+        $sql.=" ORDER BY import_date DESC LIMIT $start_from, $record_per_page";
+
+        $phantrang = mysqli_query($this->con, $sql);
+?>
+        <div class="list-product grid-3" id="pagination_data">
+            <?php
+            while ($row = mysqli_fetch_array($phantrang)) {
+            ?>
+                <a href="<?= BASE_URL ?>/product" class="product-cart">
+                    <div class="product-cart__tags justify-content-right">
+                        <!-- <div class="tag-new">new</div> -->
+                        <?php
+                        if ($row['price_sale'] > 0) {
+                        ?>
+                            <div class="tag-discount"><?= $row['price_sale'] ?>%</div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="product-cart__img">
+                        <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+                    </div>
+                    <div class="product-cart__info">
+                        <div class="info-title"><?= $row['product_name'] ?></div>
+                        <div class="info-rating">
+                            <div class="rating-list">
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                            </div>
+                            <p class="rating-text">(2 đánh giá)</p>
+                        </div>
+                        <div class="info-price">
+                            <?php
+                            if ($row['price_sale'] > 0) {
+                                $price = $row['price']; // 22
+                                $sale = $row['price_sale']; // 50
+                                $price_sale = ($sale / 100) * $price;
+                                $priceTop = $price - $price_sale;
+                            ?>
+                                <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                <div class="info-sale-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="info-origin-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                    </div>
+                </a>
+            <?php
+            }
+            ?>
+        </div>
+
+        <?php
+        $page_query = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $page_query.="AND category_id IN ('$category_id')";
+        } 
+        $page_query.=" ORDER BY import_date DESC";
+        
+
+        $page_result = mysqli_query($this->con, $page_query);
+        $total_records = mysqli_num_rows($page_result);
+        $total_pages = ceil($total_records / $record_per_page);
+        ?>
+        <div class="pagination">
+            <?php
+            for ($i = 1; $i <= $total_pages; $i++) {
+            ?>
+                <div class="pagination_link" id="<?=$i?>"><?=$i?></div>
+            <?php
+            }
+            ?>
+            <div>
+        <?php
+    }
+
     public function ShowProductList()
     {
         $sql = "SELECT * FROM product";
