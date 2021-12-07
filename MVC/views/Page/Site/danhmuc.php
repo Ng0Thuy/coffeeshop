@@ -15,13 +15,11 @@
                         if (isset($data['showMenu'])) {
                             while ($row = mysqli_fetch_array($data['showMenu'])) {
                         ?>
-                                <div class="category-item">
+                                <a href="<?= BASE_URL ?>/home/danhmuc/<?= $row['category_id'] ?>" class="category-item">
                                     <label class="checkbox">
-                                        <input class="category" value="<?=$row['category_id']?>" type="checkbox" name="category">
-                                        <i class="icon-checkbox"></i>
                                         <span class="category-name"><?= $row['category_name'] ?></span>
                                     </label>
-                                </div>
+                                </a>
                         <?php
                             }
                         }
@@ -92,7 +90,7 @@
 
                 <div class="product-all__filter">
                     <p>Lọc theo: <span>A - Z</span> </p>
-                    <p><span id="showNum">
+                    <p><span>
                             <?php
                             if (isset($data['showNum'])) {
                                 $item = mysqli_fetch_assoc($data['showNum']);
@@ -122,141 +120,181 @@
             }
             ?>
 
-            <div class="product-all-list " id="pagination_data2">
-                <div class="list-product grid-3" id="pagination_data">
-                <?php
-                if (isset($data['ListAllCt'])) {
-                    while ($item = mysqli_fetch_array($data['ListAllCt'])) {
-                ?>
-                        <a href="<?= BASE_URL ?>/product" class="product-cart">
-                            <div class="product-cart__tags justify-content-right">
-                                <!-- <div class="tag-new">new</div> -->
-                                <?php
-                                if ($item['price_sale'] > 0) {
-                                ?>
-                                    <div class="tag-discount"><?= $item['price_sale'] ?>%</div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                            <div class="product-cart__img">
-                                <img src="<?= BASE_URL ?>/<?= $item['thumbnail'] ?>" alt="">
-                            </div>
-                            <div class="product-cart__info">
-                                <div class="info-title"><?= $item['product_name'] ?></div>
-                                <div class="info-rating">
-                                    <div class="rating-list">
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                    </div>
-                                    <p class="rating-text">(2 đánh giá)</p>
-                                </div>
-                                <div class="info-price">
-                                    <?php
-                                    if ($item['price_sale'] > 0) {
-                                        $price = $item['price']; // 22
-                                        $sale = $item['price_sale']; // 50
-                                        $price_sale = ($sale / 100) * $price;
-                                        $priceTop = $price - $price_sale;
-                                    ?>
-                                        <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
-                                        <div class="info-sale-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <div class="info-origin-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                                <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-                            </div>
-                        </a>
-                <?php
-                    }
-                }
-                ?>
+            <div class="product-all-list">
+                <div class="list-product grid-3">
 
-                <?php
-                if (isset($data['ListSearch'])) {
-                    while ($item = mysqli_fetch_array($data['ListSearch'])) {
-                ?>
-                        <a href="<?= BASE_URL ?>/product" class="product-cart">
-                            <div class="product-cart__tags justify-content-right">
-                                <!-- <div class="tag-new">new</div> -->
-                                <?php
-                                if ($item['price_sale'] > 0) {
-                                ?>
-                                    <div class="tag-discount"><?= $item['price_sale'] ?>%</div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                            <div class="product-cart__img">
-                                <img src="<?= BASE_URL ?>/<?= $item['thumbnail'] ?>" alt="">
-                            </div>
-                            <div class="product-cart__info">
-                                <div class="info-title"><?= $item['product_name'] ?></div>
-                                <div class="info-rating">
-                                    <div class="rating-list">
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                        <i class="rating-icon fas fa-star"></i>
-                                    </div>
-                                    <p class="rating-text">(2 đánh giá)</p>
-                                </div>
-                                <div class="info-price">
+                    <?php
+                    if (isset($data['ListAllAdmin'])) {
+                        while ($row = mysqli_fetch_array($data['ListAllAdmin'])) {
+                    ?>
+                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                                <div class="product-cart__tags justify-content-right">
+                                    <!-- <div class="tag-new">new</div> -->
                                     <?php
-                                    if ($item['price_sale'] > 0) {
-                                        $price = $item['price']; // 22
-                                        $sale = $item['price_sale']; // 50
-                                        $price_sale = ($sale / 100) * $price;
-                                        $priceTop = $price - $price_sale;
+                                    if ($row['price_sale'] > 0) {
                                     ?>
-                                        <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
-                                        <div class="info-sale-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <div class="info-origin-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <div class="tag-discount"><?= $row['price_sale'] ?>%</div>
                                     <?php
                                     }
                                     ?>
                                 </div>
-                                <div class="btn btn--primary btn-order-product">Đặt hàng</div>
-                            </div>
-                        </a>
-                <?php
+                                <div class="product-cart__img">
+                                    <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+                                </div>
+                                <div class="product-cart__info">
+                                    <div class="info-title"><?= $row['product_name'] ?></div>
+                                    <div class="info-rating">
+                                        <div class="rating-list">
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                        </div>
+                                        <p class="rating-text">(2 đánh giá)</p>
+                                    </div>
+                                    <div class="info-price">
+                                        <?php
+                                        if ($row['price_sale'] > 0) {
+                                            $price = $row['price']; // 22
+                                            $sale = $row['price_sale']; // 50
+                                            $price_sale = ($sale / 100) * $price;
+                                            $priceTop = $price - $price_sale;
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                            <div class="info-sale-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                                </div>
+                            </a>
+                    <?php
+                        }
                     }
-                }
-                ?>
-            </div>
-            <!-- <div class="pagination">
-                    <div class="pagination_link">1</div>
-                </div> -->
-            <!-- <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="">Xem thêm</a></div> -->
+                    ?>
+
+                    <?php
+                    if (isset($data['ListAllCt'])) {
+                        while ($item = mysqli_fetch_array($data['ListAllCt'])) {
+                    ?>
+                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                                <div class="product-cart__tags justify-content-right">
+                                    <!-- <div class="tag-new">new</div> -->
+                                    <?php
+                                    if ($item['price_sale'] > 0) {
+                                    ?>
+                                        <div class="tag-discount"><?= $item['price_sale'] ?>%</div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="product-cart__img">
+                                    <img src="<?= BASE_URL ?>/<?= $item['thumbnail'] ?>" alt="">
+                                </div>
+                                <div class="product-cart__info">
+                                    <div class="info-title"><?= $item['product_name'] ?></div>
+                                    <div class="info-rating">
+                                        <div class="rating-list">
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                        </div>
+                                        <p class="rating-text">(2 đánh giá)</p>
+                                    </div>
+                                    <div class="info-price">
+                                        <?php
+                                        if ($item['price_sale'] > 0) {
+                                            $price = $item['price']; // 22
+                                            $sale = $item['price_sale']; // 50
+                                            $price_sale = ($sale / 100) * $price;
+                                            $priceTop = $price - $price_sale;
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                            <div class="info-sale-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                                </div>
+                            </a>
+                    <?php
+                        }
+                    }
+                    ?>
+
+                    <?php
+                    if (isset($data['ListSearch'])) {
+                        while ($item = mysqli_fetch_array($data['ListSearch'])) {
+                    ?>
+                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                                <div class="product-cart__tags justify-content-right">
+                                    <!-- <div class="tag-new">new</div> -->
+                                    <?php
+                                    if ($item['price_sale'] > 0) {
+                                    ?>
+                                        <div class="tag-discount"><?= $item['price_sale'] ?>%</div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                                <div class="product-cart__img">
+                                    <img src="<?= BASE_URL ?>/<?= $item['thumbnail'] ?>" alt="">
+                                </div>
+                                <div class="product-cart__info">
+                                    <div class="info-title"><?= $item['product_name'] ?></div>
+                                    <div class="info-rating">
+                                        <div class="rating-list">
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                            <i class="rating-icon fas fa-star"></i>
+                                        </div>
+                                        <p class="rating-text">(2 đánh giá)</p>
+                                    </div>
+                                    <div class="info-price">
+                                        <?php
+                                        if ($item['price_sale'] > 0) {
+                                            $price = $item['price']; // 22
+                                            $sale = $item['price_sale']; // 50
+                                            $price_sale = ($sale / 100) * $price;
+                                            $priceTop = $price - $price_sale;
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                            <div class="info-sale-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="info-origin-price"><?= number_format($item['price'], 0, ",", ".") ?> VNĐ</div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                                </div>
+                            </a>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <!-- <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="">Xem thêm</a></div> -->
             </div>
         </div>
     </div>
 
     </div>
 </main>
-<style>
-    .pagination {
-        margin-top: 3rem;
-    }
-
-    .pagination_link {
-        cursor: pointer;
-        padding: 5px 10px;
-        border: 1px solid grey;
-        border-radius: 4px;
-        /* background-color: #aaa; */
-        margin: 0 2px;
-    }
-</style>

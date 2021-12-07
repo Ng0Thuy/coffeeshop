@@ -170,7 +170,7 @@ class Home extends Controller
       $id = $_POST['search'];
     }
     $this->view("master2", [
-      "Page" => "list_Product",
+      "Page" => "danhmuc",
       "showMenu" => $CategoryModel->ListAll(),
       "ShowMenu" => $CategoryModel->ListAll(),
       "ListSearch" => $ProductModel->ListSearch($id),

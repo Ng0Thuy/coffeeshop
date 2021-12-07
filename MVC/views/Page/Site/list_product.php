@@ -124,7 +124,6 @@
 
             <div class="product-all-list" id="pagination_data">
                 <!-- <div class="list-product grid-3" id="pagination_data"> -->
-
                 <?php
                 if (isset($data['ListAllCt'])) {
                     while ($item = mysqli_fetch_array($data['ListAllCt'])) {
