@@ -6,6 +6,12 @@ class CategoryModel extends DB
         $sql = "SELECT * FROM category";
         return mysqli_query($this->con, $sql);
     }
+    public function countCategory()
+    {
+        $sql = "SELECT count(*) FROM category";
+        return mysqli_query($this->con, $sql);
+    }
+    
     public function ListItem($id)
     {
         $sql = "SELECT * FROM category where category_id=$id";

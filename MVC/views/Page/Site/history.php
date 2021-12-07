@@ -11,46 +11,32 @@
             <table class="table-cart">
                 <thead>
                     <tr class="title-table">
-                        <th>Sản phẩm</th>
-                        <th>Kích thước</th>
-                        <th width="200px">Số lượng</th>
-                        <th width="200px">Tổng giá</th>
+                        <th>Tên khách hàng</th>
+                        <th>Địa chỉ</th>
+                        <th width="200px">Số điện thoại</th>
                         <th width="200px">Trạng thái</th>
+                        <th width="200px">Thời gian</th>
+                        <th width="50px"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
-                        <td><span class="size-cart">Nhỏ</span></td>
-                        <td>2</td>
-                        <td>100.000 VNĐ</td>
-                        <td class="success">Đã nhận hàng</td>
-                    </tr>
-                    <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
-                        <td><span class="size-cart">Nhỏ</span></td>
-                        <td>2</td>
-                        <td>100.000 VNĐ</td>
-                        <td class="delete">Đã hủy</td>
-                    </tr>
-                    <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
-                        <td><span class="size-cart">Nhỏ</span></td>
-                        <td>2</td>
-                        <td>100.000 VNĐ</td>
-                        <td class="warning">Đang giao</td>
-                    </tr>
-                    <tr>
-                        <td class="img-name"><img src="https://tocotocotea.com/wp-content/uploads/2021/11/Grass-Jelly-Milk-Coffee.png" alt=""><a href="">Grass Jelly Milk Coffee</a></td>
-                        <td><span class="size-cart">Nhỏ</span></td>
-                        <td>2</td>
-                        <td>100.000 VNĐ</td>
-                        <td class="letgo">Đang tiến hành</td>
-                    </tr>
+                    <?php
+                    while ($history = mysqli_fetch_array($data['showHistoty'])) {
+                    ?>
+                        <tr>
+                            <td class="img-name">Nguyễn Đăng Thành</td>
+                            <td><span class="size-cart"><?= $history['address'] ?></span></td>
+                            <td><?= $history['phone'] ?></td>
+                            <td><?= $history['order_date'] ?></td>
+                            <td class="success"><?= $history['status'] ?></td>
+                            <td class="success"><a href="<?=BASE_URL?>/Home/historyDetails/<?=$history['order_id']?>">Xem</a></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
-
             </table>
-        </section>
+            <!-- </section>
         <nav aria-label="">
             <ul class="pagination pt-2">
                 <li class="page-item ">
@@ -66,6 +52,6 @@
                 </li>
             </ul>
         </nav>
-    </section>
+    </section> -->
 
 </main>

@@ -4,8 +4,8 @@
     <p>Bạn đã có tài khoản? <span class="login-show">Đăng nhập</span></p>
     <form action="" id="form_forgot">
         <div class="form-group-forgot">
-            <input type="text" name="" id="" class="email-ip" placeholder=" " />
             <label for="">Email</label>
+            <input type="text" name="email" id="" class="email-ip" placeholder=" " />
         </div>
         <div class="btn-forgot">
             <button>Lấy mật khẩu</button>

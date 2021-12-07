@@ -34,6 +34,16 @@
     <script src="<?= BASE_URL ?>/MVC/public/js/jquery.validate.min.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/jquery-ui.min.js"></script>
     <script src="<?= BASE_URL ?>/MVC/public/js/slider.js"></script>
+    <script>
+        window.addEventListener("scroll", function () {
+        let headerMenu = document.querySelector('#menu-area');
+        if (window.pageYOffset > 0) {
+            headerMenu.classList.add("cus-nav");
+        } else {
+            headerMenu.classList.remove("cus-nav");
+        }
+    })
+    </script>
 </body>
 
 </html>

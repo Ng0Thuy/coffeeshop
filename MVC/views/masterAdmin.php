@@ -14,17 +14,24 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= BASE_URL ?>/mvc/views/Page/Admin/public/style.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script>
+
     <title>Admin MetaCoffee</title>
 </head>
 
 <body>
+
     <div id="wrapper">
-        <?php require_once "./mvc/views/Page/Admin/blocks/header.php"; ?>
-        <?php require_once "./mvc/views/Page/Admin/" . $data["Page"] . ".php" ?>
-        <?php 
+        <?php
+            require_once "./mvc/views/Page/Admin/blocks/header.php";
+        require_once "./mvc/views/Page/Admin/" . $data["Page"] . ".php";
         // require_once "./mvc/views/Page/Admin/blocks/footer.php"; 
         ?>
+
     </div>
     <script src="<?= BASE_URL ?>/mvc/views/Page/Admin/public/style.js"></script>
 </body>
+
 </html>

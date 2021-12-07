@@ -7,16 +7,269 @@ class ProductModel extends DB
         $sql = "SELECT * FROM product";
         return mysqli_query($this->con, $sql);
     }
-    public function ListAllAdmin()
+    public function countProduct()
     {
-        $sql = "SELECT * FROM product INNER JOIN variant ON product.product_id = variant.product_id WHERE size = 'Vừa' ORDER BY import_date DESC";
+        $sql = "SELECT count(*) FROM product";
         return mysqli_query($this->con, $sql);
     }
+    public function showNum()
+    {
+        $sql = "SELECT count(*) FROM product";
+        return mysqli_query($this->con, $sql);
+    }
+    public function showNumId($id)
+    {
+        $sql = "SELECT count(*) FROM product WHERE category_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
     public function ListItem($id)
     {
-        $sql = "SELECT * FROM product where product_id = $id";
+        $sql = "SELECT * FROM product where product_id =$id";
+        var_dump($sql);
         return mysqli_query($this->con, $sql);
     }
+
+    public function ListItemId($id)
+    {
+        $sql = "SELECT * FROM product where category_id =$id";
+        return mysqli_query($this->con, $sql);
+    }
+
+
+    public function ListItemProduct($id)
+    {
+        // $sql = "SELECT * FROM variant, product, category WHERE variant.size='Vừa' AND product.product_id=$id";
+        $sql = "SELECT * FROM variant, product, category 
+        WHERE product.product_id=$id 
+        AND variant.product_id=$id 
+        AND product.category_id=category.category_id";
+        return mysqli_query($this->con, $sql);
+    }
+    public function showPrice($id)
+    {
+        $sql = "SELECT * FROM variant WHERE product_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showComment($id)
+    {
+        $sql = "SELECT * from comment, user where comment.user_id = user.user_id AND product_id=$id ORDER BY comment_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function deleteComment($id)
+    {
+        $sql = "DELETE FROM comment WHERE comment_id='$id'";
+        var_dump($sql);
+        return mysqli_query($this->con, $sql);
+    }
+
+
+    public function ProductRelated($id)
+    {
+        $qr = "SELECT category_id FROM product WHERE product_id=$id";
+        $checkid = mysqli_query($this->con, $qr);
+        $row = mysqli_fetch_assoc($checkid);
+        $category_id = $row['category_id'];
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ' AND product.category_id=$category_id
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function phantrang()
+    {
+        $record_per_page = 6;
+        $page = '';
+        $output = '';
+        if (isset($_POST["page"])) {
+            $page = $_POST["page"];
+        } else {
+            $page = 1;
+        }
+        $start_from = ($page - 1) * $record_per_page;
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $sql.="AND category_id IN ('$category_id')";
+        } 
+        if (isset($_POST['locSP'])) {
+            $locSP = $_POST['locSP'];
+            $sql.=" ORDER BY import_date $locSP LIMIT $start_from, $record_per_page";
+        }
+
+        $phantrang = mysqli_query($this->con, $sql);
+?>
+        <div class="list-product grid-3" id="pagination_data">
+            <?php
+            while ($row = mysqli_fetch_array($phantrang)) {
+            ?>
+                <a href="<?= BASE_URL ?>/product" class="product-cart">
+                    <div class="product-cart__tags justify-content-right">
+                        <!-- <div class="tag-new">new</div> -->
+                        <?php
+                        if ($row['price_sale'] > 0) {
+                        ?>
+                            <div class="tag-discount"><?= $row['price_sale'] ?>%</div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="product-cart__img">
+                        <img src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="">
+                    </div>
+                    <div class="product-cart__info">
+                        <div class="info-title"><?= $row['product_name'] ?></div>
+                        <div class="info-rating">
+                            <div class="rating-list">
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                                <i class="rating-icon fas fa-star"></i>
+                            </div>
+                            <p class="rating-text">(2 đánh giá)</p>
+                        </div>
+                        <div class="info-price">
+                            <?php
+                            if ($row['price_sale'] > 0) {
+                                $price = $row['price']; // 22
+                                $sale = $row['price_sale']; // 50
+                                $price_sale = ($sale / 100) * $price;
+                                $priceTop = $price - $price_sale;
+                            ?>
+                                <div class="info-origin-price"><?= number_format($priceTop, 0, ",", ".") ?> VNĐ</div>
+                                <div class="info-sale-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="info-origin-price"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="btn btn--primary btn-order-product">Đặt hàng</div>
+                    </div>
+                </a>
+            <?php
+            }
+            ?>
+        </div>
+
+        <?php
+        $page_query = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $page_query.="AND category_id IN ('$category_id')";
+        } 
+
+        $page_query.=" ORDER BY import_date DESC";
+        
+
+        $page_result = mysqli_query($this->con, $page_query);
+        $total_records = mysqli_num_rows($page_result);
+        $total_pages = ceil($total_records / $record_per_page);
+        ?>
+        <div class="pagination">
+            <?php
+            for ($i = 1; $i <= $total_pages; $i++) {
+            ?>
+                <div class="pagination_link" id="<?=$i?>"><?=$i?></div>
+            <?php
+            }
+            ?>
+            <div>
+        <?php
+    }
+
+    public function showNumAjax()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'";
+        if (isset($_POST['category'])) {
+            $category_id = implode("','",$_POST['category']);
+            $sql.="AND category_id IN ('$category_id')";
+        } 
+        $result = mysqli_query($this->con, $sql);
+        $num = mysqli_num_rows($result);
+        ?>
+        <p><span><?=$num?></span> Sản phẩm</p>
+        <?php
+    }
+
+    public function ShowProductList()
+    {
+        $sql = "SELECT * FROM product";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListAllAdmin()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ'
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListAllCt($id)
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        WHERE size = 'Nhỏ' AND category_id=$id
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function ListSearch($id)
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN category ON product.category_id = category.category_id 
+        WHERE size = 'Nhỏ' AND product_name like '%$id%'
+        OR size = 'Nhỏ' AND category_name like '%$id%'
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+    public function ListNumSearch($id)
+    {
+        $sql = "SELECT count(*) FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN category ON product.category_id = category.category_id 
+        WHERE size = 'Nhỏ' AND product_name like '%$id%'
+        OR size = 'Nhỏ' AND category_name like '%$id%'";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showProductSelling()
+    {
+        $sql = "SELECT product.product_id, product.product_name, product.price_sale, 
+        product.thumbnail, variant.size, variant.price,
+        SUM(order_details.num) as num
+        FROM variant, product, order_details
+        WHERE product.product_id=variant.product_id
+        and variant.variant_id=order_details.variant_id 
+        GROUP BY product.product_id
+        ORDER by order_details.num DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showProductNew()
+    {
+        $sql = "SELECT * FROM product 
+        INNER JOIN variant ON product.product_id = variant.product_id 
+        INNER JOIN comment ON product.product_id = comment.product_id 
+        WHERE size = 'Vừa' 
+        ORDER BY import_date DESC";
+        return mysqli_query($this->con, $sql);
+    }
+
     public function ListItemVariant($id)
     {
         // $sql = "SELECT * FROM product variant where product_id = $id";
@@ -160,13 +413,25 @@ class ProductModel extends DB
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Nhỏ','" . $sizeM . "')");
             }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Nhỏ','" . 0 . "')");
+            }
             if ($sizeML !== "") {
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Vừa','" . $sizeML . "')");
             }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Vừa','" . 0 . "')");
+            }
             if ($sizeL !== "") {
                 mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
                 VALUES('" . $product_id . "','Lớn','" . $sizeL . "')");
+            }
+            else{
+                mysqli_query($this->con, "INSERT INTO variant(product_id, size, price) 
+                VALUES('" . $product_id . "','Lớn','" . 0 . "')");
             }
             mysqli_close($this->con);
             if ($error !== false) {
@@ -388,5 +653,162 @@ class ProductModel extends DB
         $sql = "DELETE FROM product where product_id=$id";
         var_dump($sql);
         return mysqli_query($this->con, $sql);
+    }
+
+    public function showCart()
+    {
+        for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+            $num = $_SESSION['giohang'][$i][2];
+            $size = $_SESSION['giohang'][$i][0];
+            $id = $_SESSION['giohang'][$i][1];
+            $sql = "SELECT * FROM product ,variant 
+                WHERE variant.product_id=$id 
+            AND size='$size' 
+            AND variant.product_id=product.product_id";
+        }
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function checkoutAct()
+    {
+        $error = false;
+        if (isset($_POST['address']) && !empty($_POST['address']) && isset($_POST['phone']) && !empty($_POST['phone'])) {
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $note = $_POST['note'];
+            $user_id = $_POST['user_id'];
+            $banking = $_POST['banking'];
+            $order_date = date('Y-m-d H:i:s');
+            $status = "Đang tiến hành";
+
+            $cart = [];
+            if (isset($_SESSION['giohang'])) {
+                $cart = $_SESSION['giohang'];
+                // $cart = json_decode($json, true);
+            }
+            $result = mysqli_query($this->con, "INSERT INTO orders (user_id, address, phone, note, method,status, order_date) 
+            VALUES ('" . $user_id . "','" . $address . "','" . $phone . "','" . $note . "','" . $banking . "','" . $status . "','" . $order_date . "')");
+            if (!$result) {
+                if (strpos(mysqli_error($this->con), "Duplicate entry") !== FALSE) {
+                    echo json_encode(array(
+                        'status' => 0,
+                        'message' => 'Có lỗi khi đặt hàng, vui lòng thử lại'
+                    ));
+                    exit;
+                }
+            }
+
+            // mysqli_close($this->con);
+            if ($error !== false) {
+                echo json_encode(array(
+                    'status' => 0,
+                    'message' => 'Có lỗi khi đặt đặt hàng, xin mời thử lại'
+                ));
+                exit;
+            } else {
+                // lấy ra id orders
+                $sql = "SELECT * FROM orders WHERE order_date = '$order_date'";
+
+                $order = mysqli_query($this->con, $sql);
+                foreach ($order as $item) {
+                    $orderId = $item['order_id'];
+                }
+                // lấy ra id user
+                $id_user = $_SESSION['userlogin'][3];
+
+                // lấy ra id variant 
+                if (isset($_SESSION['giohang'])) {
+                    $idProduct = [];
+                    for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+                        $idProduct[] = $_SESSION['giohang'][$i][1];
+                        $sizeProduct[] = "'" . $_SESSION['giohang'][$i][0] . "'";
+                    }
+                    if (count($idProduct) > 0) {
+                        $idProduct = implode(',', $idProduct); // cắt mảng
+                        $sizeProduct = implode(',', $sizeProduct); // cắt mảng
+                        $sql = "SELECT * FROM variant where product_id in ('$idProduct') AND size in ($sizeProduct)";
+                        $cartList = mysqli_query($this->con, $sql);
+                    } else {
+                        $cartList = [];
+                    }
+                    foreach ($cartList as $item) {
+                        $price_total = 0;
+                        $num = 0;
+                        for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+                            if ($_SESSION['giohang'][$i][1] == $item['product_id']) {
+                                $num = $_SESSION['giohang'][$i][2];
+                                $item[''] = +$item['price'];
+                                break;
+                            }
+                            $price_total = $item['price'] + $item['price'];
+                        }
+                        $sql = "INSERT into order_details (order_id, variant_id, price_total, num) 
+                        values ('$orderId', '" . $item['variant_id'] . "','" . $item['price'] . "','$num')";
+                        mysqli_query($this->con, $sql);
+                    }
+                }
+                unset($_SESSION['giohang']);
+                echo '
+                    <script>
+                        alert("Đặt hàng thành công");
+                        window.location.assign("../");
+                    </script>
+                ';
+                exit;
+            }
+        } else {
+
+            echo json_encode(array(
+                'status' => 0,
+                'message' => 'Bạn chưa nhập thông tin'
+            ));
+            exit;
+        }
+    }
+
+    public function showHistoty($id)
+    {
+        $sql = "SELECT * FROM orders WHERE user_id=$id";
+        // $sql="SELECT * FROM orders, order_details WHERE user_id=$id AND orders.order_id=order_details.order_id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showHistoryDetails($id)
+    {
+        $sql = "SELECT * FROM order_details, product,variant 
+        WHERE order_id=$id
+        AND order_details.variant_id=variant.variant_id 
+        and variant.product_id = product.product_id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function showStatus($id)
+    {
+        $sql = "SELECT * FROM orders WHERE order_id=$id";
+        return mysqli_query($this->con, $sql);
+    }
+
+    public function updateOrder($status, $id)
+    {
+        $sql = "UPDATE orders SET status='$status' WHERE order_id =$id";
+        $result = mysqli_query($this->con, $sql);
+        if ($result !== false) {
+            echo '
+                <script>
+                    alert("Cập nhật thành công");
+                    history.back();
+                </script>
+            ';
+            exit;
+        } else {
+            echo '
+                <script>
+                    alert("Đã xảy ra lỗi");
+                    history.back();
+                </script>
+            ';
+            exit;
+        }
     }
 }
