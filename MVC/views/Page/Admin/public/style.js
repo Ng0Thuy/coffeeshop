@@ -114,6 +114,40 @@ function deleteCategory(id) {
   );
 }
 
+$(document).ready(function () {
+
+  // Lọc theo A-Z Z-A
+  $("#mySelect").on("change", function () {
+    var value = $(this).val();
+    if (value == "Theo A-Z") {
+      $("tr.sortby").sort(sortbyAZ).appendTo("#tableSearch");
+    } 
+    else if (value == "Theo Z-A") {
+      $("tr.sortby").sort(sortbyZA).appendTo("#tableSearch");
+    }
+  });
+
+  function sortbyAZ(a, b) {
+    return $(a).text() > $(b).text() ? 1 : -1;
+  }
+
+  function sortbyZA(a, b) {
+    return $(a).text() < $(b).text() ? 1 : -1;
+  }
+
+  $(document).ready(function () {
+    // Tìm kiếm
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      console.log(value);
+      $("#tableSearch tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+
+});
+
 const ctx = document.getElementById("myChartLine").getContext("2d");
 const myChartLine = new Chart(ctx, {
   type: "bar",
@@ -189,41 +223,4 @@ const myChartLine2 = new Chart(ctx2, {
       },
     },
   },
-});
-
-function sortbyAZ(a, b) {
-  return $(a).text() > $(b).text() ? 1 : -1;
-}
-function sortbyZA(a, b) {
-  return $(a).text() < $(b).text() ? 1 : -1;
-}
-
-$(document).ready(function () {
-  // Lọc theo A-Z Z-A
-  $("#mySelect").on("change", function () {
-    var value = $(this).val();
-    if (value == "Theo A-Z") {
-      $(".sortby li").sort(sortbyAZ).appendTo(".sortby");
-    } else if (value == "Theo Z-A") {
-      $(".sortby li").sort(sortbyZA).appendTo(".sortby");
-    }
-  });
-
-  // Tìm kiếm
-  $("#searchCategory").on("keyup", function () {
-    var value = $(this).val().toLowerCase();
-    $("#tableCategory tr").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
-});
-
-$(document).ready(function () {
-  //   Search ptoducts
-  $("#searchProduct").on("keyup", function () {
-    var value = $(this).val().toLowerCase();
-    $("#tableProduct tr").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
 });

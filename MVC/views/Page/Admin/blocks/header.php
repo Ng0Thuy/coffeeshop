@@ -24,9 +24,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?=BASE_URL?>/Admin/order">Đơn hàng</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link logout_nav" href="<?=BASE_URL?>/Admin/logout"><i class="fas fa-sign-out-alt"></i></a>
+                        </li>
                     </ul>
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search" />
+                        <input class="form-control mr-sm-2" type="search" id="search" placeholder="Tìm kiếm..." aria-label="Search" />
                         <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
                             Tìm kiếm
                         </button>
@@ -34,4 +37,17 @@
                 </div>
             </nav>
         </header>
+        <style>
+            .navbar-dark .navbar-nav .nav-item .logout_nav i{
+                color: white;
+                border-radius: 10px;
+                font-weight: 600;
+                padding: 5px 10px;
+                background-color: #c15a5a;
+            }
+            .navbar-dark .navbar-nav .nav-item .logout_nav i:hover{
+                cursor: pointer;
+                opacity: 0.9;
+            }
+        </style>
        

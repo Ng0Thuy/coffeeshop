@@ -53,20 +53,16 @@
           <table class="table border-0 rounded">
             <thead class="thead-dark">
               <tr>
-                <th style="width: 10px" scope="col">STT</th>
                 <th scope="col">Tên</th>
                 <th style="width: 10px" scope="col"></th>
                 <th style="width: 10px" scope="col"></th>
               </tr>
             </thead>
-            <tbody id="tableCategory">
+            <tbody id="tableSearch">
               <?php
-              $stt=0;
               while ($row = mysqli_fetch_array($data['ShowCategory'])) {
-                $stt++;
               ?>
-                <tr>
-                  <th scope="row"><?=$stt?></th>
+                <tr class="sortby">
                   <td><?= $row['category_name'] ?></td>
                   <td><a href="<?=BASE_URL?>/Admin/editCategory/<?=$row['category_id']?>" class="btn btn-warning">Sửa</a></td>
                   <td><button class="btn btn-danger" onclick="deleteCategory(<?=$row['category_id']?>)">Xóa</button></td>

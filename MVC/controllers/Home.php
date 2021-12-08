@@ -226,7 +226,7 @@ class Home extends Controller
       echo '
             <script>
                 alert("Vui lòng đăng nhập để tiến hành đặt hàng")
-                window.location.assign("../");
+                window.location.assign("../home/login");
             </script>
         ';
     }

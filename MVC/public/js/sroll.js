@@ -118,6 +118,38 @@ $(document).ready(function () {
     $("button#checkoutSubmit").prop("disabled", true);
   }
 
+  // checkoutForm
+  $("#checkoutForm").validate({
+    rules: {
+      name: {
+        required: true,
+      },
+      phone: {
+        required: true,
+        number: true,
+        minlength: 10,
+      },
+      address: {
+        required: true,
+        minlength: 10,
+      },
+    },
+    messages: {
+      name: {
+        required: "Bạn chưa nhập tên",
+      },
+      phone: {
+        required: "Bạn chưa nhập số điện thoại",
+        required: "Vua lòng nhập số",
+        required: "Số điện thoại phải trên 10 số",
+      },
+      address: {
+        required: "Bạn chưa nhập nội dung",
+        minlength: "Ký tự tối thiểu là 10",
+      },
+    },
+  });
+  
   // Bình luận
   $("#formComment").validate({
     rules: {
@@ -556,7 +588,8 @@ $("#form_login").validate({
         } else {
           //Đăng nhập thành công
           swal("Thành công!", response.message, "success");
-          location.reload();
+          // location.reload();
+          setTimeout("location.href = 'http://localhost/DuAn1/';", 1000);
           $("#login").css("display", "none");
           $(".app").css("opacity", "1");
         }

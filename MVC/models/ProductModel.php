@@ -769,7 +769,7 @@ class ProductModel extends DB
 
     public function showHistoty($id)
     {
-        $sql = "SELECT * FROM orders WHERE user_id=$id";
+        $sql = "SELECT * FROM orders WHERE user_id=$id ORDER BY order_date DESC";
         // $sql="SELECT * FROM orders, order_details WHERE user_id=$id AND orders.order_id=order_details.order_id";
         return mysqli_query($this->con, $sql);
     }

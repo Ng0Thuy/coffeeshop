@@ -11,7 +11,7 @@
   <section>
     <div class="row">
       <div class="col col-4 pb-4">
-        <a href="" class="card border-0 rounded">
+        <a href="<?=BASE_URL?>/Admin/category" class="card border-0 rounded">
           <div class="card-body text-center">
             <h6 class="card-title text-uppercase">Danh Mục</h6>
             <h1 class="card-text text-dark">
@@ -29,7 +29,7 @@
         </a>
       </div>
       <div class="col col-4 pb-4">
-        <a href="" class="card border-0 rounded">
+        <a href="<?=BASE_URL?>/Admin/product" class="card border-0 rounded">
           <div class="card-body text-center">
             <h6 class="card-title text-uppercase">Sản phẩm</h6>
             <h1 class="card-text text-dark">
@@ -47,7 +47,7 @@
         </a>
       </div>
       <div class="col col-4 pb-4">
-        <a href="" class="card border-0 rounded">
+        <a href="<?=BASE_URL?>/Admin/user" class="card border-0 rounded">
           <div class="card-body text-center">
             <h6 class="card-title text-uppercase">Người dùng</h6>
             <h1 class="card-text text-dark">
@@ -65,7 +65,7 @@
         </a>
       </div>
       <div class="col col-4 pb-4">
-        <a href="" class="card border-0 rounded">
+        <a href="<?=BASE_URL?>/Admin/order" class="card border-0 rounded">
           <div class="card-body text-center">
             <h6 class="card-title text-uppercase">Đơn hàng</h6>
             <h1 class="card-text text-dark">
@@ -83,7 +83,7 @@
         </a>
       </div>
       <div class="col col-4 pb-4">
-        <a href="" class="card border-0 rounded">
+        <a href="<?=BASE_URL?>/Admin/comment" class="card border-0 rounded">
           <div class="card-body text-center">
             <h6 class="card-title text-uppercase">Bình luận</h6>
             <h1 class="card-text text-dark">
