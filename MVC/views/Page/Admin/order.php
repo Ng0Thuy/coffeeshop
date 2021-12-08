@@ -31,7 +31,7 @@
                     <th style="width: 5px" scope="col"></th>
                 </tr>
             </thead>
-            <tbody id="tableProduct">
+            <tbody id="tableSearch">
                 <?php
                 while ($row = mysqli_fetch_array($data['showOrder'])) {
                 ?>

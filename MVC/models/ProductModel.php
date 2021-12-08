@@ -109,7 +109,7 @@ class ProductModel extends DB
             <?php
             while ($row = mysqli_fetch_array($phantrang)) {
             ?>
-                <a href="<?= BASE_URL ?>/product" class="product-cart">
+                <a href="<?= BASE_URL ?>/home/product/<?= $row['product_id'] ?>" class="product-cart">
                     <div class="product-cart__tags justify-content-right">
                         <!-- <div class="tag-new">new</div> -->
                         <?php
@@ -752,7 +752,7 @@ class ProductModel extends DB
                 echo '
                     <script>
                         alert("Đặt hàng thành công");
-                        window.location.assign("../");
+                        window.location.assign("http://localhost/DuAn1/home/history");
                     </script>
                 ';
                 exit;
@@ -769,7 +769,7 @@ class ProductModel extends DB
 
     public function showHistoty($id)
     {
-        $sql = "SELECT * FROM orders WHERE user_id=$id";
+        $sql = "SELECT * FROM orders WHERE user_id=$id ORDER BY order_date DESC";
         // $sql="SELECT * FROM orders, order_details WHERE user_id=$id AND orders.order_id=order_details.order_id";
         return mysqli_query($this->con, $sql);
     }

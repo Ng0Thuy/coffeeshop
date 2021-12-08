@@ -94,6 +94,26 @@ $(document).ready(function () {
     });
   }
 
+  // HISTORY
+  var status_history = $("td.status_history").text();
+  
+  if(status_history=="Đang tiến hành"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(8 122 70)'});
+  }
+  else if(status_history=="Đang giao"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(104 104 70)'});
+  }
+  else if(status_history=="Đã nhận hàng"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(16 73 235)'});
+  }
+  else if(status_history=="Đã hủy"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'red'});
+  }
+
   $(document).on("click", ".pagination_link", function () {
     var page = $(this).attr("id");
     phantrang(page);
@@ -117,6 +137,38 @@ $(document).ready(function () {
   if (address == 0) {
     $("button#checkoutSubmit").prop("disabled", true);
   }
+
+  // checkoutForm
+  $("#checkoutForm").validate({
+    rules: {
+      name: {
+        required: true,
+      },
+      phone: {
+        required: true,
+        number: true,
+        minlength: 10,
+      },
+      address: {
+        required: true,
+        minlength: 10,
+      },
+    },
+    messages: {
+      name: {
+        required: "Bạn chưa nhập tên",
+      },
+      phone: {
+        required: "Bạn chưa nhập số điện thoại",
+        required: "Vua lòng nhập số",
+        required: "Số điện thoại phải trên 10 số",
+      },
+      address: {
+        required: "Bạn chưa nhập nội dung",
+        minlength: "Ký tự tối thiểu là 10",
+      },
+    },
+  });
 
   // Bình luận
   $("#formComment").validate({
@@ -174,17 +226,17 @@ $(document).ready(function () {
   var vua = $("p.Vừa").attr("name");
   var lon = $("p.Lớn").attr("name");
 
-  if(nho==0){
+  if (nho == 0) {
     console.log("undefined");
-    $("#sizeNho").prop('disabled', true);
+    $("#sizeNho").prop("disabled", true);
   }
-  if(vua==0){
+  if (vua == 0) {
     console.log("undefined");
-    $("#sizeVua").prop('disabled', true);
+    $("#sizeVua").prop("disabled", true);
   }
-  if(lon==0){
+  if (lon == 0) {
     console.log("undefined");
-    $("#sizeLon").prop('disabled', true);
+    $("#sizeLon").prop("disabled", true);
   }
 
   // CART NUMBER
@@ -196,22 +248,21 @@ $(document).ready(function () {
 
     if (data == "Nhỏ") {
       nho2 = formatNumber(nho);
-      $("#priceSize").html(nho2+ " VNĐ");
-      $("#pricePost").val(nho2+ " VNĐ");
+      $("#priceSize").html(nho2 + " VNĐ");
+      $("#pricePost").val(nho2 + " VNĐ");
       $("#pricePost2").val(nho);
     }
     if (data == "Vừa") {
       vua2 = formatNumber(vua);
-      $("#priceSize").html(vua2+ " VNĐ");
-      $("#pricePost").val(vua2+ " VNĐ");
+      $("#priceSize").html(vua2 + " VNĐ");
+      $("#pricePost").val(vua2 + " VNĐ");
       $("#pricePost2").val(vua);
     }
     if (data == "Lớn") {
       lon2 = formatNumber(lon);
-      $("#priceSize").html(lon2+ " VNĐ");
-      $("#pricePost").val(lon2+ " VNĐ");
+      $("#priceSize").html(lon2 + " VNĐ");
+      $("#pricePost").val(lon2 + " VNĐ");
       $("#pricePost2").val(lon);
-
     }
   });
 
@@ -556,7 +607,8 @@ $("#form_login").validate({
         } else {
           //Đăng nhập thành công
           swal("Thành công!", response.message, "success");
-          location.reload();
+          // location.reload();
+          setTimeout("location.href = 'http://localhost/DuAn1/';", 1000);
           $("#login").css("display", "none");
           $(".app").css("opacity", "1");
         }

@@ -84,7 +84,6 @@
                 <div class="icon-bottom-title">
                 </div>
             </div>
-
             <div class="featured-product__content">
                 <div class="list-product row sm-gutter grid-4">
                     <?php
@@ -142,8 +141,6 @@
                     <?php
                     }
                     ?>
-
-
                 </div>
                 <div class="btn btn--primary btn-view-all" style="padding: 0;"><a href="<?= BASE_URL ?>/home/thucdon">Xem tất cả</a></div>
             </div>

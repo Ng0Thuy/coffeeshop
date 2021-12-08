@@ -80,7 +80,7 @@
             </div>
           </div>
           <!-- Load Tab-->
-          <select class="form-control col-4">
+          <select class="form-control col-4" id="mySelect">
             <option>Sắp xếp theo</option>
             <option>Theo ngày mới nhất</option>
             <option>Theo ngày cũ nhất</option>
@@ -104,23 +104,23 @@
                 <th style="width: 5px" scope="col"></th>
               </tr>
             </thead>
-            <tbody id="tableProduct">
+            <tbody id="tableSearch">
               <?php
               while ($row = mysqli_fetch_array(($data['ShowProduct']))) {
               ?>
-                <tr>
+                <tr class="sortby">
                   <!-- <th scope="row">1</th> -->
                   <td>
-                    <img style="width: 70px" src="<?=BASE_URL?>/<?= $row['thumbnail'] ?>" alt="" />
+                    <img style="width: 70px" src="<?= BASE_URL ?>/<?= $row['thumbnail'] ?>" alt="" />
                   </td>
                   <td><?= $row['product_name'] ?></td>
-                  <td><?= $row['price'] ?> VNĐ</td>
+                  <td class="gia"><?= number_format($row['price'], 0, ",", ".") ?> VNĐ</td>
                   <td><?= $row['price_sale'] ?>%</td>
                   <td><?= $row['view'] ?></td>
                   <td>20</td>
                   <td><?= date("d/m/Y", strtotime($row['import_date'])); ?></td>
                   <td><a href="<?= BASE_URL ?>/Admin/editProduct/<?= $row['product_id'] ?>" class="btn btn-warning">Sửa</a></td>
-                  <td><button class="btn btn-danger" onclick="deleteProduct(<?=$row['product_id']?>)">Xóa</button></td>
+                  <td><button class="btn btn-danger" onclick="deleteProduct(<?= $row['product_id'] ?>)">Xóa</button></td>
                 </tr>
               <?php
               }

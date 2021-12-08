@@ -94,3 +94,8 @@
         </section>
     </section>
 </main>
+<style>
+    main.container .checkout .checkout-main form.form-checkout label.error{
+        font-size: 1.7rem;
+    }
+</style>

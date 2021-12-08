@@ -127,7 +127,7 @@
                     if (isset($data['ListAllAdmin'])) {
                         while ($row = mysqli_fetch_array($data['ListAllAdmin'])) {
                     ?>
-                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                            <a href="<?= BASE_URL ?>/home/product/<?= $row['product_id'] ?>" class="product-cart">
                                 <div class="product-cart__tags justify-content-right">
                                     <!-- <div class="tag-new">new</div> -->
                                     <?php
@@ -183,7 +183,7 @@
                     if (isset($data['ListAllCt'])) {
                         while ($item = mysqli_fetch_array($data['ListAllCt'])) {
                     ?>
-                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                            <a href="<?= BASE_URL ?>/home/product/<?= $item['product_id'] ?>" class="product-cart">
                                 <div class="product-cart__tags justify-content-right">
                                     <!-- <div class="tag-new">new</div> -->
                                     <?php
@@ -239,7 +239,7 @@
                     if (isset($data['ListSearch'])) {
                         while ($item = mysqli_fetch_array($data['ListSearch'])) {
                     ?>
-                            <a href="<?= BASE_URL ?>/product" class="product-cart">
+                            <a href="<?= BASE_URL ?>/home/product/<?= $item['product_id'] ?>" class="product-cart">
                                 <div class="product-cart__tags justify-content-right">
                                     <!-- <div class="tag-new">new</div> -->
                                     <?php

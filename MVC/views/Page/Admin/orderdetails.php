@@ -29,7 +29,7 @@
                     <th scope="col">Giá</th>
                 </tr>
             </thead>
-            <tbody id="tableProduct">
+            <tbody id="tableSearch">
                 <?php
                 while ($row = mysqli_fetch_array($data['showOrderDetails'])) {
                 ?>
