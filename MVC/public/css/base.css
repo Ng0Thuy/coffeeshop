@@ -2,13 +2,11 @@
   --primary-color: #d3b673;
   --secondary-color: #ff929b;
   --white-color: #fff;
-  --black-color: #262626;
-  --nav-children-color: #b3b3b3;
+  --black-color: #000;
   --text-color: #333;
   --success-color: #49ad37;
   --border-color: #d3b673;
   --star-gold-color: #fffe3e;
-  
 
   --shadow-primary: 1px 0px 60px 0 rgb(12 18 34 / 11%), 2px 2px 90px 0 rgb(23 33 54 / 11%);
 
@@ -186,19 +184,6 @@ html {
   align-items: center;
   justify-content: center;
   line-height: 1.6rem;
-}
-.btn.circle {
-  position: absolute;
-  background-color: #fff;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: scale 0.5s ease-out;
-}
-.btn:focus {
-  outline: 0;
-  opacity: scale(0.98);
 }
 
 .btn.btn--nomal:hover {
