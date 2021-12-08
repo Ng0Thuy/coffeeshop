@@ -94,6 +94,26 @@ $(document).ready(function () {
     });
   }
 
+  // HISTORY
+  var status_history = $("td.status_history").text();
+  
+  if(status_history=="Đang tiến hành"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(8 122 70)'});
+  }
+  else if(status_history=="Đang giao"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(104 104 70)'});
+  }
+  else if(status_history=="Đã nhận hàng"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'rgb(16 73 235)'});
+  }
+  else if(status_history=="Đã hủy"){
+    console.log(status_history);
+    $("td.status_history").css({'font-weight':'700','color':'red'});
+  }
+
   $(document).on("click", ".pagination_link", function () {
     var page = $(this).attr("id");
     phantrang(page);
@@ -149,7 +169,7 @@ $(document).ready(function () {
       },
     },
   });
-  
+
   // Bình luận
   $("#formComment").validate({
     rules: {
@@ -206,17 +226,17 @@ $(document).ready(function () {
   var vua = $("p.Vừa").attr("name");
   var lon = $("p.Lớn").attr("name");
 
-  if(nho==0){
+  if (nho == 0) {
     console.log("undefined");
-    $("#sizeNho").prop('disabled', true);
+    $("#sizeNho").prop("disabled", true);
   }
-  if(vua==0){
+  if (vua == 0) {
     console.log("undefined");
-    $("#sizeVua").prop('disabled', true);
+    $("#sizeVua").prop("disabled", true);
   }
-  if(lon==0){
+  if (lon == 0) {
     console.log("undefined");
-    $("#sizeLon").prop('disabled', true);
+    $("#sizeLon").prop("disabled", true);
   }
 
   // CART NUMBER
@@ -228,22 +248,21 @@ $(document).ready(function () {
 
     if (data == "Nhỏ") {
       nho2 = formatNumber(nho);
-      $("#priceSize").html(nho2+ " VNĐ");
-      $("#pricePost").val(nho2+ " VNĐ");
+      $("#priceSize").html(nho2 + " VNĐ");
+      $("#pricePost").val(nho2 + " VNĐ");
       $("#pricePost2").val(nho);
     }
     if (data == "Vừa") {
       vua2 = formatNumber(vua);
-      $("#priceSize").html(vua2+ " VNĐ");
-      $("#pricePost").val(vua2+ " VNĐ");
+      $("#priceSize").html(vua2 + " VNĐ");
+      $("#pricePost").val(vua2 + " VNĐ");
       $("#pricePost2").val(vua);
     }
     if (data == "Lớn") {
       lon2 = formatNumber(lon);
-      $("#priceSize").html(lon2+ " VNĐ");
-      $("#pricePost").val(lon2+ " VNĐ");
+      $("#priceSize").html(lon2 + " VNĐ");
+      $("#pricePost").val(lon2 + " VNĐ");
       $("#pricePost2").val(lon);
-
     }
   });
 

@@ -35,6 +35,13 @@
                 </tbody>
             </table>
         </section>
+                    <?php
+                    $previous = "javascript:history.go(-1)";
+                    if (isset($_SERVER['HTTP_REFERER'])) {
+                        $previous = $_SERVER['HTTP_REFERER'];
+                    }
+                    ?>
+                    <a href="<?= $previous ?>" class="btn btn-warning">Quay lại</a>
         <!-- <nav aria-label="">
             <ul class="pagination pt-2">
                 <li class="page-item ">

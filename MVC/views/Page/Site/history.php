@@ -14,8 +14,8 @@
                         <th>Tên khách hàng</th>
                         <th>Địa chỉ</th>
                         <th width="200px">Số điện thoại</th>
-                        <th width="200px">Trạng thái</th>
                         <th width="200px">Thời gian</th>
+                        <th width="200px">Trạng thái</th>
                         <th width="50px"></th>
                     </tr>
                 </thead>
@@ -25,10 +25,10 @@
                     ?>
                         <tr>
                             <td class="img-name">Nguyễn Đăng Thành</td>
-                            <td><span class="size-cart"><?= $history['address'] ?></span></td>
+                            <td class="address_hisory"><span class="size-cart"><?= $history['address'] ?></span></td>
                             <td><?= $history['phone'] ?></td>
                             <td><?= $history['order_date'] ?></td>
-                            <td class="success"><?= $history['status'] ?></td>
+                            <td class="status_history"><?= $history['status'] ?></td>
                             <td class="success"><a href="<?=BASE_URL?>/Home/historyDetails/<?=$history['order_id']?>">Xem</a></td>
                         </tr>
                     <?php
