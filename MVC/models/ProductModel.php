@@ -26,7 +26,6 @@ class ProductModel extends DB
     public function ListItem($id)
     {
         $sql = "SELECT * FROM product where product_id =$id";
-        var_dump($sql);
         return mysqli_query($this->con, $sql);
     }
 
@@ -53,14 +52,15 @@ class ProductModel extends DB
 
     public function showComment($id)
     {
-        $sql = "SELECT * from comment, user where comment.user_id = user.user_id AND product_id=$id ORDER BY comment_date DESC";
+        $sql = "SELECT * from comment, user 
+        where comment.user_id = user.user_id 
+        AND product_id=$id ORDER BY comment_date DESC";
         return mysqli_query($this->con, $sql);
     }
 
     public function deleteComment($id)
     {
         $sql = "DELETE FROM comment WHERE comment_id='$id'";
-        var_dump($sql);
         return mysqli_query($this->con, $sql);
     }
 
@@ -648,14 +648,12 @@ class ProductModel extends DB
         public function deleteVariant($id)
         {
             $sql = "DELETE FROM variant where product_id=$id";
-            var_dump($sql);
             return mysqli_query($this->con, $sql);
         }
 
         public function deleteProduct($id)
         {
             $sql = "DELETE FROM product where product_id=$id";
-            var_dump($sql);
             return mysqli_query($this->con, $sql);
         }
 
