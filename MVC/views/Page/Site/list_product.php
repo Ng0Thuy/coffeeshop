@@ -197,9 +197,10 @@
     .pagination_link {
         cursor: pointer;
         padding: 5px 10px;
-        border: 1px solid grey;
+        border: 1px solid #ccc;
         border-radius: 4px;
         /* background-color: #aaa; */
         margin: 0 2px;
+        color: #fff;
     }
 </style>

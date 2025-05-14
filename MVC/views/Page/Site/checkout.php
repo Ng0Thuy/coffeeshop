@@ -39,7 +39,7 @@
                         <div class="content-banking-p">
                             <p>Nội dung: Thanh toán cho đơn hàng <span class="bold">MKOOPS09</span></p>
                             <p>Số tiền <span class="b-600">100.000 VNĐ</span></p>
-                            <p>Chủ tài khoản: <span class="b-600">Meta Coffee</span></p>
+                            <p>Chủ tài khoản: <span class="b-600">Coffee Shop</span></p>
                             <p>Số tài khoản: <span class="b-600">99999999999</span></p>
                             <p>Ngân hàng: <span class="b-600">Vietcombank</span></p>
                         </div>
@@ -52,6 +52,7 @@
                 <?php
                 }
                 ?>
+                <input type="hidden" name="checkout" value="1">
             </form>
             <div class="checkout-cart">
                 <h3>Đơn hàng</h3>
@@ -88,8 +89,7 @@
                     <p>Tổng thanh toán</p>
                     <p><?= number_format($tongTien, 0, ",", ".") ?> VNĐ</p>
                 </div>
-                <!-- <a href="" class="btn-checkout">Tiến hành đặt hàng</a> -->
-                <button name="submit" id="checkoutSubmit" class="btn-checkout">Tiến hành đặt hàng</button>
+                <button type="button" id="checkoutSubmit" class="btn-checkout">Tiến hành đặt hàng</button>
             </div>
         </section>
     </section>
@@ -99,3 +99,58 @@
         font-size: 1.7rem;
     }
 </style>
+
+<script>
+    $(document).ready(function() {
+        // Lưu giỏ hàng vào localStorage để dự phòng
+        <?php if(isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0): ?>
+        try {
+            localStorage.setItem('backup_cart', JSON.stringify(<?= json_encode($_SESSION['giohang']) ?>));
+            console.log("Đã lưu giỏ hàng vào localStorage:", <?= json_encode($_SESSION['giohang']) ?>);
+        } catch(e) {
+            console.log("Không thể lưu giỏ hàng vào localStorage:", e);
+        }
+        <?php endif; ?>
+
+        // Thêm hàm kiểm tra session trước khi submit form
+        function checkSessionBeforeSubmit() {
+            var processing = $('<div id="processingOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;display:flex;justify-content:center;align-items:center;"><div style="background:white;padding:20px;border-radius:5px;"><p style="margin:0;font-size:16px;"><i class="fas fa-spinner fa-spin"></i> Đang xử lý đơn hàng...</p></div></div>');
+            $('body').append(processing);
+            
+            return true;
+        }
+
+        $("#checkoutSubmit").click(function() {
+            // Xác thực form trước khi submit
+            if ($("#checkoutForm")[0].checkValidity()) {
+                // Hiển thị thông báo đang xử lý
+                $(this).prop('disabled', true).text('Đang xử lý...');
+                
+                // Đảm bảo giỏ hàng được lưu trước khi submit
+                try {
+                    if (localStorage) {
+                        localStorage.setItem('backup_cart', JSON.stringify(<?= json_encode($_SESSION['giohang'] ?? []) ?>));
+                    }
+                } catch(e) {
+                    console.log("Không thể lưu giỏ hàng vào localStorage:", e);
+                }
+                
+                // Trực tiếp submit form
+                checkSessionBeforeSubmit();
+                $("#checkoutForm").submit();
+            } else {
+                // Kích hoạt validation của trình duyệt
+                $("#checkoutForm")[0].reportValidity();
+            }
+        });
+
+        // Xử lý hiển thị thông tin ngân hàng khi chọn phương thức thanh toán
+        $('input[name="banking"]').change(function() {
+            if($(this).val() == 'banking') {
+                $('.content-banking').removeClass('content-banking-none');
+            } else {
+                $('.content-banking').addClass('content-banking-none');
+            }
+        });
+    });
+</script>

@@ -57,7 +57,7 @@ img {
   display: block;
 }
 .product-imgs {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #ccc;
 }
 .img-display {
   overflow: hidden;
@@ -97,7 +97,7 @@ img {
   text-transform: capitalize;
   font-weight: 700;
   position: relative;
-  color: #12263a;
+  color: #fff;
   margin: 1rem 0;
 }
 .product-title {
@@ -106,7 +106,7 @@ img {
   text-transform: capitalize;
   font-weight: 700;
   position: relative;
-  color: #12263a;
+  color: #fff;
   margin: 1rem 0;
 }
 
@@ -139,7 +139,8 @@ img {
   height: 50px auto;
   /* line-height: 50px; */
   padding: 15px 20px;
-  background: #ffe9eb;
+  background: #464343;
+  color: #fff;
   border-radius: 5px;
 }
 .product-price .price-bg {
@@ -149,12 +150,12 @@ img {
   font-weight: 400;
 }
 .new-price {
-  color: #000;
+  color: #fff;
   font-weight: 600;
 }
 .product-detail h2 {
   text-transform: capitalize;
-  color: #12263a;
+  color: #ffffff44;
   padding-bottom: 0.6rem;
 }
 .product-detail p {
@@ -177,12 +178,13 @@ img {
   font-weight: 400;
   opacity: 0.9;
   font-size: 2rem;
+  color: #fff;
 }
-.product-detail ul li span {
+.product-detail ul li > span {
   font-weight: 400;
-  padding: 0 5px;
-  color: #2f3d15;
-  background-color: #d3b67350;
+  padding: 4px 5px;
+  color: #fff;
+  background-color: #b9a47545;
   font-size: 2rem;
   border-radius: 6px;
 }
@@ -200,7 +202,7 @@ img {
 .purchase-info input[type="number"] {
   width: 80px;
   height: 40px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid #fca7ae;
   border-radius: 25px;
   text-align: center;
   padding: 0.45rem 0.8rem;
@@ -208,6 +210,9 @@ img {
   margin: 15px 25px 30px 25px;
   padding: 10px;
   font-size: 15px;
+
+  color: var(--secondary-color);
+  background-color: transparent;
 }
 .purchase-info input:hover {
   transition: 0.4s ease-in-out;
@@ -227,7 +232,7 @@ img {
   font-size: 2rem;
 }
 .purchase-info input:hover,
-.purchase-info label:hover{
+.purchase-info label:hover {
   cursor: pointer;
 }
 .purchase-info input {
@@ -235,11 +240,11 @@ img {
   height: 17px;
 }
 .purchase-info input:checked + label {
-    font-weight: 600;
-    background: #ff929b;
-    padding: 5px 8px;
-    border-radius: 5px;
-    color: white;
+  font-weight: 600;
+  background: #ff929b;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: white;
 }
 .purchase-info label {
   padding-right: 20px;
@@ -249,6 +254,7 @@ img {
   border-radius: 4px;
   padding: 5px 8px;
   margin-right: 10px;
+  color: #fff;
 }
 .purchase-info .size {
   width: 37px;
@@ -266,10 +272,10 @@ img {
   background: rgb(241, 127, 146);
   color: #000;
 }
-.purchase-info span.btn{
+.purchase-info span.btn {
   transition: all 0.3s;
 }
-.purchase-info span.btn:hover{
+.purchase-info span.btn:hover {
   cursor: pointer;
   background-color: rgb(255 146 155);
   color: white;
@@ -350,10 +356,10 @@ img {
 .tab_navigation li {
   display: inline-block;
   padding: 10px 50px;
-  background: #f0f0f0;
+  background: #333333;
   min-width: 100px;
   text-align: center;
-  color: #000;
+  color: #fff;
   margin-right: 10px;
   font-size: 1.4rem;
   font-weight: 600;
@@ -364,7 +370,8 @@ img {
 
 .tab_navigation li.active,
 .tab_navigation li:hover {
-  background: #dadcdd;
+  background: #333333;
+  color: var(--primary-color);
 }
 .tab_container_area {
   margin-bottom: 10px;
@@ -377,8 +384,8 @@ img {
 }
 .tab_container {
   padding: 10px;
-  background: #eeeeee60;
-  color: #000;
+  background: #333333;
+  color: #fff;
   border-radius: 0 5px 5px 5px;
 }
 .tab_container p {
@@ -414,24 +421,24 @@ img {
   border-radius: 20px;
 }
 .comment-user__name {
-  text-transform:capitalize;
+  text-transform: capitalize;
   font-size: 1.7rem;
   font-weight: 600;
 }
-.deletecomment{
+.deletecomment {
   text-decoration: none;
   font-size: 1.4rem;
   color: red;
   font-weight: 600;
   margin-top: 0px;
 }
-.deletecomment:hover{
+.deletecomment:hover {
   font-weight: 600;
 }
 .comment-user__content {
   font-size: 1.5rem;
 }
-.time{
+.time {
   text-align: right;
   transform: translateY(-210%);
   margin-right: 10px;

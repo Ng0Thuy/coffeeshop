@@ -1,9 +1,7 @@
 <?php
 class Home extends Controller
 {
-  public function __construct()
-  {
-  }
+  public function __construct() {}
 
   function Default()
   {
@@ -34,12 +32,12 @@ class Home extends Controller
       </script>
     ';
   }
-  
+
   function phantrang()
   {
     if (isset($_POST['category'])) {
-      $category_id_o = implode("','",$_POST['category']);
-    } 
+      $category_id_o = implode("','", $_POST['category']);
+    }
     $ProductModel = $this->model("ProductModel");
     $phantrang = $ProductModel->phantrang();
   }
@@ -117,7 +115,7 @@ class Home extends Controller
 
   function thucdon()
   {
-    
+
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
     } else {
@@ -137,6 +135,23 @@ class Home extends Controller
       "ShowNameUser" => $User->ShowNameUser($user_id),
     ]);
   }
+
+
+  function gioithieu()
+  {
+    $this->view("master3", [
+      "Page" => "gioithieu",
+    ]);
+  }
+
+  function lienhe()
+  {
+    $this->view("master3", [
+      "Page" => "lienhe",
+    ]);
+  }
+
+
 
   function danhmuc($id)
   {
@@ -240,15 +255,120 @@ class Home extends Controller
 
   function checkoutAct()
   {
-    if (isset($_SESSION['userlogin'])) {
-      $user_id = $_SESSION['userlogin'][3];
-    } else {
-      $user_id = "";
-    }
+    if (isset($_POST['checkout'])) {
+      // Đảm bảo session đã được bắt đầu
+      if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+      }
 
-    $User = $this->model("UserModel");
-    $Product = $this->model("ProductModel");
-    $checkoutAct = $Product->checkoutAct();
+      if (isset($_SESSION['userlogin'])) {
+        $id = $_SESSION['userlogin'][3];
+      } else {
+        $id = "";
+        echo '<script>
+                alert("Vui lòng đăng nhập để tiến hành đặt hàng");
+                window.location.href = "' . BASE_URL . '/home/login";
+            </script>';
+        return;
+      }
+
+      // Kiểm tra giỏ hàng trước khi tiếp tục xử lý
+      if (!isset($_SESSION['giohang']) || !is_array($_SESSION['giohang']) || empty($_SESSION['giohang']) || count($_SESSION['giohang']) == 0) {
+        // Kiểm tra xem có backup giỏ hàng trong localStorage không (thông qua JavaScript)
+        echo '<script>
+                var backup_cart = localStorage.getItem("backup_cart");
+                if (backup_cart) {
+                    alert("Đang khôi phục giỏ hàng của bạn từ backup...");
+                    // Gửi yêu cầu AJAX để khôi phục giỏ hàng
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "' . BASE_URL . '/cart/restoreCart", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                // Tải lại trang
+                                window.location.reload();
+                            } else {
+                                alert("Không có sản phẩm trong giỏ hàng");
+                                window.location.href = "' . BASE_URL . '/home";
+                            }
+                        }
+                    };
+                    xhr.send("backup_cart=" + backup_cart);
+                } else {
+                    alert("Không có sản phẩm trong giỏ hàng");
+                    window.location.href = "' . BASE_URL . '/home";
+                }
+            </script>';
+        return;
+      }
+
+      // Lưu backup giỏ hàng (đề phòng lỗi)
+      $backup_cart = $_SESSION['giohang'];
+
+      // Tiến hành đặt hàng
+      $Cart = $this->model("UserModel");
+      $Order = $Cart->Order($id);
+
+      if ($Order) {
+        // Nếu đặt hàng thành công, cập nhật tồn kho
+        $Stock = $this->model("StockModel");
+
+        // Lấy thông tin chi tiết đơn hàng vừa tạo để cập nhật tồn kho
+        $order_id = $Order; // Giả sử Order trả về order_id vừa tạo
+        $OrderDetails = $Cart->getOrderDetails($order_id);
+
+        if ($OrderDetails) {
+          foreach ($OrderDetails as $item) {
+            // Lấy thông tin sản phẩm từ variant_id
+            $variantInfo = $Cart->getVariantInfo($item['variant_id']);
+
+            if ($variantInfo) {
+              $product_id = $variantInfo['product_id'];
+              $size = $variantInfo['size'];
+              $quantity = $item['num'];
+
+              // Giảm số lượng tồn kho
+              $Stock->decreaseStock($product_id, $size, $quantity);
+            }
+          }
+        }
+
+        // Lưu thông tin đơn hàng thành công trước khi xóa giỏ hàng
+        $_SESSION['order_success'] = true;
+        $_SESSION['order_id'] = $order_id;
+
+        // Xóa giỏ hàng sau khi đặt hàng thành công
+        $_SESSION['giohang'] = [];
+        if (isset($_SESSION['total'])) {
+          $_SESSION['total'] = 0;
+        }
+
+        echo '<script>
+                try {
+                    localStorage.removeItem("backup_cart");
+                    console.log("Đã xóa backup giỏ hàng");
+                } catch(e) {
+                    console.log("Không thể xóa backup giỏ hàng:", e);
+                }
+                alert("Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại MetaCoffee.");
+                window.location.href = "' . BASE_URL . '/home/history";
+            </script>';
+      } else {
+        // Khôi phục giỏ hàng nếu đặt hàng thất bại
+        $_SESSION['giohang'] = $backup_cart;
+
+        echo '<script>
+                alert("Đặt hàng thất bại! Vui lòng thử lại sau.");
+                window.location.href = "' . BASE_URL . '/home/checkout";
+            </script>';
+      }
+    } else {
+      // Nếu không có tham số checkout, chuyển hướng về trang chủ
+      echo '<script>
+            window.location.href = "' . BASE_URL . '/home";
+        </script>';
+    }
   }
 
   function history()
@@ -370,7 +490,7 @@ class Home extends Controller
     $result = $ProductModel->showComment($id);
 
     while ($binhluan = mysqli_fetch_assoc($result)) {
-    ?>
+?>
       <div class="comment-list" id="load_data">
         <div class="comment">
           <div class="comment-avatar">
@@ -403,29 +523,78 @@ class Home extends Controller
     }
 
     if (isset($_POST["addToCart"])) {
-      $num = $_POST['num'];
+      $num = intval($_POST['num']);
       $size = $_POST['size'];
       $id = $_POST['id'];
       $thumbnail = $_POST['thumbnail'];
       $price = $_POST['price'];
       $name = $_POST['name'];
 
-      // kiểm tra sp có chưa, nếu có thì cột số lượng
+      // Đảm bảo số lượng hợp lệ
+      if ($num <= 0) {
+        $num = 1;
+      }
+
+      // Kiểm tra tồn kho trước khi thêm vào giỏ hàng
+      $Stock = $this->model("StockModel");
+      $stockCheck = $Stock->checkStockAvailable($id, $size, $num);
+
+      // Nếu không đủ hàng
+      if (!$stockCheck['status']) {
+        echo '<script>
+          alert("' . $stockCheck['message'] . ' cho sản phẩm ' . $name . ' kích cỡ ' . $size . '");
+          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        </script>';
+        return;
+      }
+
+      // Kiểm tra trong giỏ hàng đã có sản phẩm này chưa
       $check = 0;
+      $total_quantity = $num; // Số lượng mới thêm vào
+
       for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
-        if ($_SESSION['giohang'][$i][1] == $id and $_SESSION['giohang'][$i][0] == $size) {
+        if ($_SESSION['giohang'][$i][1] == $id && $_SESSION['giohang'][$i][0] == $size) {
           $check = 1;
-          $numNew = $num + $_SESSION['giohang'][$i][2];
-          $_SESSION['giohang'][$i][2] = $numNew;
+          $total_quantity += $_SESSION['giohang'][$i][2]; // Cộng với số lượng đã có trong giỏ hàng
           break;
         }
       }
-      if ($check == 0) {
-        $cartList = [$size, $id, $num, $price, $thumbnail, $name];
-        $_SESSION['giohang'][] = $cartList;
-        // header("Location: " . $_SERVER["HTTP_REFERER"]);
+
+      // Kiểm tra xem tổng số lượng có vượt quá tồn kho không
+      if ($total_quantity > $stockCheck['available']) {
+        echo '<script>
+          alert("Số lượng sản phẩm ' . $name . ' kích cỡ ' . $size . ' trong kho chỉ còn ' . $stockCheck['available'] . ' sản phẩm. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.");
+          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        </script>';
+        return;
       }
-      header("Location: " . $_SERVER["HTTP_REFERER"]);
+
+      // Xử lý thêm vào giỏ hàng
+      if ($check != 0) {
+        // Nếu đã có thì cập nhật số lượng
+        for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+          if ($_SESSION['giohang'][$i][1] == $id && $_SESSION['giohang'][$i][0] == $size) {
+            $_SESSION['giohang'][$i][2] = $_SESSION['giohang'][$i][2] + $num;
+            break;
+          }
+        }
+      } else {
+        // Nếu chưa có thì thêm mới
+        $sp = [$size, $id, $num, $price, $thumbnail, $name];
+        $_SESSION['giohang'][] = $sp;
+      }
+
+      // Lưu backup giỏ hàng vào localStorage (thông qua JavaScript)
+      echo '<script>
+        try {
+          localStorage.setItem("backup_cart", JSON.stringify(' . json_encode($_SESSION['giohang']) . '));
+          console.log("Đã lưu giỏ hàng vào localStorage");
+        } catch(e) {
+          console.log("Không thể lưu giỏ hàng vào localStorage:", e);
+        }
+        alert("Đã thêm sản phẩm vào giỏ hàng");
+        window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+      </script>';
     }
   }
 }

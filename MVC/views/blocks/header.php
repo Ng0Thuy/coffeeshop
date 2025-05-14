@@ -19,7 +19,7 @@
 
     <div class="logo">
       <a href="<?= BASE_URL ?>" class="logo__link">
-        <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />
+        <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/logo-transparent-cafe.svg" alt="Logo-ToCoToCo" />
       </a>
     </div>
     <ul class="menu-list hide-on-tablet-mobile">
@@ -41,13 +41,10 @@
         </ul>
       </li>
       <li class="menu-item">
-        <a href="" class="menu-item__link">TIN TỨC</a>
+        <a href="<?= BASE_URL ?>/home/gioithieu" class="menu-item__link">GIỚI THIỆU</a>
       </li>
       <li class="menu-item">
-        <a href="" class="menu-item__link">GIỚI THIỆU</a>
-      </li>
-      <li class="menu-item">
-        <a href="" class="menu-item__link">LIÊN HỆ</a>
+        <a href="<?= BASE_URL ?>/home/lienhe" class="menu-item__link">LIÊN HỆ</a>
       </li>
     </ul>
 
@@ -117,7 +114,7 @@
   <div class="banner">
     <div class="banner-text">
       <h1>Đậm vị thiên nhiên<br>hạnh phúc trọn đời!</h1>
-      <p>Với sứ mệnh mang tới niềm vui và hạnh phúc, Meta Coffee hy vọng sẽ tạo nên <br> một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi</p>
+      <p>Với sứ mệnh mang tới niềm vui và hạnh phúc, Coffee Shop hy vọng sẽ tạo nên <br> một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi</p>
       <form action="<?= BASE_URL ?>/home/search" method="POST" id="search-bn-home">
         <i class="fas fa-search search-bn"></i>
         <input name="search" class="search-bn-home" type="text" placeholder="Tìm đồ ăn hoặc nước uống mà bạn thích...">

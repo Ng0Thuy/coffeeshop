@@ -4,7 +4,7 @@
         <div class="featured-products row">
             <div class="featured-product__title">
                 <div class="text-1">
-                    Meta Coffee Menu
+                    Coffee Shop Menu
                 </div>
                 <div class="text-2 line-bottom">
                     SẢN PHẨM NỔI BẬT

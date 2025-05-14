@@ -41,12 +41,26 @@
           }
           ?>
           <p class="new-price price-bg" id="priceSize" name="<?= $row['size'] ?>" style="font-size: 3rem;"><?= number_format($row['price'], 0, ",", ",") ?> VNĐ</p>
-          <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Meta Coffee hoàn tiền</p>
+          <p class="new-price slogan" style="font-size: 16px;">Ở đâu rẻ hơn, Coffee Shop hoàn tiền</p>
         </div>
         <div class="product-detail">
           <ul class="product-detail__list">
             <li class="product-detail__item">Danh mục: <span><?= $row['category_name'] ?></span></li>
-            <li class="product-detail__item">Tình trạng: <span>Còn hàng</span></li>
+            <li class="product-detail__item">Tình trạng: 
+              <span id="stockStatus">
+              <?php
+              // Kiểm tra tồn kho
+              $Stock = $this->model("StockModel");
+              $stock_data = $Stock->getStock($row['product_id'], 'Nhỏ'); // Mặc định kích cỡ Nhỏ
+              
+              if ($stock_data && $stock_data['quantity'] > 0) {
+                echo '<span class="text-success">Còn hàng (' . $stock_data['quantity'] . ')</span>';
+              } else {
+                echo '<span class="text-danger">Hết hàng</span>';
+              }
+              ?>
+              </span>
+            </li>
             <li class="product-detail__item">Vận chuyển: <span>Có</span></li>
           </ul>
         </div>
@@ -182,3 +196,84 @@
     font-size: 1.6rem;
   }
 </style>
+
+<script>
+$(document).ready(function() {
+  // Cập nhật thông tin tồn kho khi chọn kích cỡ
+  $('.sizes').change(function() {
+    var product_id = <?= $row['product_id'] ?>;
+    var size = $(this).val();
+    var quantity = $('#input').val();
+    
+    // Gọi AJAX để kiểm tra tồn kho
+    updateStockInfo(product_id, size, quantity);
+  });
+  
+  // Cập nhật khi thay đổi số lượng
+  $('#input, #plus, #minus').on('click change', function() {
+    setTimeout(function() {
+      var product_id = <?= $row['product_id'] ?>;
+      var size = $('input[name="size"]:checked').val();
+      var quantity = $('#input').val();
+      
+      // Gọi AJAX để kiểm tra tồn kho
+      updateStockInfo(product_id, size, quantity);
+    }, 100);
+  });
+  
+  // Kiểm tra tồn kho ban đầu
+  var initial_product_id = <?= $row['product_id'] ?>;
+  var initial_size = 'Nhỏ'; // Mặc định
+  var initial_quantity = $('#input').val();
+  
+  updateStockInfo(initial_product_id, initial_size, initial_quantity);
+  
+  // Hàm cập nhật thông tin tồn kho
+  function updateStockInfo(product_id, size, quantity) {
+    $.ajax({
+      url: '<?= BASE_URL ?>/Stock/checkStock',
+      type: 'POST',
+      data: {
+        product_id: product_id,
+        size: size,
+        quantity: quantity
+      },
+      dataType: 'json',
+      success: function(response) {
+        if (response.status === 'success') {
+          var available = response.quantity;
+          
+          if (available > 0) {
+            $('#stockStatus').html('<span class="text-success"><i class="fas fa-check-circle"></i> Còn hàng (' + available + ')</span>');
+            $('#btn1').prop('disabled', false);
+            $('#btn1').css('opacity', '1');
+            
+            // Giới hạn số lượng đặt hàng không vượt quá tồn kho
+            if (parseInt(quantity) > available) {
+              $('#input').val(available);
+            }
+          } else {
+            $('#stockStatus').html('<span class="text-danger"><i class="fas fa-times-circle"></i> Hết hàng</span>');
+            $('#btn1').prop('disabled', true);
+            $('#btn1').css('opacity', '0.5');
+          }
+        } else if (response.status === 'warning') {
+          $('#stockStatus').html('<span class="text-warning"><i class="fas fa-exclamation-triangle"></i> ' + response.message + '</span>');
+          
+          if (response.quantity <= 0) {
+            $('#btn1').prop('disabled', true);
+            $('#btn1').css('opacity', '0.5');
+          }
+        } else {
+          $('#stockStatus').html('<span class="text-danger"><i class="fas fa-exclamation-circle"></i> Không có thông tin tồn kho</span>');
+          $('#btn1').prop('disabled', true);
+          $('#btn1').css('opacity', '0.5');
+        }
+      },
+      error: function() {
+        $('#stockStatus').html('<span class="text-danger"><i class="fas fa-exclamation-circle"></i> Lỗi kiểm tra tồn kho</span>');
+      }
+    });
+  }
+});
+</script>

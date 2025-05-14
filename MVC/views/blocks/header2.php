@@ -2,7 +2,7 @@
   <div id="menu-areas">
     <div class="logo">
       <a href="<?= BASE_URL ?>" class="logo__link">
-        <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/metacoffee.png" alt="Logo-ToCoToCo" />
+        <img class="logo__img" src="<?= BASE_URL ?>/MVC/public/images/logo-transparent-cafe.svg" alt="Logo-ToCoToCo" />
       </a>
     </div>
     <ul class="menu-list">
@@ -24,13 +24,10 @@
         </ul>
       </li>
       <li class="menu-item">
-        <a href="" class="menu-item__link">TIN TỨC</a>
+        <a href="<?= BASE_URL ?>/home/gioithieu" class="menu-item__link">GIỚI THIỆU</a>
       </li>
       <li class="menu-item">
-        <a href="" class="menu-item__link">GIỚI THIỆU</a>
-      </li>
-      <li class="menu-item">
-        <a href="" class="menu-item__link">LIÊN HỆ</a>
+        <a href="<?= BASE_URL ?>/home/lienhe" class="menu-item__link">LIÊN HỆ</a>
       </li>
     </ul>
     <ul class="menu-list2">

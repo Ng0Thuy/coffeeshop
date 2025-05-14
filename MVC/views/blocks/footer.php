@@ -13,8 +13,8 @@
             </div>
             <div class="about-us col l-2-5 m-4 c-6">
               <h4 class="footer__heading">VỀ CHÚNG TÔI</h4>
-              <p class="about-us__item"><a href="" class="about-us__link">Giới thiệu về Meta Coffee</a></p>
-              <p class="about-us__item"><a href="" class="about-us__link">Điều khoản Meta Coffee</a></p>
+              <p class="about-us__item"><a href="" class="about-us__link">Giới thiệu về Coffee Shop</a></p>
+              <p class="about-us__item"><a href="" class="about-us__link">Điều khoản Coffee Shop</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Chính sách bảo mật</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Chính hãng</a></p>
               <p class="about-us__item"><a href="" class="about-us__link">Flash sales</a></p>
