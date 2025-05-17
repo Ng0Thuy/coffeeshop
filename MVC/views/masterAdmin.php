@@ -25,9 +25,23 @@
 
     <div id="wrapper">
         <?php
-            require_once "./mvc/views/Page/Admin/blocks/header.php";
-        require_once "./mvc/views/Page/Admin/" . $data["Page"] . ".php";
-        // require_once "./mvc/views/Page/Admin/blocks/footer.php"; 
+            // Sử dụng đường dẫn tuyệt đối từ thư mục gốc
+            $root_path = $_SERVER['DOCUMENT_ROOT'] . '/DuAn1';
+            require_once $root_path . "/mvc/views/Page/Admin/blocks/header.php";
+            
+            // Kiểm tra xem file trang admin cần load có tồn tại hay không
+            $page_file = $root_path . "/mvc/views/Page/Admin/" . $data["Page"] . ".php";
+            if(file_exists($page_file)) {
+                require_once $page_file;
+            } else {
+                echo '<div style="padding: 20px; background-color: #f8d7da; color: #721c24; margin: 10px; border-radius: 5px;">
+                    <h3>Lỗi:</h3>
+                    <p>Không tìm thấy trang <strong>' . $data["Page"] . '</strong></p>
+                    <p>Đường dẫn: ' . $page_file . '</p>
+                </div>';
+            }
+            
+            // require_once $root_path . "/mvc/views/Page/Admin/blocks/footer.php";
         ?>
 
     </div>

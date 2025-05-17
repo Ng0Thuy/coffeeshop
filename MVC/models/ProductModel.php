@@ -771,16 +771,18 @@ class ProductModel extends DB
 
         public function showHistoty($id)
         {
-            $sql = "SELECT * FROM orders, user WHERE orders.user_id=1 AND orders.user_id=user.user_id ORDER BY order_date DESC";
+            $sql = "SELECT * FROM orders WHERE user_id='$id' ORDER BY order_date DESC";
             return mysqli_query($this->con, $sql);
         }
 
         public function showHistoryDetails($id)
         {
-            $sql = "SELECT * FROM order_details, product,variant 
-        WHERE order_id=$id
-        AND order_details.variant_id=variant.variant_id 
-        and variant.product_id = product.product_id";
+            $sql = "SELECT od.*, p.*, v.*, o.order_date, o.status, o.method, o.note 
+            FROM order_details od
+            JOIN variant v ON od.variant_id = v.variant_id 
+            JOIN product p ON v.product_id = p.product_id
+            JOIN orders o ON od.order_id = o.order_id
+            WHERE od.order_id = $id";
             return mysqli_query($this->con, $sql);
         }
 
@@ -811,5 +813,27 @@ class ProductModel extends DB
             ';
                 exit;
             }
+        }
+
+        public function checkOrderOwnership($order_id, $user_id)
+        {
+            $sql = "SELECT * FROM orders WHERE order_id='$order_id' AND user_id='$user_id'";
+            $result = mysqli_query($this->con, $sql);
+            return mysqli_num_rows($result) > 0;
+        }
+
+        public function canCancelOrder($order_id, $user_id)
+        {
+            // Kiểm tra đơn hàng thuộc về người dùng và ở trạng thái "Đang tiếp nhận"
+            $sql = "SELECT * FROM orders WHERE order_id='$order_id' AND user_id='$user_id' AND status='Đang tiếp nhận'";
+            $result = mysqli_query($this->con, $sql);
+            return mysqli_num_rows($result) > 0;
+        }
+        
+        public function updateOrderStatus($order_id, $status)
+        {
+            $sql = "UPDATE orders SET status='$status' WHERE order_id='$order_id'";
+            $result = mysqli_query($this->con, $sql);
+            return $result !== false;
         }
     }

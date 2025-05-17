@@ -6,7 +6,7 @@
             </h6>
         </div>
         <div class="card-body">
-            <form method="post" action="<?php echo isset($data["StockData"]) ? "./Stock/update" : "./Stock/add"; ?>">
+            <form method="post" action="<?php echo isset($data["StockData"]) ? BASE_URL . "/Admin/stockUpdate" : BASE_URL . "/Admin/stockAdd"; ?>">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Sản phẩm:</label>
                     <div class="col-sm-10">
@@ -54,7 +54,7 @@
                             <i class="fas fa-save"></i>
                             <?php echo isset($data["StockData"]) ? "Cập nhật" : "Thêm mới"; ?>
                         </button>
-                        <a href="./Stock" class="btn btn-secondary">
+                        <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-secondary">
                             <i class="fas fa-arrow-left"></i> Quay lại
                         </a>
                     </div>
@@ -71,7 +71,7 @@
             var product_id = $(this).val();
             if (product_id !== '') {
                 $.ajax({
-                    url: './Stock/getSizes',
+                    url: '<?= BASE_URL ?>/Admin/getSizes',
                     type: 'POST',
                     data: {
                         product_id: product_id

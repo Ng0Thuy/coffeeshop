@@ -25,7 +25,7 @@
                             <a class="nav-link" href="<?=BASE_URL?>/Admin/order">Đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=BASE_URL?>/Stock">Quản lý tồn kho</a>
+                            <a class="nav-link" href="<?=BASE_URL?>/Admin/stock">Quản lý tồn kho</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link logout_nav" href="<?=BASE_URL?>/Admin/logout"><i class="fas fa-sign-out-alt"></i></a>

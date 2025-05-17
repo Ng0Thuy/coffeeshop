@@ -6,7 +6,7 @@
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <a href="./Stock" class="btn btn-secondary">
+                    <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Quay lại
                     </a>
                 </div>

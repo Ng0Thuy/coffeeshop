@@ -170,4 +170,74 @@ class StockModel extends DB {
             'available' => $stock['quantity']
         ];
     }
+
+    // Tăng số lượng tồn kho khi hủy đơn hàng
+    public function increaseStock($product_id, $size, $quantity) {
+        $stock = $this->getStock($product_id, $size);
+        
+        if (!$stock) {
+            // Nếu không tồn tại bản ghi, tạo mới
+            return $this->addStock($product_id, $size, $quantity);
+        }
+        
+        $new_quantity = $stock['quantity'] + $quantity;
+        $qr = "UPDATE stock SET quantity = '$new_quantity' WHERE product_id = '$product_id' AND size = '$size'";
+        $result = mysqli_query($this->con, $qr);
+        
+        if ($result) {
+            $this->addTransaction($product_id, $size, $quantity, 'Hoàn kho từ đơn hủy', 'Thành công');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Lấy tất cả thông tin tồn kho theo nhóm sản phẩm
+    public function getAllStockGroupByProduct() {
+        $qr = "SELECT p.product_id, p.product_name, p.thumbnail, 
+                COUNT(s.id) as size_count, 
+                SUM(s.quantity) as total_quantity 
+               FROM product p 
+               LEFT JOIN stock s ON p.product_id = s.product_id 
+               GROUP BY p.product_id, p.product_name 
+               ORDER BY p.product_name";
+        $rows = mysqli_query($this->con, $qr);
+        $data = array();
+        while ($row = mysqli_fetch_array($rows)) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    
+    // Lấy tất cả thông tin tồn kho của một sản phẩm
+    public function getAllStockByProduct($product_id) {
+        $qr = "SELECT s.*, p.product_name, v.size as variant_size 
+               FROM stock s 
+               INNER JOIN product p ON s.product_id = p.product_id 
+               INNER JOIN variant v ON s.product_id = v.product_id AND s.size = v.size
+               WHERE s.product_id = '$product_id'
+               ORDER BY s.size";
+        $rows = mysqli_query($this->con, $qr);
+        $data = array();
+        while ($row = mysqli_fetch_array($rows)) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    
+    // Kiểm tra tồn kho tối thiểu của sản phẩm (trả về true nếu có ít nhất 1 size sắp hết hàng)
+    public function checkLowStock($product_id) {
+        $qr = "SELECT COUNT(*) as low_count FROM stock WHERE product_id = '$product_id' AND quantity <= 10 AND quantity > 0";
+        $result = mysqli_query($this->con, $qr);
+        $data = mysqli_fetch_array($result);
+        return $data['low_count'] > 0;
+    }
+    
+    // Kiểm tra tồn kho hết hàng của sản phẩm (trả về true nếu có ít nhất 1 size hết hàng)
+    public function checkOutOfStock($product_id) {
+        $qr = "SELECT COUNT(*) as out_count FROM stock WHERE product_id = '$product_id' AND quantity <= 0";
+        $result = mysqli_query($this->con, $qr);
+        $data = mysqli_fetch_array($result);
+        return $data['out_count'] > 0;
+    }
 } 

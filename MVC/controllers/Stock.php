@@ -3,20 +3,20 @@ class Stock extends Controller
 {
     public function __construct()
     {
-        // Chỉ kiểm tra quyền admin cho các action quản lý, không kiểm tra cho checkStock và getSizes
-        $current_action = isset($_GET['url']) ? explode('/', $_GET['url']) : ['Stock'];
+        // // Chỉ kiểm tra quyền admin cho các action quản lý, không kiểm tra cho checkStock và getSizes
+        // $current_action = isset($_GET['url']) ? explode('/', $_GET['url']) : ['Stock'];
         
-        // Nếu action hiện tại không phải là checkStock hoặc getSizes, yêu cầu quyền admin
-        if (!isset($current_action[1]) || ($current_action[1] != 'checkStock' && $current_action[1] != 'getSizes')) {
-            // Kiểm tra xem người dùng đã đăng nhập và có quyền admin không
-            if (!isset($_SESSION['userlogin']) || $_SESSION['userlogin'][2] != 2) {
-                echo '<script>
-                    alert("Bạn không có quyền truy cập vào trang quản lý tồn kho!");
-                    window.location.href = "' . BASE_URL . '/home";
-                </script>';
-                exit;
-            }
-        }
+        // // Nếu action hiện tại không phải là checkStock hoặc getSizes, yêu cầu quyền admin
+        // if (!isset($current_action[1]) || ($current_action[1] != 'checkStock' && $current_action[1] != 'getSizes')) {
+        //     // Kiểm tra xem người dùng đã đăng nhập và có quyền admin không
+        //     if (!isset($_SESSION['userlogin']) || $_SESSION['userlogin'][2] != 2) {
+        //         echo '<script>
+        //             alert("Bạn không có quyền truy cập vào trang quản lý tồn kho!");
+        //             window.location.href = "' . BASE_URL . '/home";
+        //         </script>';
+        //         exit;
+        //     }
+        // }
     }
 
     // Hiển thị trang quản lý tồn kho

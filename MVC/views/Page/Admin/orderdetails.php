@@ -53,8 +53,18 @@
         <select class="form-status form-select form-select-lg mb-3 mt-3" name="status" aria-label=".form-select-lg example">
             <?php
             $result = mysqli_fetch_assoc($data['showStatus']);
+            if ($result['status'] == 'Đang tiếp nhận') {
+            ?>
+                <option selected value="Đang tiếp nhận">Đang tiếp nhận</option>
+                <option value="Đang tiến hành">Đang tiến hành</option>
+                <option value="Đang giao">Đang giao</option>
+                <option value="Đã nhận hàng">Đã nhận hàng</option>
+                <option value="Đã hủy">Đã hủy</option>
+            <?php
+            }
             if ($result['status'] == 'Đang tiến hành') {
             ?>
+                <option value="Đang tiếp nhận">Đang tiếp nhận</option>
                 <option selected value="Đang tiến hành">Đang tiến hành</option>
                 <option value="Đang giao">Đang giao</option>
                 <option value="Đã nhận hàng">Đã nhận hàng</option>
@@ -63,6 +73,7 @@
             }
             if ($result['status'] == 'Đã nhận hàng') {
             ?>
+                <option value="Đang tiếp nhận">Đang tiếp nhận</option>
                 <option value="Đang tiến hành">Đang tiến hành</option>
                 <option value="Đang giao">Đang giao</option>
                 <option selected value="Đã nhận hàng">Đã nhận hàng</option>
@@ -71,14 +82,16 @@
             }
             if ($result['status'] == 'Đã hủy') {
             ?>
+                <option value="Đang tiếp nhận">Đang tiếp nhận</option>
                 <option value="Đang tiến hành">Đang tiến hành</option>
                 <option value="Đang giao">Đang giao</option>
-                <option selected value="Đã nhận hàng">Đã nhận hàng</option>
-                <option value="Đã hủy">Đã hủy</option>
+                <option value="Đã nhận hàng">Đã nhận hàng</option>
+                <option selected value="Đã hủy">Đã hủy</option>
             <?php
             }
             if ($result['status'] == 'Đang giao') {
             ?>
+                <option value="Đang tiếp nhận">Đang tiếp nhận</option>
                 <option value="Đang tiến hành">Đang tiến hành</option>
                 <option selected value="Đang giao">Đang giao</option>
                 <option value="Đã nhận hàng">Đã nhận hàng</option>

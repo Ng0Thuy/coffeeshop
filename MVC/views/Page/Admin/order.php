@@ -42,6 +42,11 @@
                         <td><?=$row['order_date']?></td>
                         <td class="address_user_truncate"><?=$row['method']?></td>
                         <?php
+                        if($row['status']=="Đang tiếp nhận"){
+                            ?>
+                            <td class="bold dangtiepnhan status_order"><?=$row['status']?></td>
+                            <?php
+                        }
                         if($row['status']=="Đang tiến hành"){
                             ?>
                             <td class="bold dangtienhanh status_order"><?=$row['status']?></td>

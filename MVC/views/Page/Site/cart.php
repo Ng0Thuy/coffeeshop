@@ -30,10 +30,10 @@
                                 <td class="img-name"><img src="<?= BASE_URL ?>/<?= $_SESSION['giohang'][$i][4] ?>" alt=""><a href="<?= BASE_URL ?>/home/product/<?= $_SESSION['giohang'][$i][1] ?>"><?= $_SESSION['giohang'][$i][5] ?></a></td>
                                 <td><span class="size-cart"><?= $_SESSION['giohang'][$i][0] ?></span></td>
                                 <td><?= number_format($_SESSION['giohang'][$i][3], 0, ",", ".") ?> VNĐ</td>
-                                <td><input class="numCart" type="number" value="<?= $_SESSION['giohang'][$i][2] ?>"></td>
+                                <td><input class="numCart" type="number" min="1" max="10" value="<?= $_SESSION['giohang'][$i][2] ?>"></td>
                                 <td><?= number_format($total, 0, ",", ".") ?> VNĐ</td>
                                 <td>
-                                    <a href="<?=BASE_URL?>/Cart/deldCart/<?=$i?>"><i class="far fa-trash-alt tooltip"><span class="tooltiptext">Xóa</span></i></a>
+                                    <a class="delete-cart" href="<?=BASE_URL?>/Cart/deldCart/<?=$i?>">Xóa</a>
                                 </td>
                             </tr>
                     <?php
@@ -68,3 +68,40 @@
     </section>
 
 </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Lấy tất cả các input số lượng
+    const quantityInputs = document.querySelectorAll('.numCart');
+    
+    // Gắn sự kiện cho mỗi input
+    quantityInputs.forEach(function(input) {
+      input.addEventListener('change', function() {
+        // Lấy giá trị hiện tại
+        let value = parseInt(this.value);
+        
+        // Kiểm tra và giới hạn giá trị
+        if (isNaN(value) || value < 1) {
+          this.value = 1;
+        } else if (value > 10) {
+          alert('Số lượng tối đa cho mỗi sản phẩm là 10.');
+          this.value = 10;
+        }
+        
+        // Gọi hàm cập nhật giỏ hàng (nếu có)
+        updateCart();
+      });
+    });
+    
+    // Hàm cập nhật giỏ hàng (có thể sử dụng AJAX để cập nhật server nếu cần)
+    function updateCart() {
+      // Tính lại tổng tiền và cập nhật giao diện
+      // ...
+      
+      // Có thể thêm AJAX để cập nhật giỏ hàng trong session
+      
+      // Tạm thời reload để cập nhật số lượng
+      // location.reload();
+    }
+  });
+</script>

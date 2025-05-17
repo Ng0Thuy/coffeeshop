@@ -230,6 +230,17 @@ class Home extends Controller
             </script>
         ';
         }
+        
+        // Kiểm tra tổng số lượng sản phẩm trong giỏ hàng
+        if ($numCart > 10) {
+          echo '
+            <script>
+                alert("Một đơn hàng chỉ được phép có tối đa 10 sản phẩm. Vui lòng giảm số lượng sản phẩm trong giỏ hàng.")
+                window.location.assign("../Cart");
+            </script>
+          ';
+          exit;
+        }
       }
     }
 
@@ -306,9 +317,9 @@ class Home extends Controller
       // Lưu backup giỏ hàng (đề phòng lỗi)
       $backup_cart = $_SESSION['giohang'];
 
-      // Tiến hành đặt hàng
+      // Tiến hành đặt hàng - Trạng thái mặc định là "Đang tiếp nhận"
       $Cart = $this->model("UserModel");
-      $Order = $Cart->Order($id);
+      $Order = $Cart->Order($id, "Đang tiếp nhận");
 
       if ($Order) {
         // Nếu đặt hàng thành công, cập nhật tồn kho
@@ -375,42 +386,57 @@ class Home extends Controller
   {
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
+      
+      $User = $this->model("UserModel");
+      $ProductModel = $this->model("ProductModel");
+      $Category = $this->model("CategoryModel");
+      $this->view("master2", [
+        "Page" => "history",
+        "showHistoty" => $ProductModel->showHistoty($user_id),
+        "ShowMenu" => $Category->ListAll(),
+        "ShowNameUser" => $User->ShowNameUser($user_id),
+      ]);
     } else {
-      $user_id = "";
+      // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+      echo '<script>
+          alert("Vui lòng đăng nhập để xem lịch sử đơn hàng");
+          window.location.href = "' . BASE_URL . '/home/login";
+      </script>';
     }
-
-    $User = $this->model("UserModel");
-    if (isset($_SESSION['userlogin'])) {
-      $id = $_SESSION['userlogin'][3];
-    } else {
-      $id = "1";
-    }
-    $ProductModel = $this->model("ProductModel");
-    $Category = $this->model("CategoryModel");
-    $this->view("master2", [
-      "Page" => "history",
-      "showHistoty" => $ProductModel->showHistoty($id),
-      "ShowMenu" => $Category->ListAll(),
-      "ShowNameUser" => $User->ShowNameUser($user_id),
-    ]);
   }
   function historyDetails($id)
   {
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
+      
+      // Kiểm tra xem đơn hàng có thuộc về người dùng hiện tại không
+      $ProductModel = $this->model("ProductModel");
+      $User = $this->model("UserModel");
+      $Category = $this->model("CategoryModel");
+      
+      // Kiểm tra quyền truy cập đơn hàng
+      $checkOrder = $ProductModel->checkOrderOwnership($id, $user_id);
+      
+      if ($checkOrder) {
+        $this->view("master2", [
+          "Page" => "historyDetails",
+          "showHistoryDetails" => $ProductModel->showHistoryDetails($id),
+          "ShowMenu" => $Category->ListAll(),
+          "ShowNameUser" => $User->ShowNameUser($user_id),
+        ]);
+      } else {
+        echo '<script>
+          alert("Bạn không có quyền xem chi tiết đơn hàng này");
+          window.location.href = "' . BASE_URL . '/home/history";
+        </script>';
+      }
     } else {
-      $user_id = "";
+      // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+      echo '<script>
+          alert("Vui lòng đăng nhập để xem chi tiết đơn hàng");
+          window.location.href = "' . BASE_URL . '/home/login";
+      </script>';
     }
-
-    $User = $this->model("UserModel");
-    $ProductModel = $this->model("ProductModel");
-    $Category = $this->model("CategoryModel");
-    $this->view("master2", [
-      "Page" => "historyDetails",
-      "showHistoryDetails" => $ProductModel->showHistoryDetails($id),
-      "ShowMenu" => $Category->ListAll(),
-      "ShowNameUser" => $User->ShowNameUser($user_id),
-    ]);
   }
 
   function user()
@@ -535,6 +561,9 @@ class Home extends Controller
         $num = 1;
       }
 
+      // Giới hạn số lượng tối đa là 10 sản phẩm
+      $max_quantity = 10;
+
       // Kiểm tra tồn kho trước khi thêm vào giỏ hàng
       $Stock = $this->model("StockModel");
       $stockCheck = $Stock->checkStockAvailable($id, $size, $num);
@@ -558,6 +587,15 @@ class Home extends Controller
           $total_quantity += $_SESSION['giohang'][$i][2]; // Cộng với số lượng đã có trong giỏ hàng
           break;
         }
+      }
+
+      // Kiểm tra xem tổng số lượng có vượt quá giới hạn không
+      if ($total_quantity > $max_quantity) {
+        echo '<script>
+          alert("Số lượng tối đa cho mỗi sản phẩm là ' . $max_quantity . '. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.");
+          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        </script>';
+        return;
       }
 
       // Kiểm tra xem tổng số lượng có vượt quá tồn kho không
@@ -595,6 +633,72 @@ class Home extends Controller
         alert("Đã thêm sản phẩm vào giỏ hàng");
         window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
       </script>';
+    }
+  }
+
+  function cancelOrder($order_id)
+  {
+    if (!isset($_SESSION['userlogin'])) {
+      echo '<script>
+          alert("Vui lòng đăng nhập để thực hiện chức năng này");
+          window.location.href = "' . BASE_URL . '/home/login";
+      </script>';
+      return;
+    }
+
+    $user_id = $_SESSION['userlogin'][3];
+    $ProductModel = $this->model("ProductModel");
+    
+    // Kiểm tra quyền hủy đơn hàng
+    $canCancel = $ProductModel->canCancelOrder($order_id, $user_id);
+    
+    if ($canCancel) {
+      // Cập nhật trạng thái đơn hàng thành "Đã hủy"
+      $result = $ProductModel->updateOrderStatus($order_id, "Đã hủy");
+      
+      if ($result) {
+        // Hoàn lại tồn kho sản phẩm
+        $this->restoreStock($order_id);
+        
+        echo '<script>
+            alert("Đơn hàng đã được hủy thành công");
+            window.location.href = "' . BASE_URL . '/home/history";
+        </script>';
+      } else {
+        echo '<script>
+            alert("Có lỗi xảy ra khi hủy đơn hàng, vui lòng thử lại sau");
+            window.location.href = "' . BASE_URL . '/home/history";
+        </script>';
+      }
+    } else {
+      echo '<script>
+          alert("Bạn không thể hủy đơn hàng này. Chỉ đơn hàng ở trạng thái \'Đang tiếp nhận\' mới có thể hủy.");
+          window.location.href = "' . BASE_URL . '/home/history";
+      </script>';
+    }
+  }
+  
+  private function restoreStock($order_id)
+  {
+    // Lấy thông tin chi tiết đơn hàng
+    $User = $this->model("UserModel");
+    $Stock = $this->model("StockModel");
+    $OrderDetails = $User->getOrderDetails($order_id);
+    
+    if ($OrderDetails) {
+      foreach ($OrderDetails as $item) {
+        // Lấy thông tin sản phẩm từ variant_id
+        $variantInfo = $User->getVariantInfo($item['variant_id']);
+        
+        if ($variantInfo) {
+          $product_id = $variantInfo['product_id'];
+          $size = $variantInfo['size'];
+          $quantity = $item['num'];
+          
+          // Tăng số lượng tồn kho
+          $Stock->increaseStock($product_id, $size, $quantity);
+        }
+      }
     }
   }
 }

@@ -441,7 +441,7 @@ class UserModel extends DB
     }
 
     // Xử lý đặt hàng
-    public function Order($user_id) {
+    public function Order($user_id, $orderStatus = "Đang tiến hành") {
         try {
             // Kiểm tra giỏ hàng
             if (!isset($_SESSION['giohang']) || !is_array($_SESSION['giohang']) || empty($_SESSION['giohang'])) {
@@ -454,11 +454,11 @@ class UserModel extends DB
             $address = isset($_POST['address']) ? $_POST['address'] : '';
             $note = isset($_POST['note']) ? $_POST['note'] : '';
             $banking = isset($_POST['banking']) ? $_POST['banking'] : 'payLater';
-            $status = "Đang tiến hành";
+            $status = $orderStatus; // Sử dụng trạng thái được truyền vào
             $order_date = date('Y-m-d H:i:s');
             
             // Kiểm tra dữ liệu đầu vào
-            if (empty($name) || empty($phone) || empty($address)) {
+            if (empty($phone) || empty($address)) {
                 return false;
             }
             

@@ -1,3 +1,6 @@
+.dangtiepnhan{
+  color: rgb(105 8 159);
+}
 .dangtienhanh{
 color: rgb(8 122 70);
 }
@@ -99,4 +102,59 @@ td.address_user_truncate {
   text-overflow: ellipsis;
   word-break: break-word;
   padding-bottom: 0px;
+}
+
+/* Styles cho trang quản lý tồn kho */
+.img-thumbnail {
+  border: 1px solid #ddd;
+  transition: all 0.3s;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.badge {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: #1cc88a;
+}
+
+.badge-danger {
+  background-color: #e74a3b;
+}
+
+.badge-warning {
+  background-color: #f6c23e;
+  color: #212529;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+  padding: 10px;
+  background-color: #f8f9fc;
+}
+
+/* Styles cho form thêm tồn kho */
+.form-control:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
 }
