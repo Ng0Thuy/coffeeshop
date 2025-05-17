@@ -240,4 +240,15 @@ class StockModel extends DB {
         $data = mysqli_fetch_array($result);
         return $data['out_count'] > 0;
     }
+
+    // Lấy danh sách các size đã tồn tại trong tồn kho cho một sản phẩm
+    public function getExistingSizes($product_id) {
+        $qr = "SELECT DISTINCT size FROM stock WHERE product_id = '$product_id'";
+        $rows = mysqli_query($this->con, $qr);
+        $data = array();
+        while ($row = mysqli_fetch_array($rows)) {
+            $data[] = $row;
+        }
+        return $data;
+    }
 } 

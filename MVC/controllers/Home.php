@@ -208,14 +208,21 @@ class Home extends Controller
     }
 
     $User = $this->model("UserModel");
-    // if (sizeof($_SESSION['giohang']) == 0) {
     if (!isset($_SESSION['giohang'])) {
-      echo '
-            <script>
-                alert("Chưa có sản phẩm trong giỏ hàng")
-                window.location.assign("../");
-            </script>
-        ';
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+            title: "Thông báo",
+            text: "Chưa có sản phẩm trong giỏ hàng",
+            icon: "warning",
+            confirmButtonText: "Đồng ý"
+          }).then((result) => {
+            window.location.href = "' . BASE_URL . '/";
+          });
+        });
+      </script>';
+      return;
     } else {
       if (isset($_SESSION['giohang'])) {
         $numCart = 0;
@@ -223,23 +230,41 @@ class Home extends Controller
           $numCart += $_SESSION['giohang'][$i][2];
         }
         if ($numCart == 0) {
-          echo '
-            <script>
-                alert("Chưa có sản phẩm trong giỏ hàng")
-                window.location.assign("../");
-            </script>
-        ';
+          echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              Swal.fire({
+                title: "Thông báo",
+                text: "Chưa có sản phẩm trong giỏ hàng",
+                icon: "warning",
+                confirmButtonText: "Đồng ý"
+              }).then((result) => {
+                window.location.href = "' . BASE_URL . '/";
+              });
+            });
+          </script>';
+          return;
         }
         
+        // Lấy số lượng tối đa từ cài đặt hệ thống
+        $max_quantity = $this->getSystemSetting('max_cart_quantity', 10);
+        
         // Kiểm tra tổng số lượng sản phẩm trong giỏ hàng
-        if ($numCart > 10) {
-          echo '
-            <script>
-                alert("Một đơn hàng chỉ được phép có tối đa 10 sản phẩm. Vui lòng giảm số lượng sản phẩm trong giỏ hàng.")
-                window.location.assign("../Cart");
-            </script>
-          ';
-          exit;
+        if ($numCart > $max_quantity) {
+          echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              Swal.fire({
+                title: "Thông báo",
+                text: "Một đơn hàng chỉ được phép có tối đa ' . $max_quantity . ' sản phẩm. Vui lòng giảm số lượng sản phẩm trong giỏ hàng.",
+                icon: "warning",
+                confirmButtonText: "Đồng ý"
+              }).then((result) => {
+                window.location.href = "' . BASE_URL . '/Cart";
+              });
+            });
+          </script>';
+          return;
         }
       }
     }
@@ -247,12 +272,20 @@ class Home extends Controller
     if (isset($_SESSION['userlogin'])) {
       $user_id = $_SESSION['userlogin'][3];
     } else {
-      echo '
-            <script>
-                alert("Vui lòng đăng nhập để tiến hành đặt hàng")
-                window.location.assign("../home/login");
-            </script>
-        ';
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+            title: "Thông báo",
+            text: "Vui lòng đăng nhập để tiến hành đặt hàng",
+            icon: "warning",
+            confirmButtonText: "Đồng ý"
+          }).then((result) => {
+            window.location.href = "' . BASE_URL . '/home/login";
+          });
+        });
+      </script>';
+      return;
     }
     $User = $this->model("UserModel");
     $Category = $this->model("CategoryModel");
@@ -355,24 +388,45 @@ class Home extends Controller
           $_SESSION['total'] = 0;
         }
 
-        echo '<script>
-                try {
-                    localStorage.removeItem("backup_cart");
-                    console.log("Đã xóa backup giỏ hàng");
-                } catch(e) {
-                    console.log("Không thể xóa backup giỏ hàng:", e);
-                }
-                alert("Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại MetaCoffee.");
-                window.location.href = "' . BASE_URL . '/home/history";
-            </script>';
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            try {
+              localStorage.removeItem("backup_cart");
+              console.log("Đã xóa backup giỏ hàng");
+            } catch(e) {
+              console.log("Không thể xóa backup giỏ hàng:", e);
+            }
+            
+            Swal.fire({
+              title: "Thành công!",
+              text: "Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại MetaCoffee.",
+              icon: "success",
+              confirmButtonText: "Xem đơn hàng",
+              timer: 3000,
+              timerProgressBar: true
+            }).then(function() {
+              window.location.href = "' . BASE_URL . '/home/history";
+            });
+          });
+        </script>';
       } else {
         // Khôi phục giỏ hàng nếu đặt hàng thất bại
         $_SESSION['giohang'] = $backup_cart;
 
-        echo '<script>
-                alert("Đặt hàng thất bại! Vui lòng thử lại sau.");
-                window.location.href = "' . BASE_URL . '/home/checkout";
-            </script>';
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Lỗi!",
+              text: "Đặt hàng thất bại! Vui lòng thử lại sau.",
+              icon: "error",
+              confirmButtonText: "Thử lại"
+            }).then(function() {
+              window.location.href = "' . BASE_URL . '/home/checkout";
+            });
+          });
+        </script>';
       }
     } else {
       // Nếu không có tham số checkout, chuyển hướng về trang chủ
@@ -542,6 +596,25 @@ class Home extends Controller
     }
   }
 
+  // Thêm phương thức để lấy giá trị cài đặt
+  private function getSystemSetting($key, $default = null)
+  {
+    $Setting = $this->model("SettingModel");
+    
+    // Kiểm tra bảng cài đặt đã tồn tại chưa
+    try {
+      $setting = $Setting->getSetting($key);
+      
+      if ($setting) {
+        return $setting['setting_value'];
+      }
+    } catch (Exception $e) {
+      // Nếu có lỗi, sử dụng giá trị mặc định
+    }
+    
+    return $default;
+  }
+
   function AddToCart()
   {
     if (!isset($_SESSION['giohang'])) {
@@ -561,8 +634,8 @@ class Home extends Controller
         $num = 1;
       }
 
-      // Giới hạn số lượng tối đa là 10 sản phẩm
-      $max_quantity = 10;
+      // Lấy số lượng tối đa từ cài đặt hệ thống (mặc định là 10)
+      $max_quantity = $this->getSystemSetting('max_cart_quantity', 10);
 
       // Kiểm tra tồn kho trước khi thêm vào giỏ hàng
       $Stock = $this->model("StockModel");
@@ -570,9 +643,20 @@ class Home extends Controller
 
       // Nếu không đủ hàng
       if (!$stockCheck['status']) {
-        echo '<script>
-          alert("' . $stockCheck['message'] . ' cho sản phẩm ' . $name . ' kích cỡ ' . $size . '");
-          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Thông báo",
+              text: "' . $stockCheck['message'] . ' cho sản phẩm ' . $name . ' kích cỡ ' . $size . '",
+              icon: "error",
+              confirmButtonText: "Đồng ý"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+              }
+            });
+          });
         </script>';
         return;
       }
@@ -591,18 +675,40 @@ class Home extends Controller
 
       // Kiểm tra xem tổng số lượng có vượt quá giới hạn không
       if ($total_quantity > $max_quantity) {
-        echo '<script>
-          alert("Số lượng tối đa cho mỗi sản phẩm là ' . $max_quantity . '. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.");
-          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Thông báo",
+              text: "Số lượng tối đa cho mỗi sản phẩm là ' . $max_quantity . '. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.",
+              icon: "warning",
+              confirmButtonText: "Đồng ý"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+              }
+            });
+          });
         </script>';
         return;
       }
 
       // Kiểm tra xem tổng số lượng có vượt quá tồn kho không
       if ($total_quantity > $stockCheck['available']) {
-        echo '<script>
-          alert("Số lượng sản phẩm ' . $name . ' kích cỡ ' . $size . ' trong kho chỉ còn ' . $stockCheck['available'] . ' sản phẩm. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.");
-          window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Thông báo",
+              text: "Số lượng sản phẩm ' . $name . ' kích cỡ ' . $size . ' trong kho chỉ còn ' . $stockCheck['available'] . ' sản phẩm. Bạn đã có ' . ($total_quantity - $num) . ' sản phẩm trong giỏ hàng.",
+              icon: "warning",
+              confirmButtonText: "Đồng ý"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+              }
+            });
+          });
         </script>';
         return;
       }
@@ -623,15 +729,26 @@ class Home extends Controller
       }
 
       // Lưu backup giỏ hàng vào localStorage (thông qua JavaScript)
-      echo '<script>
-        try {
-          localStorage.setItem("backup_cart", JSON.stringify(' . json_encode($_SESSION['giohang']) . '));
-          console.log("Đã lưu giỏ hàng vào localStorage");
-        } catch(e) {
-          console.log("Không thể lưu giỏ hàng vào localStorage:", e);
-        }
-        alert("Đã thêm sản phẩm vào giỏ hàng");
-        window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          try {
+            localStorage.setItem("backup_cart", JSON.stringify(' . json_encode($_SESSION['giohang']) . '));
+            console.log("Đã lưu giỏ hàng vào localStorage");
+          } catch(e) {
+            console.log("Không thể lưu giỏ hàng vào localStorage:", e);
+          }
+          
+          Swal.fire({
+            title: "Thành công",
+            text: "Đã thêm sản phẩm vào giỏ hàng",
+            icon: "success",
+            confirmButtonText: "Đồng ý",
+            timer: 2000
+          }).then((result) => {
+            window.location.href = "' . $_SERVER["HTTP_REFERER"] . '";
+          });
+        });
       </script>';
     }
   }
@@ -639,9 +756,18 @@ class Home extends Controller
   function cancelOrder($order_id)
   {
     if (!isset($_SESSION['userlogin'])) {
-      echo '<script>
-          alert("Vui lòng đăng nhập để thực hiện chức năng này");
-          window.location.href = "' . BASE_URL . '/home/login";
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+            title: "Thông báo",
+            text: "Vui lòng đăng nhập để thực hiện chức năng này",
+            icon: "warning",
+            confirmButtonText: "Đăng nhập ngay"
+          }).then((result) => {
+            window.location.href = "' . BASE_URL . '/home/login";
+          });
+        });
       </script>';
       return;
     }
@@ -660,20 +786,49 @@ class Home extends Controller
         // Hoàn lại tồn kho sản phẩm
         $this->restoreStock($order_id);
         
-        echo '<script>
-            alert("Đơn hàng đã được hủy thành công");
-            window.location.href = "' . BASE_URL . '/home/history";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Thành công",
+              text: "Đơn hàng đã được hủy thành công",
+              icon: "success",
+              confirmButtonText: "Đồng ý",
+              timer: 2000,
+              timerProgressBar: true
+            }).then((result) => {
+              window.location.href = "' . BASE_URL . '/home/history";
+            });
+          });
         </script>';
       } else {
-        echo '<script>
-            alert("Có lỗi xảy ra khi hủy đơn hàng, vui lòng thử lại sau");
-            window.location.href = "' . BASE_URL . '/home/history";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              title: "Lỗi",
+              text: "Có lỗi xảy ra khi hủy đơn hàng, vui lòng thử lại sau",
+              icon: "error",
+              confirmButtonText: "Đồng ý"
+            }).then((result) => {
+              window.location.href = "' . BASE_URL . '/home/history";
+            });
+          });
         </script>';
       }
     } else {
-      echo '<script>
-          alert("Bạn không thể hủy đơn hàng này. Chỉ đơn hàng ở trạng thái \'Đang tiếp nhận\' mới có thể hủy.");
-          window.location.href = "' . BASE_URL . '/home/history";
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+            title: "Không thể hủy",
+            text: "Bạn không thể hủy đơn hàng này. Chỉ đơn hàng ở trạng thái \'Đang tiếp nhận\' mới có thể hủy.",
+            icon: "warning",
+            confirmButtonText: "Đồng ý"
+          }).then((result) => {
+            window.location.href = "' . BASE_URL . '/home/history";
+          });
+        });
       </script>';
     }
   }

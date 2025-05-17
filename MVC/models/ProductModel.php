@@ -46,8 +46,24 @@ class ProductModel extends DB
     }
     public function showPrice($id)
     {
-        $sql = "SELECT * FROM variant WHERE product_id=$id";
-        return mysqli_query($this->con, $sql);
+        // Kiểm tra id có tồn tại và hợp lệ không
+        if (!isset($id) || empty($id) || !is_numeric($id)) {
+            return false;
+        }
+        
+        $sql = "SELECT * FROM variant WHERE product_id='$id'";
+        $result = mysqli_query($this->con, $sql);
+        
+        if (!$result) {
+            error_log("SQL Error in showPrice: " . mysqli_error($this->con));
+            return false;
+        }
+        
+        if (mysqli_num_rows($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
     }
 
     public function showComment($id)

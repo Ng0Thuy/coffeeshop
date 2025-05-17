@@ -107,9 +107,20 @@
 
                     <script>
                         function cancelOrder(orderId) {
-                            if (confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')) {
-                                window.location.href = '<?= BASE_URL ?>/Home/cancelOrder/' + orderId;
-                            }
+                            Swal.fire({
+                                title: 'Xác nhận hủy đơn hàng',
+                                text: 'Bạn có chắc chắn muốn hủy đơn hàng này?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Xác nhận hủy',
+                                cancelButtonText: 'Không hủy'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '<?= BASE_URL ?>/Home/cancelOrder/' + orderId;
+                                }
+                            });
                         }
                     </script>
                 <?php } else { ?>
@@ -121,3 +132,45 @@
         </div>
     </section>
 </main>
+
+<!-- Thêm thư viện SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    /* Style cho SweetAlert */
+    .swal2-popup {
+        font-size: 1.6rem !important;
+        border-radius: 15px !important;
+    }
+    .swal2-title {
+        font-size: 2rem !important;
+    }
+    .swal2-content {
+        font-size: 1.6rem !important;
+    }
+    .swal2-styled.swal2-confirm {
+        background-color: #ff929b !important;
+    }
+    .swal2-styled.swal2-cancel {
+        background-color: #6c757d !important;
+    }
+</style>
+
+<script>
+    function cancelOrder(orderId) {
+        Swal.fire({
+            title: 'Xác nhận hủy đơn hàng',
+            text: 'Bạn có chắc chắn muốn hủy đơn hàng này?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xác nhận hủy',
+            cancelButtonText: 'Không hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= BASE_URL ?>/Home/cancelOrder/' + orderId;
+            }
+        });
+    }
+</script>

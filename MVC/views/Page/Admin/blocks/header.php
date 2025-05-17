@@ -28,15 +28,18 @@
                             <a class="nav-link" href="<?=BASE_URL?>/Admin/stock">Quản lý tồn kho</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?=BASE_URL?>/Admin/settings"><i class="fas fa-cog"></i> Cài đặt</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link logout_nav" href="<?=BASE_URL?>/Admin/logout"><i class="fas fa-sign-out-alt"></i></a>
                         </li>
                     </ul>
-                    <form class="form-inline">
+                    <!-- <form class="form-inline">
                         <input class="form-control mr-sm-2" type="search" id="search" placeholder="Tìm kiếm..." aria-label="Search" />
                         <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
                             Tìm kiếm
                         </button>
-                    </form>
+                    </form> -->
                 </div>
             </nav>
         </header>

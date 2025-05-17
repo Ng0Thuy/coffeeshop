@@ -385,7 +385,7 @@ class Admin extends Controller
     }
   }
   
-  // Thêm mới tồn kho cho tất cả size của sản phẩm
+  // Thêm mới/cập nhật tồn kho cho tất cả size của sản phẩm
   function stockAddBatch()
   {
     ini_set('display_errors', 1);
@@ -403,6 +403,11 @@ class Admin extends Controller
         $quantities = $_POST['quantities'];
         $sizes = $_POST['sizes'];
         
+        // Debug thông tin
+        error_log("Product ID: " . $product_id);
+        error_log("Sizes: " . print_r($sizes, true));
+        error_log("Quantities: " . print_r($quantities, true));
+        
         // Kiểm tra dữ liệu đầu vào
         if (empty($product_id) || !is_array($quantities) || !is_array($sizes) || count($quantities) != count($sizes)) {
           echo '<script>
@@ -415,42 +420,74 @@ class Admin extends Controller
         $Stock = $this->model("StockModel");
         $success = true;
         $successCount = 0;
+        $updateCount = 0;
         
         // Lặp qua tất cả size và cập nhật/thêm tồn kho
         for ($i = 0; $i < count($sizes); $i++) {
           $size = $sizes[$i];
           $quantity = intval($quantities[$i]);
           
-          if ($quantity > 0) {
-            $result = $Stock->addStock($product_id, $size, $quantity);
-            if ($result) {
-              $successCount++;
+          if ($quantity >= 0) {
+            // Kiểm tra xem size này đã có trong tồn kho chưa
+            $existingStock = $Stock->getStock($product_id, $size);
+            
+            if ($existingStock) {
+              // Nếu đã tồn tại, cập nhật số lượng
+              $result = $Stock->updateStock($product_id, $size, $quantity);
+              if ($result) {
+                $updateCount++;
+              } else {
+                $success = false;
+              }
             } else {
-              $success = false;
+              // Nếu chưa tồn tại và số lượng > 0, thêm mới
+              if ($quantity > 0) {
+                $result = $Stock->addStock($product_id, $size, $quantity);
+                if ($result) {
+                  $successCount++;
+                } else {
+                  $success = false;
+                }
+              }
             }
           }
         }
         
-        if ($success && $successCount > 0) {
-          echo '<script>
-            alert("Cập nhật tồn kho thành công cho ' . $successCount . ' kích thước!");
-            window.location.href = "' . BASE_URL . '/Admin/stockDetail/' . $product_id . '";
-          </script>';
+        if ($success) {
+          if ($successCount > 0 || $updateCount > 0) {
+            $message = "";
+            if ($successCount > 0) {
+              $message .= "Thêm mới " . $successCount . " kích thước. ";
+            }
+            if ($updateCount > 0) {
+              $message .= "Cập nhật " . $updateCount . " kích thước. ";
+            }
+            
+            echo '<script>
+              alert("Quản lý tồn kho thành công! ' . $message . '");
+              window.location.href = "' . BASE_URL . '/Admin/stock";
+            </script>';
+          } else {
+            echo '<script>
+              alert("Không có thay đổi nào được thực hiện.");
+              history.back();
+            </script>';
+          }
         } else {
           echo '<script>
-            alert("Cập nhật tồn kho thất bại hoặc không có thay đổi nào!");
+            alert("Có lỗi xảy ra trong quá trình cập nhật! Đã cập nhật ' . $updateCount . ' và thêm mới ' . $successCount . ' kích thước.");
             history.back();
           </script>';
         }
       } else {
         echo '<script>
-          alert("Dữ liệu không hợp lệ!");
+          alert("Dữ liệu không hợp lệ! Vui lòng thử lại.");
           history.back();
         </script>';
       }
     } catch (Exception $e) {
       echo '<script>
-        alert("Lỗi hệ thống: ' . $e->getMessage() . '");
+        alert("Lỗi hệ thống: ' . str_replace("'", "\'", $e->getMessage()) . '");
         history.back();
       </script>';
     }
@@ -639,9 +676,19 @@ class Admin extends Controller
       $product_id = $_POST['product_id'];
       
       $Product = $this->model("ProductModel");
-      $sizes = $Product->showPrice($product_id);
       
-      if ($sizes) {
+      // Lấy tất cả size của sản phẩm từ bảng variant
+      $variant_query = $Product->showPrice($product_id);
+      
+      // Kiểm tra nếu query thành công và có dữ liệu
+      if ($variant_query && mysqli_num_rows($variant_query) > 0) {
+        $sizes = array();
+        
+        // Lấy dữ liệu từ kết quả query
+        while ($row = mysqli_fetch_assoc($variant_query)) {
+          $sizes[] = $row;
+        }
+        
         echo json_encode([
           'status' => 'success',
           'sizes' => $sizes
@@ -691,6 +738,153 @@ class Admin extends Controller
         'status' => 'error',
         'message' => 'Thiếu thông tin sản phẩm',
         'quantity' => 0
+      ]);
+    }
+  }
+
+  // Lấy tất cả danh sách kích cỡ cho sản phẩm (AJAX) bao gồm cả những size đã tồn tại
+  function getAllSizes()
+  {
+    header('Content-Type: application/json');
+    
+    if (isset($_POST['product_id'])) {
+      $product_id = $_POST['product_id'];
+      
+      $Product = $this->model("ProductModel");
+      $Stock = $this->model("StockModel");
+      
+      // Lấy tất cả size của sản phẩm từ bảng variant
+      $variant_query = $Product->showPrice($product_id);
+      
+      // Kiểm tra nếu query thành công và có dữ liệu
+      if ($variant_query && mysqli_num_rows($variant_query) > 0) {
+        $sizes = array();
+        
+        // Lấy dữ liệu từ kết quả query
+        while ($row = mysqli_fetch_assoc($variant_query)) {
+          $sizes[] = $row;
+        }
+        
+        // Lấy các size đã tồn tại trong tồn kho
+        $existingSizes = $Stock->getExistingSizes($product_id);
+        $existingSizesArray = array();
+        
+        // Tạo mảng chứa tất cả size đã tồn tại
+        foreach ($existingSizes as $existingSize) {
+          $existingSizesArray[] = $existingSize['size'];
+        }
+        
+        echo json_encode([
+          'status' => 'success',
+          'sizes' => $sizes,
+          'existingSizes' => $existingSizesArray
+        ]);
+      } else {
+        echo json_encode([
+          'status' => 'error',
+          'message' => 'Không tìm thấy kích cỡ sản phẩm',
+          'query_result' => mysqli_error($Product->con)
+        ]);
+      }
+    } else {
+      echo json_encode([
+        'status' => 'error',
+        'message' => 'Thiếu thông tin sản phẩm'
+      ]);
+    }
+  }
+
+  // Lấy thông tin tồn kho của sản phẩm (AJAX)
+  function getStockInfo()
+  {
+    header('Content-Type: application/json');
+    
+    if (isset($_POST['product_id'])) {
+      $product_id = $_POST['product_id'];
+      
+      $Stock = $this->model("StockModel");
+      
+      // Lấy thông tin tồn kho của sản phẩm
+      $stockDetails = $Stock->getStockByProduct($product_id);
+      
+      if ($stockDetails && count($stockDetails) > 0) {
+        echo json_encode([
+          'status' => 'success',
+          'stock' => $stockDetails
+        ]);
+      } else {
+        echo json_encode([
+          'status' => 'empty',
+          'message' => 'Không có tồn kho'
+        ]);
+      }
+    } else {
+      echo json_encode([
+        'status' => 'error',
+        'message' => 'Thiếu thông tin sản phẩm'
+      ]);
+    }
+  }
+
+  // Quản lý cài đặt hệ thống
+  function settings()
+  {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+      exit;
+    }
+    
+    $Setting = $this->model("SettingModel");
+    $Category = $this->model("CategoryModel");
+    
+    // Kiểm tra và tạo bảng cài đặt nếu chưa có
+    $Setting->createSystemSettingsTable();
+    
+    // Lấy tất cả cài đặt
+    $settings = $Setting->getAllSettings();
+    
+    $this->view("masterAdmin", [
+      "Page" => "settings",
+      "ShowSettings" => $settings,
+      "ShowMenu" => $Category->ListAll()
+    ]);
+  }
+  
+  // Cập nhật cài đặt hệ thống (AJAX)
+  function updateSetting()
+  {
+    header('Content-Type: application/json');
+    
+    if (!isset($_SESSION['userAdmin'])) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => 'Bạn không có quyền thực hiện thao tác này'
+      ]);
+      exit;
+    }
+    
+    if (isset($_POST['key']) && isset($_POST['value'])) {
+      $key = $_POST['key'];
+      $value = $_POST['value'];
+      
+      $Setting = $this->model("SettingModel");
+      $result = $Setting->updateSetting($key, $value);
+      
+      if ($result) {
+        echo json_encode([
+          'status' => 'success',
+          'message' => 'Cập nhật cài đặt thành công'
+        ]);
+      } else {
+        echo json_encode([
+          'status' => 'error',
+          'message' => 'Cập nhật cài đặt thất bại'
+        ]);
+      }
+    } else {
+      echo json_encode([
+        'status' => 'error',
+        'message' => 'Thiếu thông tin cài đặt'
       ]);
     }
   }

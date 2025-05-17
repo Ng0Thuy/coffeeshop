@@ -1,3 +1,12 @@
+<?php
+// Lấy giá trị max_cart_quantity từ cài đặt hệ thống
+$Setting = $this->model("SettingModel");
+$max_quantity = 10; // Giá trị mặc định
+$setting = $Setting->getSetting('max_cart_quantity');
+if ($setting && !empty($setting['setting_value'])) {
+  $max_quantity = intval($setting['setting_value']);
+}
+?>
 <main class="container">
     <nav class="nav-top">
         <ul>
@@ -30,7 +39,7 @@
                                 <td class="img-name"><img src="<?= BASE_URL ?>/<?= $_SESSION['giohang'][$i][4] ?>" alt=""><a href="<?= BASE_URL ?>/home/product/<?= $_SESSION['giohang'][$i][1] ?>"><?= $_SESSION['giohang'][$i][5] ?></a></td>
                                 <td><span class="size-cart"><?= $_SESSION['giohang'][$i][0] ?></span></td>
                                 <td><?= number_format($_SESSION['giohang'][$i][3], 0, ",", ".") ?> VNĐ</td>
-                                <td><input class="numCart" type="number" min="1" max="10" value="<?= $_SESSION['giohang'][$i][2] ?>"></td>
+                                <td><input class="numCart" type="number" min="1" max="<?= $max_quantity ?>" value="<?= $_SESSION['giohang'][$i][2] ?>"></td>
                                 <td><?= number_format($total, 0, ",", ".") ?> VNĐ</td>
                                 <td>
                                     <a class="delete-cart" href="<?=BASE_URL?>/Cart/deldCart/<?=$i?>">Xóa</a>
@@ -69,8 +78,43 @@
 
 </main>
 
+<!-- Thêm thư viện SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+  /* Style cho SweetAlert */
+  .swal2-popup {
+    font-size: 1.6rem !important;
+    border-radius: 15px !important;
+  }
+  .swal2-title {
+    font-size: 2rem !important;
+  }
+  .swal2-content {
+    font-size: 1.6rem !important;
+  }
+  .swal2-styled.swal2-confirm {
+    background-color: #ff929b !important;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Hàm hiển thị thông báo đẹp thay cho alert
+    function showNotification(message, type = 'info') {
+      Swal.fire({
+        title: 'Thông báo',
+        text: message,
+        icon: type,
+        confirmButtonText: 'Đồng ý',
+        timer: 3000,
+        timerProgressBar: true
+      });
+    }
+    
+    // Lấy giá trị số lượng tối đa từ PHP
+    var maxCartQuantity = <?= $max_quantity ?>;
+    
     // Lấy tất cả các input số lượng
     const quantityInputs = document.querySelectorAll('.numCart');
     
@@ -83,9 +127,9 @@
         // Kiểm tra và giới hạn giá trị
         if (isNaN(value) || value < 1) {
           this.value = 1;
-        } else if (value > 10) {
-          alert('Số lượng tối đa cho mỗi sản phẩm là 10.');
-          this.value = 10;
+        } else if (value > maxCartQuantity) {
+          showNotification('Số lượng tối đa cho mỗi sản phẩm là ' + maxCartQuantity + '.', 'warning');
+          this.value = maxCartQuantity;
         }
         
         // Gọi hàm cập nhật giỏ hàng (nếu có)

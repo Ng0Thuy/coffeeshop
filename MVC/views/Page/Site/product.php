@@ -1,3 +1,12 @@
+<?php
+// Lấy giá trị max_cart_quantity từ cài đặt hệ thống
+$Setting = $this->model("SettingModel");
+$max_quantity = 10; // Giá trị mặc định
+$setting = $Setting->getSetting('max_cart_quantity');
+if ($setting && !empty($setting['setting_value'])) {
+  $max_quantity = intval($setting['setting_value']);
+}
+?>
 <main id="nhan" class="grid wide container">
   <?php
   $row = mysqli_fetch_assoc($data['showProductItem']);
@@ -78,7 +87,7 @@
         </div>
         <div class="purchase-info">
           <span class="btn" id="minus">-</span>
-          <input type="number" name="num" min="1" value="1" max="10" id="input">
+          <input type="number" name="num" min="1" value="1" max="<?= $max_quantity ?>" id="input">
           <span class="btn" id="plus" style="margin-right: 50px;">+</span>
         </div>
         <input type="number" hidden name="id" value="<?= $row['product_id'] ?>">
@@ -249,10 +258,43 @@
   .purchase-info label {
     cursor: pointer !important;
   }
+
+  /* Style cho SweetAlert */
+  .swal2-popup {
+    font-size: 1.6rem !important;
+    border-radius: 15px !important;
+  }
+  .swal2-title {
+    font-size: 2rem !important;
+  }
+  .swal2-content {
+    font-size: 1.6rem !important;
+  }
+  .swal2-styled.swal2-confirm {
+    background-color: #ff929b !important;
+  }
 </style>
+
+<!-- Thêm thư viện SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
   $(document).ready(function() {
+    // Hàm hiển thị thông báo đẹp thay cho alert
+    function showNotification(message, type = 'info') {
+      Swal.fire({
+        title: 'Thông báo',
+        text: message,
+        icon: type,
+        confirmButtonText: 'Đồng ý',
+        timer: 3000,
+        timerProgressBar: true
+      });
+    }
+    
+    // Lấy giá trị số lượng tối đa từ PHP
+    var maxCartQuantity = <?= $max_quantity ?>;
+    
     // Kiểm tra tồn kho cho tất cả các kích cỡ khi trang tải xong
     checkAllSizes();
     
@@ -354,19 +396,20 @@
         success: function(response) {
           if (response.status === 'success') {
             var available = response.quantity;
-            // Giới hạn tối đa là 10 sản phẩm hoặc số lượng tồn kho (nếu nhỏ hơn 10)
-            var max_quantity = Math.min(10, available);
+            // Giới hạn tối đa là số lượng từ cài đặt hoặc số lượng tồn kho (nếu nhỏ hơn)
+            var max_quantity = Math.min(maxCartQuantity, available);
 
             if (available > 0) {
               $('#stockStatus').html('<span class="text-success"><i class="fas fa-check-circle"></i> Còn hàng (' + available + ')</span>');
               $('#btn1').prop('disabled', false);
               $('#btn1').css('opacity', '1');
 
-              // Giới hạn số lượng đặt hàng không vượt quá tồn kho và tối đa 10
+              // Giới hạn số lượng đặt hàng không vượt quá tồn kho và tối đa từ cài đặt
               if (parseInt(quantity) > max_quantity) {
                 $('#input').val(max_quantity);
-                if (max_quantity === 10) {
-                  alert('Số lượng tối đa cho mỗi sản phẩm là 10.');
+                // Chỉ hiển thị thông báo khi vượt quá tối đa vì lý do tồn kho, không phải vì chạm max_quantity
+                if (available < maxCartQuantity) {
+                  showNotification('Số lượng sản phẩm trong kho chỉ còn ' + available + '.', 'warning');
                 }
               }
             } else {
@@ -400,11 +443,11 @@
 
     plus.addEventListener('click', function() {
       var currentValue = parseInt(input.value);
-      if (currentValue < 10) {
+      if (currentValue < maxCartQuantity) {
         input.value = currentValue + 1;
-      } else {
-        alert('Số lượng tối đa cho mỗi sản phẩm là 10.');
-        input.value = 10;
+      } else if (currentValue > maxCartQuantity) {
+        // Chỉ hiển thị thông báo khi người dùng cố gắng vượt quá giới hạn
+        showNotification('Số lượng tối đa cho mỗi sản phẩm là ' + maxCartQuantity + '.', 'warning');
       }
     });
 
@@ -418,9 +461,9 @@
     // Giới hạn số lượng khi nhập trực tiếp vào ô input
     input.addEventListener('change', function() {
       var currentValue = parseInt(input.value);
-      if (currentValue > 10) {
-        alert('Số lượng tối đa cho mỗi sản phẩm là 10.');
-        input.value = 10;
+      if (currentValue > maxCartQuantity) {
+        showNotification('Số lượng tối đa cho mỗi sản phẩm là ' + maxCartQuantity + '.', 'warning');
+        input.value = maxCartQuantity;
       } else if (currentValue < 1 || isNaN(currentValue)) {
         input.value = 1;
       }
