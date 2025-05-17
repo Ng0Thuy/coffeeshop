@@ -793,12 +793,42 @@ class ProductModel extends DB
 
         public function showHistoryDetails($id)
         {
-            $sql = "SELECT od.*, p.*, v.*, o.order_date, o.status, o.method, o.note 
+            // Kiểm tra xem các cột cần thiết có tồn tại trong bảng orders không
+            $columns = "o.order_date, o.status, o.method, o.note";
+            
+            // Kiểm tra các cột thêm mới có tồn tại không
+            $check_columns = mysqli_query($this->con, "SHOW COLUMNS FROM orders LIKE 'name'");
+            if (mysqli_num_rows($check_columns) > 0) {
+                $columns .= ", o.name";
+            }
+            
+            $check_columns = mysqli_query($this->con, "SHOW COLUMNS FROM orders LIKE 'order_code'");
+            if (mysqli_num_rows($check_columns) > 0) {
+                $columns .= ", o.order_code";
+            }
+            
+            $check_columns = mysqli_query($this->con, "SHOW COLUMNS FROM orders LIKE 'payment_status'");
+            if (mysqli_num_rows($check_columns) > 0) {
+                $columns .= ", o.payment_status";
+            }
+            
+            $check_columns = mysqli_query($this->con, "SHOW COLUMNS FROM orders LIKE 'phone'");
+            if (mysqli_num_rows($check_columns) > 0) {
+                $columns .= ", o.phone";
+            }
+            
+            $check_columns = mysqli_query($this->con, "SHOW COLUMNS FROM orders LIKE 'address'");
+            if (mysqli_num_rows($check_columns) > 0) {
+                $columns .= ", o.address";
+            }
+            
+            $sql = "SELECT od.*, p.*, v.*, $columns
             FROM order_details od
             JOIN variant v ON od.variant_id = v.variant_id 
             JOIN product p ON v.product_id = p.product_id
             JOIN orders o ON od.order_id = o.order_id
             WHERE od.order_id = $id";
+            
             return mysqli_query($this->con, $sql);
         }
 
@@ -810,25 +840,37 @@ class ProductModel extends DB
 
         public function updateOrder($status, $id)
         {
-            $sql = "UPDATE orders SET status='$status' WHERE order_id =$id";
-            $result = mysqli_query($this->con, $sql);
-            if ($result !== false) {
+            $query = "update orders set status='$status' where order_id='$id'";
+            $result = mysqli_query($this->con, $query);
+            if ($result) {
                 echo '
                 <script>
-                    alert("Cập nhật thành công");
-                    history.back();
+                alert("Cập nhật đơn hàng thành công");
+                window.location.assign("' . BASE_URL . '/Admin/order");
                 </script>
-            ';
-                exit;
+                ';
             } else {
                 echo '
                 <script>
-                    alert("Đã xảy ra lỗi");
-                    history.back();
+                alert("Cập nhật đơn hàng thất bại");
+                history.back();
                 </script>
-            ';
-                exit;
+                ';
             }
+        }
+
+        /**
+         * Cập nhật trạng thái thanh toán của đơn hàng
+         * 
+         * @param int $order_id ID của đơn hàng
+         * @param string $payment_status Trạng thái thanh toán ('Đã thanh toán' hoặc 'Chưa thanh toán')
+         * @return bool Trả về true nếu cập nhật thành công, false nếu thất bại
+         */
+        public function updatePaymentStatus($order_id, $payment_status)
+        {
+            $query = "UPDATE orders SET payment_status='$payment_status' WHERE order_id='$order_id'";
+            $result = mysqli_query($this->con, $query);
+            return $result ? true : false;
         }
 
         public function checkOrderOwnership($order_id, $user_id)

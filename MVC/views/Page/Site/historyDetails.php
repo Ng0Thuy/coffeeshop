@@ -23,8 +23,23 @@
                 <h3>Thông tin đơn hàng #<?= $order_id ?></h3>
                 <div class="order-info-container">
                     <div class="order-info-column">
+                        <?php
+                        // Tạo mã đơn hàng mặc định nếu không có
+                        $orderCode = 'MKOOPS' . $order_id;
+                        if (isset($history_detail['order_code']) && !empty($history_detail['order_code'])) {
+                            $orderCode = $history_detail['order_code'];
+                        }
+                        ?>
+                        <p><strong>Mã đơn hàng:</strong> <span class="order-code"><?= $orderCode ?></span></p>
                         <p><strong>Ngày đặt:</strong> <?= isset($history_detail['order_date']) ? date('d/m/Y H:i', strtotime($history_detail['order_date'])) : 'N/A' ?></p>
                         <p><strong>Phương thức thanh toán:</strong> <?= isset($history_detail['method']) ? ($history_detail['method'] == 'payLater' ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản ngân hàng') : 'N/A' ?></p>
+                        <?php if (isset($history_detail['payment_status'])) : ?>
+                        <p><strong>Trạng thái thanh toán:</strong> 
+                            <span class="<?= $history_detail['payment_status'] == 'Đã thanh toán' ? 'danhan' : 'dangtiepnhan' ?>">
+                                <?= $history_detail['payment_status'] ?>
+                            </span>
+                        </p>
+                        <?php endif; ?>
                     </div>
                     <div class="order-info-column">
                         <p><strong>Trạng thái:</strong>
@@ -153,6 +168,37 @@
     }
     .swal2-styled.swal2-cancel {
         background-color: #6c757d !important;
+    }
+    
+    /* Style cho mã đơn hàng */
+    .order-code {
+        font-family: monospace;
+        font-weight: bold;
+        background-color: #f8f9fa;
+        padding: 3px 6px;
+        border-radius: 4px;
+        border: 1px solid #dee2e6;
+        color: #000;
+    }
+    
+    /* Style cho thông tin đơn hàng */
+    .order-info-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+    }
+    
+    .order-info-column {
+        flex: 1;
+        min-width: 250px;
+        padding: 0 15px;
+    }
+    
+    @media (max-width: 768px) {
+        .order-info-column {
+            flex: 100%;
+            margin-bottom: 15px;
+        }
     }
 </style>
 

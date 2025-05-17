@@ -298,6 +298,35 @@ class Admin extends Controller
     $Add = $Product->updateOrder($status, $id);
   }
 
+  function updatePaymentStatus($id)
+  {
+    if (!isset($_SESSION['userAdmin'])) {
+      header('Location: http://localhost/DuAn1/Admin/login');
+      exit;
+    }
+    
+    if (isset($_POST['payment_status'])) {
+      $payment_status = $_POST['payment_status'];
+      
+      // Sử dụng ProductModel để cập nhật trạng thái thanh toán
+      $ProductModel = $this->model("ProductModel");
+      $result = $ProductModel->updatePaymentStatus($id, $payment_status);
+      
+      if ($result) {
+        // Chuyển hướng với thông báo thành công
+        header('Location: ' . BASE_URL . '/Admin/orderDetails/' . $id . '?update_status=success');
+        exit;
+      } else {
+        // Chuyển hướng với thông báo lỗi
+        header('Location: ' . BASE_URL . '/Admin/orderDetails/' . $id . '?update_status=error');
+        exit;
+      }
+    } else {
+      header('Location: ' . BASE_URL . '/Admin/orderDetails/' . $id);
+      exit;
+    }
+  }
+
   // Quản lý tồn kho
   function stock()
   {

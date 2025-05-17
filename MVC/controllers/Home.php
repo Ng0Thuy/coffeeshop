@@ -309,41 +309,73 @@ class Home extends Controller
         $id = $_SESSION['userlogin'][3];
       } else {
         $id = "";
-        echo '<script>
-                alert("Vui lòng đăng nhập để tiến hành đặt hàng");
-                window.location.href = "' . BASE_URL . '/home/login";
-            </script>';
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    title: "Thông báo",
+                    text: "Vui lòng đăng nhập để tiến hành đặt hàng",
+                    icon: "warning",
+                    confirmButtonText: "Đồng ý"
+                  }).then((result) => {
+                    window.location.href = "' . BASE_URL . '/home/login";
+                  });
+                });
+              </script>';
         return;
       }
 
       // Kiểm tra giỏ hàng trước khi tiếp tục xử lý
       if (!isset($_SESSION['giohang']) || !is_array($_SESSION['giohang']) || empty($_SESSION['giohang']) || count($_SESSION['giohang']) == 0) {
         // Kiểm tra xem có backup giỏ hàng trong localStorage không (thông qua JavaScript)
-        echo '<script>
-                var backup_cart = localStorage.getItem("backup_cart");
-                if (backup_cart) {
-                    alert("Đang khôi phục giỏ hàng của bạn từ backup...");
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  var backup_cart = localStorage.getItem("backup_cart");
+                  if (backup_cart) {
+                    Swal.fire({
+                      title: "Thông báo",
+                      text: "Đang khôi phục giỏ hàng của bạn từ backup...",
+                      icon: "info",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      timerProgressBar: true
+                    });
+                    
                     // Gửi yêu cầu AJAX để khôi phục giỏ hàng
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", "' . BASE_URL . '/cart/restoreCart", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function() {
-                        if (xhr.readyState === 4) {
-                            if (xhr.status === 200) {
-                                // Tải lại trang
-                                window.location.reload();
-                            } else {
-                                alert("Không có sản phẩm trong giỏ hàng");
-                                window.location.href = "' . BASE_URL . '/home";
-                            }
+                      if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                          // Tải lại trang
+                          window.location.reload();
+                        } else {
+                          Swal.fire({
+                            title: "Thông báo",
+                            text: "Không có sản phẩm trong giỏ hàng",
+                            icon: "error",
+                            confirmButtonText: "Đồng ý"
+                          }).then((result) => {
+                            window.location.href = "' . BASE_URL . '/home";
+                          });
                         }
+                      }
                     };
                     xhr.send("backup_cart=" + backup_cart);
-                } else {
-                    alert("Không có sản phẩm trong giỏ hàng");
-                    window.location.href = "' . BASE_URL . '/home";
-                }
-            </script>';
+                  } else {
+                    Swal.fire({
+                      title: "Thông báo",
+                      text: "Không có sản phẩm trong giỏ hàng",
+                      icon: "error",
+                      confirmButtonText: "Đồng ý"
+                    }).then((result) => {
+                      window.location.href = "' . BASE_URL . '/home";
+                    });
+                  }
+                });
+              </script>';
         return;
       }
 

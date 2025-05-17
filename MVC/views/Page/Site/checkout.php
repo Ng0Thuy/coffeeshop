@@ -8,7 +8,7 @@
     <section class="checkout">
         <h1 class="checkout-title">Chi tiết thanh toán</h1>
         <section class="checkout-main">
-            <form action="<?=BASE_URL?>/home/checkoutAct" class="form-checkout" method="post" id="checkoutForm">
+            <form action="<?= BASE_URL ?>/home/checkoutAct" class="form-checkout" method="post" id="checkoutForm">
                 <?php
                 $result = mysqli_fetch_assoc($data['showUserCheckout']);
                 ?>
@@ -35,13 +35,22 @@
                 </div>
                 <div class="content-banking content-banking-none">
                     <div class="box">
-                        <img src="https://znews-stc.zdn.vn/static/topic/company/vietcom.jpg" alt="">
+                        <div class="qr-container">
+                            <div id="qrcode"></div>
+                            <div class="qr-loading" id="qrLoading">
+                                <div class="spinner"></div>
+                                <p>Đang tạo mã QR...</p>
+                            </div>
+                        </div>
                         <div class="content-banking-p">
-                            <p>Nội dung: Thanh toán cho đơn hàng <span class="bold">MKOOPS09</span></p>
-                            <p>Số tiền <span class="b-600">100.000 VNĐ</span></p>
+                            <p>Nội dung: Thanh toán cho đơn hàng <span class="bold" id="orderCodeDisplay">MKOOPS<?= isset($order_id) ? $order_id : rand(1000, 9999) ?></span></p>
+                            <p>Số tiền: <span class="b-600" id="totalAmountDisplay"><?= number_format($tongTien, 0, "", ",") ?> VNĐ</span></p>
                             <p>Chủ tài khoản: <span class="b-600">Coffee Shop</span></p>
                             <p>Số tài khoản: <span class="b-600">99999999999</span></p>
                             <p>Ngân hàng: <span class="b-600">Vietcombank</span></p>
+                            <div class="qr-instructions">
+                                <p><i class="fas fa-info-circle"></i> Quét mã QR bằng ứng dụng ngân hàng để thanh toán nhanh chóng</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,28 +104,109 @@
     </section>
 </main>
 <style>
-    main.container .checkout .checkout-main form.form-checkout label.error{
+    main.container .checkout .checkout-main form.form-checkout label.error {
         font-size: 1.7rem;
     }
+
+    /* Style cho phần QR code */
+    .qr-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        position: relative;
+        min-height: 256px;
+        min-width: 256px;
+        margin-right: 10px;
+    }
+
+    #qrcode img {
+        display: block;
+        margin: 0 auto;
+
+        width: 100%;
+
+        max-height: 256px;
+        max-width: 256px;
+
+    }
+
+    .qr-loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #ff929b;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .qr-instructions {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-left: 3px solid #ff929b;
+        border-radius: 4px;
+    }
+
+    .qr-instructions p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .qr-instructions i {
+        color: #ff929b;
+        margin-right: 5px;
+    }
 </style>
+
+<!-- Thêm thư viện QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
     $(document).ready(function() {
         // Lưu giỏ hàng vào localStorage để dự phòng
-        <?php if(isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0): ?>
-        try {
-            localStorage.setItem('backup_cart', JSON.stringify(<?= json_encode($_SESSION['giohang']) ?>));
-            console.log("Đã lưu giỏ hàng vào localStorage:", <?= json_encode($_SESSION['giohang']) ?>);
-        } catch(e) {
-            console.log("Không thể lưu giỏ hàng vào localStorage:", e);
-        }
+        <?php if (isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0): ?>
+            try {
+                localStorage.setItem('backup_cart', JSON.stringify(<?= json_encode($_SESSION['giohang']) ?>));
+                console.log("Đã lưu giỏ hàng vào localStorage:", <?= json_encode($_SESSION['giohang']) ?>);
+            } catch (e) {
+                console.log("Không thể lưu giỏ hàng vào localStorage:", e);
+            }
         <?php endif; ?>
 
         // Thêm hàm kiểm tra session trước khi submit form
         function checkSessionBeforeSubmit() {
             var processing = $('<div id="processingOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;display:flex;justify-content:center;align-items:center;"><div style="background:white;padding:20px;border-radius:5px;"><p style="margin:0;font-size:16px;"><i class="fas fa-spinner fa-spin"></i> Đang xử lý đơn hàng...</p></div></div>');
             $('body').append(processing);
-            
+
             return true;
         }
 
@@ -125,16 +215,16 @@
             if ($("#checkoutForm")[0].checkValidity()) {
                 // Hiển thị thông báo đang xử lý
                 $(this).prop('disabled', true).text('Đang xử lý...');
-                
+
                 // Đảm bảo giỏ hàng được lưu trước khi submit
                 try {
                     if (localStorage) {
                         localStorage.setItem('backup_cart', JSON.stringify(<?= json_encode($_SESSION['giohang'] ?? []) ?>));
                     }
-                } catch(e) {
+                } catch (e) {
                     console.log("Không thể lưu giỏ hàng vào localStorage:", e);
                 }
-                
+
                 // Trực tiếp submit form
                 checkSessionBeforeSubmit();
                 $("#checkoutForm").submit();
@@ -144,13 +234,76 @@
             }
         });
 
-        // Xử lý hiển thị thông tin ngân hàng khi chọn phương thức thanh toán
+        // Xử lý hiển thị thông tin ngân hàng và tạo mã QR khi chọn phương thức thanh toán
         $('input[name="banking"]').change(function() {
-            if($(this).val() == 'banking') {
+            if ($(this).val() == 'banking') {
                 $('.content-banking').removeClass('content-banking-none');
+                generateQRCode(); // Gọi hàm tạo mã QR
             } else {
                 $('.content-banking').addClass('content-banking-none');
             }
         });
+
+        // Hàm tạo mã QR cho thanh toán
+        function generateQRCode() {
+            const qrcodeContainer = document.getElementById('qrcode');
+            const qrLoading = document.getElementById('qrLoading');
+
+            if (!qrcodeContainer) return;
+
+            // Xóa mã QR cũ nếu có
+            qrcodeContainer.innerHTML = '';
+
+            // Hiển thị loading
+            if (qrLoading) qrLoading.style.display = 'flex';
+
+            // Lấy thông tin chuyển khoản
+            const bankAccountNumber = '229222092003'; // Số tài khoản
+            const bankBin = '970422'; // Mã ngân hàng MB
+            const amount = <?= $tongTien ?? 0 ?>; // Số tiền
+            const orderCode = 'EAPCWQ<?= isset($order_id) ? $order_id : rand(1000, 9999) ?>';
+            const description = 'Thanh toan don hang ' + orderCode; // Nội dung chuyển khoản
+            
+            // Cập nhật thông tin hiển thị
+            document.getElementById('orderCodeDisplay').textContent = orderCode;
+            // Lưu orderCode vào form để gửi lên server
+            if (!document.getElementById('orderCodeInput')) {
+                const orderCodeInput = document.createElement('input');
+                orderCodeInput.type = 'hidden';
+                orderCodeInput.name = 'order_code';
+                orderCodeInput.id = 'orderCodeInput';
+                orderCodeInput.value = orderCode;
+                document.getElementById('checkoutForm').appendChild(orderCodeInput);
+            } else {
+                document.getElementById('orderCodeInput').value = orderCode;
+            }
+
+            // Tạo URL VietQR
+            const vietQrUrl = `https://img.vietqr.io/image/${bankBin}-${bankAccountNumber}-compact2.png?amount=${amount}&addInfo=${description}&accountName=Coffee%20Shop`;
+
+            // Tạo hình ảnh QR
+            const img = new Image();
+            img.onload = function() {
+                // Ẩn loading khi tải xong
+                if (qrLoading) qrLoading.style.display = 'none';
+                qrcodeContainer.appendChild(img);
+            };
+            img.onerror = function() {
+                // Nếu lỗi, tạo mã QR bằng thư viện qrcode.js
+                if (qrLoading) qrLoading.style.display = 'none';
+                new QRCode(qrcodeContainer, {
+                    text: vietQrUrl,
+                    width: 256,
+                    height: 256,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            };
+            img.src = vietQrUrl;
+
+            // Cập nhật thông tin hiển thị
+            document.getElementById('totalAmountDisplay').textContent = new Intl.NumberFormat('vi-VN').format(amount) + ' VNĐ';
+        }
     });
 </script>

@@ -441,95 +441,81 @@ class UserModel extends DB
     }
 
     // Xử lý đặt hàng
-    public function Order($user_id, $orderStatus = "Đang tiến hành") {
-        try {
-            // Kiểm tra giỏ hàng
-            if (!isset($_SESSION['giohang']) || !is_array($_SESSION['giohang']) || empty($_SESSION['giohang'])) {
-                return false;
-            }
-            
-            // Lấy thông tin từ form
-            $name = isset($_POST['name']) ? $_POST['name'] : '';
-            $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-            $address = isset($_POST['address']) ? $_POST['address'] : '';
-            $note = isset($_POST['note']) ? $_POST['note'] : '';
-            $banking = isset($_POST['banking']) ? $_POST['banking'] : 'payLater';
-            $status = $orderStatus; // Sử dụng trạng thái được truyền vào
-            $order_date = date('Y-m-d H:i:s');
-            
-            // Kiểm tra dữ liệu đầu vào
-            if (empty($phone) || empty($address)) {
-                return false;
-            }
-            
-            // Lưu thông tin đơn hàng vào database
-            $sql = "INSERT INTO orders (user_id, address, phone, note, method, status, order_date) 
-                    VALUES ('$user_id', '$address', '$phone', '$note', '$banking', '$status', '$order_date')";
-            $result = mysqli_query($this->con, $sql);
-            
-            if (!$result) {
-                // Nếu có lỗi khi thêm đơn hàng
-                return false;
-            }
-            
-            // Lấy ID của đơn hàng vừa tạo
+    public function Order($user_id, $status)
+    {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $note = isset($_POST['note']) ? $_POST['note'] : "";
+        $method = $_POST['banking'];
+        
+        // Kiểm tra cấu trúc bảng trước khi thực hiện INSERT
+        $tableInfo = mysqli_query($this->con, "DESCRIBE orders");
+        $columns = [];
+        while ($row = mysqli_fetch_assoc($tableInfo)) {
+            $columns[] = $row['Field'];
+        }
+        
+        // Xây dựng câu lệnh SQL dựa trên các cột tồn tại
+        $insertColumns = ['user_id', 'phone', 'address', 'note', 'method', 'status', 'order_date'];
+        $insertValues = ["'$user_id'", "'$phone'", "'$address'", "'$note'", "'$method'", "'$status'", "'" . date('Y-m-d H:i:s') . "'"];
+        
+        // Thêm cột name nếu tồn tại
+        if (in_array('name', $columns)) {
+            $insertColumns[] = 'name';
+            $insertValues[] = "'$name'";
+        }
+        
+        // Thêm cột payment_status nếu tồn tại
+        if (in_array('payment_status', $columns)) {
+            $payment_status = ($method == 'banking') ? 'Chưa thanh toán' : 'Đã thanh toán';
+            $insertColumns[] = 'payment_status';
+            $insertValues[] = "'$payment_status'";
+        }
+        
+        // Thêm cột order_code nếu tồn tại
+        if (in_array('order_code', $columns)) {
+            $order_code = 'EAPCWQ' . rand(1000, 9999) . time();
+            $insertColumns[] = 'order_code';
+            $insertValues[] = "'$order_code'";
+        }
+        
+        // Tạo đơn hàng mới
+        $sql = "INSERT INTO orders (" . implode(", ", $insertColumns) . ") VALUES (" . implode(", ", $insertValues) . ")";
+        $kq = false;
+        
+        if (mysqli_query($this->con, $sql)) {
             $order_id = mysqli_insert_id($this->con);
             
             // Thêm chi tiết đơn hàng
-            $order_success = true;
-            if (isset($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) {
-                foreach ($_SESSION['giohang'] as $item) {
-                    // Kiểm tra cấu trúc item hợp lệ
-                    if (!isset($item[0]) || !isset($item[1]) || !isset($item[2]) || !isset($item[3])) {
-                        continue;
-                    }
+            for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+                $size = $_SESSION['giohang'][$i][0];
+                $product_id = $_SESSION['giohang'][$i][1];
+                $num = $_SESSION['giohang'][$i][2];
+                $price = $_SESSION['giohang'][$i][3];
+                $thumbnail = $_SESSION['giohang'][$i][4];
+                $product_name = $_SESSION['giohang'][$i][5];
+                
+                // Lấy variant_id
+                $query = "SELECT variant_id FROM variant WHERE product_id = '$product_id' AND size = '$size'";
+                $variant_result = mysqli_query($this->con, $query);
+                
+                if ($variant_result && mysqli_num_rows($variant_result) > 0) {
+                    $variant_row = mysqli_fetch_assoc($variant_result);
+                    $variant_id = $variant_row['variant_id'];
                     
-                    $size = $item[0]; // Kích cỡ
-                    $product_id = $item[1]; // ID sản phẩm
-                    $quantity = $item[2]; // Số lượng
-                    $price = $item[3]; // Giá
+                    // Tính toán price_total từ num và price
+                    $price_total = $num * $price;
                     
-                    // Kiểm tra số lượng đặt hàng hợp lệ
-                    if ($quantity <= 0) {
-                        continue;
-                    }
-                    
-                    // Lấy variant_id từ product_id và size
-                    $query = "SELECT variant_id FROM variant WHERE product_id = '$product_id' AND size = '$size'";
-                    $variant_result = mysqli_query($this->con, $query);
-                    
-                    if ($variant_result && mysqli_num_rows($variant_result) > 0) {
-                        $variant_data = mysqli_fetch_assoc($variant_result);
-                        $variant_id = $variant_data['variant_id'];
-                        
-                        // Tính tổng tiền
-                        $price_total = $price * $quantity;
-                        
-                        // Thêm chi tiết đơn hàng
-                        $detail_sql = "INSERT INTO order_details (order_id, variant_id, price_total, num) 
-                                      VALUES ('$order_id', '$variant_id', '$price_total', '$quantity')";
-                        $detail_result = mysqli_query($this->con, $detail_sql);
-                        
-                        if (!$detail_result) {
-                            // Ghi log lỗi nếu cần thiết
-                            $order_success = false;
-                        }
-                    }
+                    // Thêm chi tiết đơn hàng - Sửa từ price thành price_total
+                    $insert_detail = "INSERT INTO order_details(order_id, variant_id, num, price_total) VALUES('$order_id', '$variant_id', '$num', '$price_total')";
+                    mysqli_query($this->con, $insert_detail);
                 }
             }
             
-            // Nếu không có chi tiết đơn hàng nào được thêm thành công, hủy đơn hàng
-            if (!$order_success) {
-                $cancel_sql = "DELETE FROM orders WHERE order_id = '$order_id'";
-                mysqli_query($this->con, $cancel_sql);
-                return false;
-            }
-            
-            // Trả về order_id nếu thành công
-            return $order_id;
-        } catch (Exception $e) {
-            // Ghi log lỗi nếu cần
-            return false;
+            $kq = $order_id;
         }
+        
+        return $kq;
     }
 }
